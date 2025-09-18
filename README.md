@@ -1,251 +1,367 @@
-# NextJS Dual-Mode Starter Kit
+# FCFlamingo Schweizer Kinderbuch-Shop
 
-**Production-Ready Business Template: SaaS ↔ Shop in 5 Minuten**
+**🇨🇭 Moderne E-Commerce-Plattform für Schweizer Kinderbücher**
 
-Vollständig funktionsfähiges Template für **E-Commerce** oder **SaaS Subscriptions** mit Swiss Optimization. Self-hosted Stack mit Supabase, Stripe Integration und modernem Development Setup.
+Ultra-saubere Next.js 15 Shop-Plattform mit selbst-gehosteter Supabase-Infrastruktur, optimiert für den Schweizer Markt mit CHF-Preisen, TWINT-Integration und lokalen Anpassungen.
+
+## 🎯 Projektübersicht
+
+FCFlamingo ist eine spezialisierte E-Commerce-Lösung für Schweizer Kinderbücher mit:
+
+- **🏗️ Moderner Tech-Stack:** Next.js 15 + App Router + Server Components
+- **🗄️ Datenbank-Zentriert:** Selbst-gehostete Supabase mit PostgreSQL + Row Level Security
+- **🇨🇭 Schweiz-Optimiert:** CHF/Rappen, TWINT, Europa/Zürich Zeitzone
+- **⚡ Leistung:** Server Components, Streaming, Edge-Optimierung
+- **🛡️ Sicherheit:** Row Level Security, JWT-Authentifizierung, Stripe-Integration
+
+### 🧹 Architektur-Status
+**Reines Shop-System** - Alle SaaS-Komponenten vollständig entfernt für maximale Einfachheit und Leistung.
 
 ## 🚀 Schnellstart
 
-```bash
-# 1. Infrastructure starten
-cd infrastructure && docker compose up -d
+### Entwicklungsumgebung einrichten
 
-# 2. Development starten  
+1. **Repository klonen:**
+```bash
+git clone <repository-url>
+cd fcflamingo
+```
+
+2. **Infrastruktur starten:**
+```bash
+cd infrastructure
+docker compose up -d
+```
+*Dienste verfügbar: [API](http://localhost:55321) | [Studio](http://localhost:55323)*
+
+3. **Template konfigurieren:**
+```bash
 cd ../template
-pnpm install && pnpm run dev
+cp .env.example .env.local
 ```
 
-**Bereit:** [App](http://localhost:3000) | [Datenbank](http://localhost:55323)
-
-## 🛠️ Tech Stack
-
-**Frontend:** Next.js 15 • React 19 • TypeScript • Tailwind CSS 4  
-**Backend:** Supabase (self-hosted) • PostgreSQL • Docker  
-**Payments:** Stripe Integration • CHF + TWINT  
-**State:** Zustand + Persist • Server Actions  
-**Email:** Resend Integration (German Templates)  
-**Components:** Radix UI • shadcn/ui
-
-## ✨ Features
-
-### 🇨🇭 Swiss Business Optimization
-- **CHF Währung** mit Rappen-Precision
-- **TWINT + Karte** Zahlungsmethoden
-- **de-CH Lokalisierung** (Datum, Währung, Sprache)
-- **Schweizer Adressen** und Postleitzahlen-Validierung
-- **DSGVO-konforme** Datenverarbeitung
-
-### 🛍️ E-Commerce System (Production Ready)
-- **Produktkatalog** mit Stripe Price Integration
-- **Shopping Cart** mit Zustand Persistence
-- **Guest Checkout** ohne Account-Zwang
-- **Order Management** Dashboard für Shop Owner
-- **Digital + Physical** Products Support
-- **Email Confirmations** und Status Updates
-
-### 💼 SaaS Subscription System (Production Ready)
-- **Subscription Plans** mit monatlicher Abrechnung
-- **Billing Dashboard** für Kunden
-- **Usage Tracking** und Account Management
-- **Stripe Customer Portal** Integration
-- **Webhook-driven** Subscription Events
-
-### 🔐 Vollständige Authentication
-- Email/Passwort Registrierung und Login
-- Geschützte Routen und Middleware
-- Benutzerprofile und Session-Management
-- Passwort zurücksetzen Flow
-
-### 🏗️ Moderne Architektur
-- **Next.js 15** mit App Router und Server Actions
-- **React 19** mit Server Components
-- **TypeScript** Strict Mode mit Zod Schemas
-- **Zustand** State Management mit Persist
-- **Dark/Light Theme** mit System Detection
-- **Mobile-First** Responsive Design
-
-### 🐳 Self-Hosted Infrastructure
-- **PostgreSQL** Datenbank mit Migrations
-- **Supabase** Authentication und Real-time API
-- **Docker Compose** Development Stack
-- **Kong Gateway** und Observability Stack
-
-### 📧 Professional Email System
-- **Resend Integration** für transactional Emails
-- **React Email** Templates (Order, Billing, Welcome)
-- **Swiss Formatierung** (CHF, de-CH Datum)
-- **Production-ready** Domain Setup
-
-## 📁 Projekt-Struktur
-
-```
-template/                # Haupt-Development Template
-├── app/
-│   ├── (marketing)/
-│   │   ├── shop/           # 🟩 SHOP-ONLY (E-Commerce)
-│   │   └── pricing/        # 🟦 SAAS-ONLY (Subscriptions)
-│   ├── dashboard/
-│   │   ├── orders/         # 🟩 SHOP-ONLY (Order Management)
-│   │   └── subscription/   # 🟦 SAAS-ONLY (Billing)
-│   └── api/               # ✅ SHARED (Webhooks, Auth)
-├── components/
-│   ├── shop/              # 🟩 SHOP-ONLY (Cart, Products)
-│   ├── billing/           # 🟦 SAAS-ONLY (Plans, Checkout)
-│   └── ui/                # ✅ SHARED (Design System)
-└── lib/
-    ├── shop/              # 🟩 SHOP-ONLY (One-time Payments)
-    ├── plans.ts           # 🟦 SAAS-ONLY (Subscription Plans)
-    └── config.ts          # ✅ SHARED (Core Configuration)
-
-infrastructure/             # Docker Compose Stack
-├── docker-compose.yml     # Service Definitionen
-├── volumes/db/            # Database Schema (Both Models)
-└── .env.local            # Infrastructure Konfiguration
-```
-
-## 🔄 Dual-Mode Architecture
-
-### SaaS ↔ Shop Conversion (5 Minuten)
-
-**SaaS → Shop:**
+4. **Abhängigkeiten installieren:**
 ```bash
-# 1. Remove SaaS components
-rm -rf app/(marketing)/pricing/ app/dashboard/subscription/ components/billing/ lib/plans.ts
-
-# 2. Update navigation (1 line): /pricing → /shop in components/layout/header.tsx
-
-# 3. Done! Shop system is fully functional
+npm install
+npm run dev
 ```
 
-**Shop → SaaS:**
-```bash  
-# 1. Remove Shop components
-rm -rf app/(marketing)/shop/ app/dashboard/orders/ components/shop/ lib/shop/
+**🌐 Entwicklungs-URLs:**
+- **Shop:** http://localhost:3000
+- **Supabase API:** http://localhost:55321
+- **Studio:** http://localhost:55323
 
-# 2. Update navigation (1 line): /shop → /pricing in components/layout/header.tsx
+## ⚙️ Konfiguration
 
-# 3. Done! SaaS system is fully functional
-```
+### Entwicklungsumgebung
 
-**Warum so einfach?** Beide Systeme laufen parallel mit clean code separation. Keine Database Migration nötig!
-
-## 🔧 Konfiguration
-
-Das Template kommt vorkonfiguriert mit:
-- **Währung:** CHF mit Rappen-Precision
-- **Sprache:** Deutsch (de-CH) mit Schweizer Formatierung  
-- **Payments:** Stripe mit Karte und TWINT Support
-- **Business Models:** SaaS Subscriptions + E-Commerce Shop
-- **Zeitzone:** Europe/Zurich
-
-`lib/config.ts` anpassen für Ihre Region:
-
-```typescript
-export const siteConfig = {
-  name: "Ihr App Name",
-  currency: "CHF" as const,
-  locale: "de-CH" as const,
-  
-  // Für SaaS: Subscription Pricing
-  subscription: {
-    starter: 2990, // 29.90 CHF in Rappen
-    pro: 7990      // 79.90 CHF in Rappen
-  },
-  
-  // Für Shop: Product Configuration
-  shop: {
-    shipping: { countries: ['CH'] },
-    digitalProducts: true,  // Support digital products
-    physicalProducts: true  // Support physical products
-  }
-}
-```
-
-## 🧪 Development
-
-### Tägliche Commands
-```bash
-pnpm run dev          # Development Server
-pnpm run build        # Production Build  
-pnpm run lint         # Code Linting
-pnpm run type-check   # TypeScript Validierung
-```
-
-### Infrastructure Management
-```bash
-cd infrastructure/
-docker compose up -d      # Services starten
-docker compose down       # Services stoppen  
-docker compose ps         # Service Status
-```
-
-### Datenbank
-- **Management:** [Supabase Studio](http://localhost:55323)
-- **Direkter Zugriff:** `docker exec -it supabase-db psql -U postgres`
-- **Migrations:** SQL Dateien in `infrastructure/volumes/db/`
-
-## 📚 Dokumentation
-
-- **[Schnellstart](docs/01-quickstart.md)** - Komplette Setup Anleitung
-- **[SaaS ↔ Shop Conversion](docs/06-customization.md)** - 5-Minuten Business Model Wechsel
-- **[Development](docs/05-development.md)** - Development Workflow
-- **[Service Integration](docs/04-integrations.md)** - Stripe, Supabase, Resend Setup
-- **[Infrastructure](infrastructure/README.md)** - Docker Setup Details
-
-## 🔑 Environment Setup
-
-### Template Konfiguration
+**Template (.env.local):**
 ```env
-# Datenbank
+# Supabase Verbindung
 NEXT_PUBLIC_SUPABASE_URL=http://localhost:55321
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU
 
-# Stripe Integration
+# Stripe Test-Schlüssel (Entwicklung)
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 STRIPE_SECRET_KEY=sk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...
 
-# SaaS Subscription Products
-STRIPE_STARTER_PRICE_ID=price_...     # Monatliche Subscription
-STRIPE_PRO_PRICE_ID=price_...         # Monatliche Subscription
-
-# Shop One-time Products  
-STRIPE_PRODUCT_1_PRICE_ID=price_...   # T-Shirt 24.90 CHF
-STRIPE_PRODUCT_2_PRICE_ID=price_...   # Digital Guide 19.90 CHF
-
-# Email Service
-RESEND_API_KEY=re_your_api_key
-EMAIL_DOMAIN=yourdomain.ch
-
-# Application
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+# Seiten-Konfiguration
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NODE_ENV=development
 ```
 
-### Infrastructure Konfiguration
+### Produktionsumgebung
+
+**Template (.env.local für Produktion):**
 ```env
-# Secrets (für Production ändern)
-POSTGRES_PASSWORD=your-secure-password
-JWT_SECRET=your-jwt-secret-32-chars-min
-ANON_KEY=your_anon_key
-SERVICE_ROLE_KEY=your_service_role_key
+# Supabase Produktion
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-production-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-production-service-key
 
-# Ports
-KONG_HTTP_PORT=55321
-STUDIO_PORT=55323
+# Stripe Live-Schlüssel (Produktion)
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+STRIPE_SECRET_KEY=sk_live_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+
+# Produktions-Seite
+NEXT_PUBLIC_SITE_URL=https://fcflamingo.ch
+NODE_ENV=production
 ```
 
-## 🚀 Production Deployment
+## 🏗️ Architektur
 
-1. **Business Model:** SaaS oder Shop entscheiden (5-Min Conversion)
-2. **Environment:** Production `.env.local` mit Live Stripe Keys
-3. **Datenbank:** Managed PostgreSQL oder Self-hosting
-4. **Payments:** Stripe Webhooks und Live Mode konfigurieren
-5. **Domain:** Custom Domain mit SSL und Email-Domain Setup
-6. **Monitoring:** Error Tracking und Analytics konfigurieren
+### Frontend (web/)
+```
+app/
+├── (marketing)/          # Marketing-Seiten
+│   ├── page.tsx         # Startseite
+│   ├── shop/           # Produktkatalog
+│   └── contact/        # Kontaktformular
+├── auth/               # Authentifizierungs-Flows
+├── dashboard/          # Kunden-Dashboard
+└── api/               # API-Routen
+```
+
+### Backend (infrastructure/)
+```
+infrastructure/
+├── docker-compose.yml  # Supabase-Stack
+├── volumes/db/        # Datenbankschema
+└── .env.local        # Infrastruktur-Konfiguration
+```
+
+### Hauptkomponenten
+- **🛍️ Shop-System:** Produkte, Warenkorb, Checkout
+- **👤 Kunden-Authentifizierung:** Registrierung, Login, Profile
+- **📦 Bestellverwaltung:** Bestellungen, Bestellpositionen, Verlauf
+- **💳 Zahlungen:** Stripe + TWINT Integration
+- **🇨🇭 Schweizer Funktionen:** CHF-Währung, lokale Adressen
+
+## 📊 Datenbankschema
+
+**Ultra-Saubere Reine-Shop-Tabellen:**
+```sql
+-- Kundenverwaltung
+public.profiles      -- Kundenprofile (erweitert auth.users)
+
+-- Produktkatalog
+public.products      -- Schweizer Kinderbücher (CHF-Preise)
+
+-- Bestellabwicklung
+public.orders        -- Kundenbestellungen (Schweizer Adressen)
+public.order_items   -- Bestellpositionen
+```
+
+**Beispielprodukte (vorgeladen):**
+- Der kleine Drache Kokosnuss (15.90 CHF)
+- Globi und die Piraten (18.90 CHF)
+- Heidi (12.90 CHF)
+
+## 🛠️ Entwicklung
+
+### Befehle
+```bash
+# Entwicklungsserver
+npm run dev
+
+# Typprüfung
+npm run type-check
+
+# Code-Prüfung
+npm run lint
+
+# Build erstellen
+npm run build
+
+# Produktionsserver
+npm start
+```
+
+### Datenbankverwaltung
+```bash
+# Supabase Studio öffnen
+open http://localhost:55323
+
+# Direkter Datenbankzugriff
+docker exec -it supabase-db psql -U supabase_admin -d postgres
+
+# Produkte anzeigen
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT name, author, price FROM products LIMIT 5;"
+```
+
+## 🚀 Produktions-Deployment
+
+### Infrastruktur-Deployment
+
+1. **Server-Einrichtung:**
+```bash
+# Produktionsserver (Ubuntu/Debian)
+sudo apt update && sudo apt install docker.io docker-compose
+git clone <repository-url>
+cd fcflamingo/infrastructure
+```
+
+2. **Produktions-Konfiguration:**
+```bash
+# Infrastruktur-Konfiguration kopieren und bearbeiten
+cp .env .env.local
+# Bearbeiten: POSTGRES_PASSWORD, JWT_SECRET, VAULT_ENC_KEY
+# Produktions-URLs und Domains setzen
+```
+
+3. **Infrastruktur deployen:**
+```bash
+docker compose up -d
+# Auf Initialisierung warten (60s)
+docker compose ps
+```
+
+### Frontend-Deployment
+
+1. **Vercel (Empfohlen):**
+```bash
+# Vercel CLI installieren
+npm i -g vercel
+
+# Aus web/ Verzeichnis deployen
+cd web
+vercel --prod
+```
+
+2. **Umgebungsvariablen (Vercel):**
+   - Alle Produktions-Umgebungsvariablen im Vercel Dashboard hinzufügen
+   - Custom Domain konfigurieren: fcflamingo.ch
+   - SSL/TLS automatisch einrichten
+
+3. **Selbst-gehostete Alternative:**
+```bash
+# Build erstellen und deployen
+cd web
+npm run build
+npm start
+# Oder PM2, Docker, etc. verwenden
+```
+
+### Stripe-Integration
+
+1. **Entwicklungs-Setup:**
+   - Stripe Test-Account erstellen
+   - Test-Schlüssel holen: `pk_test_...` und `sk_test_...`
+   - Webhook-Endpunkt konfigurieren: `your-domain/api/webhooks/stripe`
+
+2. **Produktions-Setup:**
+   - Live-Modus in Stripe aktivieren
+   - Live-Schlüssel holen: `pk_live_...` und `sk_live_...`
+   - TWINT-Zahlungsmethode für Schweizer Kunden hinzufügen
+   - Produktions-Webhooks konfigurieren
+
+## 🔧 Fehlerbehebung
+
+### Häufige Probleme
+
+**🚫 Datenbankverbindung fehlgeschlagen:**
+```bash
+# Infrastrukturdienste prüfen
+cd infrastructure && docker compose ps
+
+# Bei Bedarf neustarten
+docker compose down && docker compose up -d
+
+# VAULT_ENC_KEY hat 32 Zeichen prüfen
+grep VAULT_ENC_KEY .env.local
+```
+
+**🚫 Produkte laden nicht:**
+```bash
+# Prüfen ob Datenbank Produkte hat
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT COUNT(*) FROM products;"
+
+# API-Endpunkt prüfen
+curl http://localhost:55321/rest/v1/products?apikey=<anon-key>
+```
+
+**🚫 JWT-Token-Fehler:**
+```bash
+# JWT-Schlüssel zwischen Infrastruktur und Template prüfen
+# Beide sollten den gleichen JWT_SECRET Wert verwenden
+grep JWT_SECRET infrastructure/.env.local
+grep JWT_SECRET web/.env.local
+```
+
+**🚫 Stripe-Webhook-Fehler:**
+```bash
+# Webhook-Secret prüfen
+grep STRIPE_WEBHOOK_SECRET web/.env.local
+
+# Webhook-Endpunkt testen
+curl -X POST http://localhost:3000/api/webhooks/stripe \
+  -H "Content-Type: application/json" \
+  -d '{"type": "test"}'
+```
+
+### Reset-Anweisungen
+
+**Vollständiger Reset (Entwicklung):**
+```bash
+# Infrastruktur zurücksetzen
+cd infrastructure
+docker compose down -v
+docker compose up -d
+
+# Template zurücksetzen
+cd ../template
+rm -rf .next node_modules
+npm install
+npm run dev
+```
+
+## 📁 Projektstruktur
+
+```
+fcflamingo/
+├── README.md                    # Diese Datei
+├── CLEANUP.md                   # SaaS-Entfernungs-Dokumentation
+├── infrastructure/              # Selbst-gehosteter Supabase-Stack
+│   ├── docker-compose.yml     # Vollständige Supabase-Infrastruktur
+│   ├── volumes/db/             # Datenbankschema-Dateien
+│   └── README.md               # Infrastruktur-Dokumentation
+└── web/                        # Next.js Shop-Anwendung
+    ├── app/                    # Next.js 15 App Router
+    ├── components/             # React-Komponenten
+    ├── lib/                    # Hilfsprogramme und Services
+    ├── hooks/                  # Benutzerdefinierte React-Hooks
+    └── types/                  # TypeScript-Definitionen
+```
+
+## 🎯 Funktionen
+
+### Shop-Funktionen
+- ✅ **Produktkatalog:** Schweizer Kinderbücher mit Bildern
+- ✅ **Warenkorb:** Hinzufügen, entfernen, Mengen-Verwaltung
+- ✅ **Checkout:** Stripe-Integration mit Schweizer Optimierungen
+- ✅ **Benutzerkonten:** Registrierung, Login, Bestellhistorie
+- ✅ **Bestellverwaltung:** Bestellverfolgung und Status-Updates
+- ✅ **Mobile Responsive:** Optimiert für alle Bildschirmgrößen
+
+### Schweizer Optimierungen
+- ✅ **Währung:** CHF mit Rappen-Präzision (als Ganzzahlen gespeichert)
+- ✅ **Zahlungsmethoden:** Stripe + TWINT Unterstützung
+- ✅ **Zeitzone:** Europa/Zürich für alle Zeitstempel
+- ✅ **Adressformat:** Schweizer Adressvalidierung
+- ✅ **Sprache:** Deutsch primär, mehrsprachig bereit
+
+### Technische Funktionen
+- ✅ **Datenbank-Zentriert:** Supabase mit Row Level Security
+- ✅ **Typsicherheit:** Vollständige TypeScript-Abdeckung
+- ✅ **Leistung:** Server Components, Edge-Funktionen
+- ✅ **Sicherheit:** JWT-Authentifizierung, RLS-Richtlinien, Eingabevalidierung
+- ✅ **Überwachung:** Eingebaute Analytik und Fehler-Tracking
+
+## 📚 Ressourcen
+
+- **[Infrastruktur README](infrastructure/README.md)** - Detaillierte Infrastruktur-Dokumentation
+- **[Cleanup-Dokumentation](CLEANUP.md)** - SaaS-Entfernungsprozess
+- **[Supabase Docs](https://supabase.com/docs)** - Datenbank- und Authentifizierungs-Dokumentation
+- **[Next.js Docs](https://nextjs.org/docs)** - Framework-Dokumentation
+- **[Stripe Docs](https://stripe.com/docs)** - Zahlungs-Integration
+
+## 🤝 Beitragen
+
+1. Repository forken
+2. Feature-Branch erstellen: `git checkout -b feature/amazing-feature`
+3. Änderungen committen: `git commit -m 'Add amazing feature'`
+4. Branch pushen: `git push origin feature/amazing-feature`
+5. Pull Request öffnen
+
+## 📄 Lizenz
+
+Dieses Projekt ist unter der MIT-Lizenz lizenziert - siehe LICENSE-Datei für Details.
 
 ---
 
-**Status:** Production Ready ✅ (SaaS + Shop)  
-**Swiss Optimized:** CHF • TWINT • de-CH • DSGVO  
-**Lizenz:** MIT • **Node.js:** 18+ erforderlich
+**🇨🇭 Made in Switzerland for Swiss Children's Books | FCFlamingo 2024**

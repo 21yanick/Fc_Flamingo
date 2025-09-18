@@ -1,255 +1,366 @@
-# Infrastructure Setup
+# FCFlamingo Kinderbuch-Shop Infrastruktur
 
-**Self-hosted Supabase development stack with Docker Compose**
+**Self-hosted Supabase Stack für FCFlamingo Schweizer Kinderbuchhandlung**
 
-Provides complete backend infrastructure for the NextJS starter template.
+Ultra-saubere, shop-only Infrastruktur basierend auf NextJS 15 Swiss Starter Kit mit allen SaaS-Komponenten entfernt. Optimiert für den Schweizer Markt mit CHF-Preisen, TWINT-Zahlungen und Europe/Zurich Zeitzone.
 
-## 🚀 Quick Start
+## 🚀 Schnellstart
 
 ```bash
 cd infrastructure
 docker compose up -d
 ```
 
-**Services:** [API](http://localhost:55321) | [Studio](http://localhost:55323) | [Analytics](http://localhost:4000)
+**Dienste:** [API](http://localhost:55321) | [Studio](http://localhost:55323) | [Analytics](http://localhost:4000)
 
-## 🐳 Services Overview
+## 🐳 Dienste-Übersicht
 
-| Service | Port | Purpose |
-|---------|------|---------|
-| **Kong Gateway** | 55321 | API gateway and authentication |
-| **Supabase Studio** | 55323 | Database management interface |
-| **PostgreSQL** | 5432 | Main database (internal) |
-| **Analytics** | 4000 | Usage analytics dashboard |
+| Dienst | Port | Zweck | Status |
+|---------|------|-------|--------|
+| **Kong Gateway** | 55321 | API Gateway und Authentifizierung | ✅ Gesund |
+| **Supabase Studio** | 55323 | Datenbank-Verwaltungsoberfläche | ✅ Gesund |
+| **PostgreSQL** | 5432 | Hauptdatenbank (intern) | ✅ Gesund |
+| **Analytics** | 4000 | Nutzungsstatistiken Dashboard | ✅ Gesund |
 
-### Complete Stack
-- **Authentication:** GoTrue auth server
-- **Database:** PostgreSQL 15 with Row Level Security
-- **Storage:** File storage and image processing
-- **Realtime:** WebSocket subscriptions
-- **Analytics:** Usage tracking and monitoring
+### Vollständiger Stack
+- **Authentifizierung:** GoTrue Auth-Server mit Schweizer Benutzerprofilen
+- **Datenbank:** PostgreSQL 15 mit Row Level Security
+- **Speicher:** Dateispeicher für Produktbilder
+- **Shop-System:** Produkte, Bestellungen, Warenkorb, Checkout (CHF-Preise)
+- **Analytics:** Shop-Performance Tracking
 
-## 🔧 Configuration
+## 🔧 Konfiguration
 
-### Environment Setup
-Copy and customize the environment configuration:
+### Umgebungs-Setup
+Vorkonfiguriert für FCFlamingo mit benutzerdefinierten Ports zur Konfliktvermeidung:
 
 ```bash
-cp .env.example .env.local
+# Bereits konfiguriert in .env.local
+KONG_HTTP_PORT=55321      # Benutzerdefinierter Port (vermeidet Konflikte)
+STUDIO_PORT=55323         # Benutzerdefinierter Port (vermeidet Konflikte)
+KONG_HTTPS_PORT=55444     # Benutzerdefinierter HTTPS Port
+POOLER_PROXY_PORT_TRANSACTION=55643  # Benutzerdefinierter Pooler Port
 ```
 
-### Required Variables
-```env
-# Database
-POSTGRES_PASSWORD=your-secure-password
-JWT_SECRET=your-jwt-secret-32-chars-min
+### Automatisches Setup
+Die Infrastruktur erstellt automatisch:
+- Ultra-sauberes shop-only Datenbankschema
+- Row Level Security Richtlinien für Shop-Daten
+- Authentifizierungsflows für Kunden
+- Schweizer Kinderbücher Beispieldaten
 
-# Authentication Keys
-ANON_KEY=your_anon_key
-SERVICE_ROLE_KEY=your_service_role_key
+## 📊 Datenbankschema - Ultra-Sauber Shop-Only
 
-# Services
-KONG_HTTP_PORT=55321
-STUDIO_PORT=55323
-```
+### 🎯 **Saubere Architektur Errungenschaft**
+**VORHER:** Komplexes modulares System (5+ Schema-Dateien mit SaaS/Subscription-Komponenten)  
+**NACHHER:** **Ultra-Sauberes 2-Schema System**
 
-### Automatic Setup
-The infrastructure automatically:
-- Creates database tables and schemas
-- Configures Row Level Security policies
-- Sets up authentication flows
-- Initializes sample data (optional)
-
-## 📊 Database Schema
-
-### Core Tables
 ```sql
--- Authentication (managed by Supabase)
-auth.users                 -- User accounts
-auth.sessions              -- Login sessions
+-- NUR SHOP-TABELLEN (Keine SaaS-Komponenten)
+public.profiles       -- Kundenprofile (erweitert auth.users)
+public.products       -- Kinderbücher-Katalog (CHF-Preise)
+public.orders         -- Kundenbestellungen (Schweizer Adressen)
+public.order_items    -- Bestellpositionen
 
--- Application tables
-public.profiles            -- Extended user profiles
-public.subscriptions       -- Payment subscriptions
+-- ENTFERNT: subscriptions, plans, billing Tabellen ❌
 ```
 
-### Schema Management
-- **Initialization:** `volumes/db/*.sql` files run automatically
-- **Migrations:** Add new `.sql` files to `volumes/db/`
-- **Reset:** `docker compose down -v && docker compose up -d`
+### Schema-Dateien
+```
+volumes/db/00-core-schema.sql    -- Benutzerprofile, Auth, Speicher
+volumes/db/99-shop-tables.sql    -- Schweizer Kinderbuch-Shop Tabellen
+```
 
-## 🛠️ Development Commands
+### Beispieldaten - Schweizer Kinderbücher
+```sql
+-- Vorgeladene Schweizer Kinderbücher:
+'Der kleine Drache Kokosnuss' (1590 Rappen = 15.90 CHF)
+'Globi und die Piraten'       (1890 Rappen = 18.90 CHF)  
+'Heidi'                       (1290 Rappen = 12.90 CHF)
+```
 
-### Service Management
+### Schweizer Optimierungen
+- **Währung:** Preise gespeichert in Rappen (CHF-Cents)
+- **Zeitzone:** Europe/Zurich für alle Zeitstempel
+- **Zahlungen:** Vorbereitet für Stripe + TWINT Integration
+- **Adressen:** JSONB-Felder für Schweizer Adressformate
+
+## 🔄 100% Reproduzierbare Datenbank
+
+### Automatisches Schema-System
+Die FCFlamingo-Datenbank ist **vollständig reproduzierbar** durch Docker PostgreSQL's automatische Initialisierung:
+
+```yaml
+# Docker Compose Volume-Mapping (automatische Ausführung)
+volumes/db/
+├── 00-core-schema.sql       # 🏗️ Basis: profiles, auth, RLS, storage
+├── 99-shop-tables.sql       # 🛍️ Shop: products, orders, order_items + Beispieldaten
+├── _supabase.sql           # ⚙️ Supabase-interne Strukturen
+├── realtime.sql            # 🔴 Realtime-Subscriptions
+├── webhooks.sql            # 🪝 Webhook-System
+├── roles.sql               # 👥 Datenbank-Rollen
+├── jwt.sql                 # 🔐 JWT-Konfiguration
+├── logs.sql                # 📊 Analytics & Logs
+└── pooler.sql              # ⚡ Connection Pooling
+```
+
+### Deterministische Ausführung
+**Automatische Reihenfolge:** Docker führt SQL-Dateien alphabetisch aus `/docker-entrypoint-initdb.d/migrations/`:
+
+1. **`00-core-schema.sql`** → Benutzerprofile, RLS-Policies, Storage-Buckets
+2. **`97-_supabase.sql`** → Supabase-Metadaten und interne Tabellen
+3. **`98-webhooks.sql`** → Webhook-Trigger und Event-System
+4. **`99-shop-tables.sql`** → **FCFlamingo Shop-Schema + 5 Schweizer Kinderbücher**
+
+### Garantierte Identität
+**Jeder Reset führt zu 100% identischen Resultaten:**
+
 ```bash
-# Start services
+# Vollständiger Reset (zerstört alle Daten)
+docker compose down -v
+
+# Identische Datenbank wiederherstellen
 docker compose up -d
 
-# Stop services  
+# Resultat: Exakt gleiche Datenbank mit gleichen Beispieldaten
+```
+
+### Schema-Details
+
+**Core Schema (00-core-schema.sql):**
+- `profiles` Tabelle mit Stripe-Integration
+- Automatischer User-Creation-Trigger
+- RLS-Policies für sichere Datentrennung
+- Storage-Buckets für Avatare und Uploads
+
+**Shop Schema (99-shop-tables.sql):**
+- `products` → Schweizer Kinderbücher (CHF-Preise, Altersgruppen, ISBN)
+- `orders` → Kundenbestellungen (JSONB für Schweizer Adressen)
+- `order_items` → Bestellpositionen mit Preis-Snapshot
+- **5 Beispielprodukte:** Automatisch eingefügt bei jedem Reset
+- **RLS-Policies:** Kunden sehen nur eigene Bestellungen
+- **Performance-Indices:** Optimiert für Shop-Queries
+
+### Beispieldaten-Garantie
+**Diese 5 Schweizer Kinderbücher sind nach jedem Reset verfügbar:**
+
+```sql
+-- Automatisch eingefügte Beispieldaten:
+'Der kleine Drache Kokosnuss' (1590 Rappen, Featured)
+'Globi und die Piraten'       (1890 Rappen, Featured)
+'Heidi'                       (1290 Rappen, Klassiker)
+'Die kleine Hexe Lilli'       (1490 Rappen, Fantasy)
+'Papa Moll im Zoo'            (1690 Rappen, Familie)
+```
+
+### Entwickler-Vorteile
+- **Konsistente Testdaten:** Jeder Entwickler hat identische Basis
+- **Zero-Config Setup:** Keine manuellen SQL-Imports nötig
+- **Sichere Experimente:** Jederzeit reset-bar ohne Datenverlust-Risiko
+- **CI/CD Ready:** Perfekt für automatisierte Tests
+- **Onboarding:** Neue Entwickler haben sofort funktionierende Daten
+
+## 🛠️ Entwicklungskommandos
+
+### Dienst-Verwaltung
+```bash
+# FCFlamingo Infrastruktur starten
+docker compose up -d
+
+# Dienste stoppen
 docker compose down
 
-# View logs
-docker compose logs -f [service-name]
+# Sauberer Reset mit frischem Schema
+docker compose down -v && docker compose up -d
 
-# Service status
+# Logs anzeigen
+docker compose logs -f [dienst-name]
+
+# Dienst-Status
 docker compose ps
 ```
 
-### Database Access
+### Datenbankzugriff
 ```bash
 # PostgreSQL CLI
-docker exec -it supabase-db psql -U postgres -d postgres
+docker exec -it supabase-db psql -U supabase_admin -d postgres
 
-# Database reset (⚠️ deletes data)
-docker compose down -v
-docker compose up -d
+# Shop-Tabellen prüfen
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
+
+# Schweizer Bücher anzeigen
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT name, author, price FROM products LIMIT 5;"
 ```
 
-### Health Checks
+### Gesundheitsprüfungen
 ```bash
-# API status
-curl http://localhost:55321/health
+# API Gateway (Kong)
+curl -I http://localhost:55321/health
 
-# Studio access
-curl http://localhost:55323
+# Studio-Oberfläche
+curl -I http://localhost:55323
 
-# Database connection
-docker exec supabase-db pg_isready -U postgres
+# Datenbankverbindung
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT 'FCFlamingo DB Online!' as status;"
 ```
 
-## 🔍 Service Details
+## 🔍 Dienst-Details
 
 ### Kong API Gateway (Port 55321)
-- Routes requests to appropriate services
-- Handles JWT authentication
-- Provides CORS and rate limiting
-- Health endpoint: `/health`
+- Leitet Anfragen an Shop-APIs weiter
+- Verwaltet Kundenauthentifizierung
+- JWT-basiertes Session-Management
+- CORS konfiguriert für Shop-Frontend
 
-### Supabase Studio (Port 55323)
-- Database schema browser
-- Table editor and SQL runner
-- User management interface
-- Authentication configuration
+### Supabase Studio (Port 55323)  
+- Shop-Datenbank-Verwaltung
+- Produktkatalog-Editor
+- Kundendaten-Browser
+- Bestellverwaltung-Oberfläche
 
-### PostgreSQL Database
-- Internal port 5432 (not exposed)
-- Accessed via Kong gateway or direct connection
-- Automatic backups via Docker volumes
-- Connection pooling with Supavisor
+### PostgreSQL Datenbank
+- Ultra-sauberes shop-only Schema
+- Schweizer-optimierte Datentypen
+- Row Level Security für Kundendaten
+- Automatische Sicherung via Docker Volumes
 
-## 🚨 Troubleshooting
+## 🛍️ Shop-System Features
 
-### Common Issues
+### Produktverwaltung
+- Schweizer Kinderbücher-Katalog
+- Mehrsprachige Unterstützung (DE, FR, IT)
+- Altersgruppen-Kategorisierung
+- Lagerbestandsverfolgung
 
-**Services won't start:**
+### Bestellabwicklung
+- Warenkorb-Funktionalität
+- Schweizer Adressvalidierung
+- CHF-Preise mit Rappen-Genauigkeit
+- Bestellhistorie für Kunden
+
+### Kundenverwaltung
+- Profilsystem mit Stripe-Integration
+- Authentifizierung via Supabase Auth
+- Bestellhistorie und Präferenzen
+- Datenschutzkonforme Datenverarbeitung
+
+## 🚨 Fehlerbehebung
+
+### Häufige Probleme
+
+**Dienste starten nicht:**
 ```bash
-# Check ports are free
+# Benutzerdefinierte Ports auf Verfügbarkeit prüfen
 netstat -tulpn | grep :55321
 netstat -tulpn | grep :55323
 
-# Restart Docker Desktop
-# Then: docker compose up -d
-```
-
-**Database connection failed:**
-```bash
-# Check database logs
-docker compose logs supabase-db
-
-# Verify environment variables
-docker compose logs kong
-```
-
-**Studio not accessible:**
-```bash
-# Restart studio service
-docker compose restart studio
-
-# Check studio logs
-docker compose logs studio
-```
-
-### Performance Issues
-```bash
-# Check container resources
-docker stats
-
-# View service logs
-docker compose logs --tail=50 -f
-```
-
-### Complete Reset
-```bash
-# Nuclear option - deletes all data
+# Neustart mit sauberer Basis
 docker compose down -v
-docker system prune -f
 docker compose up -d
 ```
 
-## 🔐 Security
-
-### Development vs Production
-
-**Development (current setup):**
-- Demo JWT secrets (insecure)
-- Auto-confirm user registration
-- Permissive CORS settings
-- Local-only access
-
-**Production recommendations:**
-1. Generate secure JWT secrets
-2. Configure proper SMTP for email
-3. Set up SSL/TLS termination
-4. Configure firewall rules
-5. Set up database backups
-
-### JWT Key Management
-The infrastructure uses demo JWT keys for development. For production:
-
+**Schema-Fehler beim Start:**
 ```bash
-# Generate new JWT secret
-openssl rand -base64 32
+# Schema-Dateien auf Sauberkeit prüfen
+ls -la volumes/db/*.sql
 
-# Update .env.local with new keys
-# Restart services: docker compose restart
+# Nur Shop-Tabellen existieren überprüfen
+docker exec supabase-db psql -U supabase_admin -d postgres -c "\dt"
 ```
 
-## 📈 Monitoring
-
-### Container Health
+**Fehlende Beispielbücher:**
 ```bash
-# All service status
+# Schweizer Bücher geladen überprüfen
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT COUNT(*) FROM products;"
+```
+
+### Datenbank-Reset
+```bash
+# Vollständiger sauberer Reset
+docker compose down -v
+docker system prune -f  
+docker compose up -d
+
+# Auf Initialisierung warten (60 Sekunden)
+sleep 60
 docker compose ps
-
-# Resource usage
-docker stats
-
-# Service logs
-docker compose logs [service-name]
 ```
 
-### Database Monitoring
-- **Studio Dashboard:** Real-time database metrics
-- **Analytics Dashboard:** User and API statistics
-- **Logs:** Structured logging via Vector
+## 🔐 Sicherheit
 
-## 🚀 Production Deployment
+### Shop-spezifische Sicherheit
+- **Kundendaten:** RLS-Richtlinien schützen persönliche Informationen
+- **Bestellungen:** Kunden können nur ihre eigenen Bestellungen sehen
+- **Produkte:** Öffentlicher Lesezugriff für Katalog-Browsing
+- **Zahlungen:** Stripe-Integration mit sicherer Tokenisierung
 
-### Infrastructure Migration
-1. **Database:** Migrate to managed PostgreSQL
-2. **Environment:** Set production secrets
-3. **Networking:** Configure reverse proxy/load balancer
-4. **Monitoring:** Set up external monitoring
-5. **Backups:** Implement backup strategy
+### Row Level Security Richtlinien
+```sql
+-- Kunden können nur ihre eigenen Bestellungen sehen
+CREATE POLICY "Users can view own orders" ON orders
+  FOR SELECT USING (auth.uid() = customer_id);
 
-### Scaling Considerations
-- **Connection Pooling:** Supavisor handles connection limits
-- **Read Replicas:** For high-read workloads
-- **Caching:** Redis for session/query caching
-- **CDN:** For static asset delivery
+-- Produkte sind öffentlich einsehbar
+CREATE POLICY "Products are viewable by everyone" ON products
+  FOR SELECT USING (active = TRUE);
+```
+
+## 📈 Überwachung
+
+### Shop-Metriken
+```bash
+# Kundenregistrierungen
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT COUNT(*) as customers FROM profiles;"
+
+# Produktkatalog-Größe
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT COUNT(*) as products FROM products WHERE active = TRUE;"
+
+# Bestellungen heute
+docker exec supabase-db psql -U supabase_admin -d postgres -c \
+  "SELECT COUNT(*) as orders_today FROM orders WHERE DATE(created_at) = CURRENT_DATE;"
+```
+
+### Performance-Überwachung
+- **Studio Dashboard:** Echtzeit Shop-Metriken
+- **Analytics:** Kundenverhalten-Tracking
+- **Container-Gesundheit:** Docker Stats und Logs
+
+## 🚀 Produktions-Überlegungen
+
+### FCFlamingo Produktions-Checkliste
+1. **SSL/TLS:** HTTPS-Terminierung konfigurieren
+2. **Domain:** fcflamingo.ch Routing einrichten
+3. **E-Mail:** SMTP für Bestellbestätigungen konfigurieren
+4. **Zahlungen:** Stripe + TWINT Integration finalisieren
+5. **Backup:** Datenbank-Backup-Strategie
+6. **CDN:** Produktbild-Lieferung-Optimierung
+
+### Skalierung für Schweizer Markt
+- **Connection Pooling:** Verwaltet durch Supavisor
+- **Mehrsprachig:** Datenbank bereit für DE/FR/IT
+- **Regionale Lieferung:** Schweizer Versand-Integration
+- **Performance:** CDN für statische Assets
 
 ---
 
-**Status:** Development Ready ✅  
-**Production:** Requires security hardening ⚠️  
-**Support:** [Supabase Docs](https://supabase.com/docs)
+## 🎯 FCFlamingo Status
+
+**🧹 Cleanup Status:** Phase 1 Abgeschlossen - Ultra-Saubere Datenbank-Foundation  
+**📊 Schema:** Nur Shop (Keine SaaS-Komponenten)  
+**🇨🇭 Schweiz-Bereit:** CHF, TWINT, Europe/Zurich Zeitzone  
+**🚀 Produktion:** Bereit für Härtung und Deployment  
+**📚 Nächste Phase:** Frontend SaaS-Komponenten-Entfernung
+
+**Gesamttabellen:** 4 (profiles, products, orders, order_items)  
+**Entfernte Tabellen:** subscriptions, plans, billing (SaaS-Cleanup abgeschlossen)  
+**Beispieldaten:** Schweizer Kinderbücher geladen und validiert  
+
+---
+
+**Support:** [Supabase Docs](https://supabase.com/docs) | [FCFlamingo Cleanup Guide](../CLEANUP.md)
