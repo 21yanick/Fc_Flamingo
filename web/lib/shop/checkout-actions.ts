@@ -53,8 +53,8 @@ export async function createCheckoutSession(items: CartItem[]) {
     line_items: lineItems,
     success_url: `${origin}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/shop/cancel`,
-    // Guest checkout enabled
-    customer_creation: "if_required",
+    // ✅ 2025 STRIPE BEST PRACTICE: Guest Checkout only
+    // customer_creation omitted = pure guest checkout (no customer objects created)
     // Swiss locale
     locale: "de",
     // 🎯 AUTOMATIC: Collect shipping address only if needed

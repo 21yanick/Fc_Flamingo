@@ -27,20 +27,36 @@ git clone <repository-url>
 cd fcflamingo
 ```
 
-2. **Infrastruktur starten:**
+2. **Infrastruktur konfigurieren:**
 ```bash
 cd infrastructure
+# WICHTIG: .env.example nach .env kopieren und prüfen
+cp .env.example .env
+
+# ⚠️  KRITISCH: JWT_SECRET für Demo-Keys korrekt setzen
+# Muss sein: super-secret-jwt-token-with-at-least-32-characters-long
+grep JWT_SECRET .env
+```
+
+3. **Infrastruktur starten:**
+```bash
 docker compose up -d
 ```
 *Dienste verfügbar: [API](http://localhost:55321) | [Studio](http://localhost:55323)*
+*⚠️  Warten Sie ~90s bis alle Services (healthy) sind*
 
-3. **Template konfigurieren:**
+4. **Web-Frontend konfigurieren:**
 ```bash
-cd ../template
+cd ../web
 cp .env.example .env.local
+
+# ⚠️  KONSISTENZ PRÜFEN: DATABASE_URL Passwort muss identisch sein
+# mit POSTGRES_PASSWORD aus infrastructure/.env
+grep POSTGRES_PASSWORD ../infrastructure/.env
+grep DATABASE_URL .env.local
 ```
 
-4. **Abhängigkeiten installieren:**
+5. **Abhängigkeiten installieren:**
 ```bash
 npm install
 npm run dev
@@ -269,8 +285,57 @@ curl http://localhost:55321/rest/v1/products?apikey=<anon-key>
 ```bash
 # JWT-Schlüssel zwischen Infrastruktur und Template prüfen
 # Beide sollten den gleichen JWT_SECRET Wert verwenden
-grep JWT_SECRET infrastructure/.env.local
+grep JWT_SECRET infrastructure/.env
 grep JWT_SECRET web/.env.local
+
+# WICHTIG: Für Demo ANON_KEY/SERVICE_ROLE_KEY muss JWT_SECRET sein:
+# JWT_SECRET=super-secret-jwt-token-with-at-least-32-characters-long
+# (ohne "your-" Prefix!)
+```
+
+**🚫 Realtime Service unhealthy:**
+```bash
+# Symptom: realtime service zeigt (unhealthy) in docker compose ps
+# Ursache: JWT_SECRET stimmt nicht mit ANON_KEY überein
+
+# Lösung 1: JWT_SECRET korrigieren für Demo-Keys
+echo "JWT_SECRET=super-secret-jwt-token-with-at-least-32-characters-long" >> infrastructure/.env
+
+# Lösung 2: Alle JWT-abhängigen Services neu starten
+cd infrastructure && docker compose down && docker compose up -d
+
+# Prüfen: Service sollte nach ~60s (healthy) zeigen
+docker compose ps realtime
+```
+
+**🚫 "Database Unavailable" im Frontend:**
+```bash
+# Symptom: Frontend zeigt "Database Unavailable" Error
+# Ursache: Passwort-Inkonsistenz zwischen infrastructure/.env und web/.env.local
+
+# Passwörter vergleichen
+grep POSTGRES_PASSWORD infrastructure/.env
+grep DATABASE_URL web/.env.local
+
+# DATABASE_URL Passwort muss identisch sein mit POSTGRES_PASSWORD
+# Beispiel: postgresql://postgres:IDENTICAL_PASSWORD@localhost:5432/postgres
+
+# Nach Korrektur: Frontend neu starten
+cd web && npm run dev
+```
+
+**🚫 API "JWSInvalidSignature" Fehler:**
+```bash
+# Symptom: curl http://localhost:55321/rest/v1/ gibt JWSInvalidSignature
+# Ursache: Nicht alle Services haben neuen JWT_SECRET übernommen
+
+# Lösung: Vollständiger Infrastruktur-Neustart (empfohlen)
+cd infrastructure
+docker compose down
+docker compose up -d
+
+# Warten bis alle Services healthy sind (~90s)
+docker compose ps
 ```
 
 **🚫 Stripe-Webhook-Fehler:**
@@ -293,11 +358,37 @@ cd infrastructure
 docker compose down -v
 docker compose up -d
 
-# Template zurücksetzen
-cd ../template
+# Web-Frontend zurücksetzen
+cd ../web
 rm -rf .next node_modules
 npm install
 npm run dev
+```
+
+### Docker Restart Best Practices
+
+**Wann verwenden:**
+- **`docker compose restart [service]`**: Nur für Code-Changes, Container-Neustarts
+- **`docker compose down && docker compose up -d`**: Für Environment Variable Changes (empfohlen)
+
+**Environment Changes (JWT_SECRET, Passwörter):**
+```bash
+# IMMER vollständiger Neustart für .env Änderungen
+cd infrastructure
+docker compose down
+docker compose up -d
+
+# Grund: restart kann Environment Variables inkonsistent laden
+# down/up garantiert frische Umgebungsvariablen für alle Services
+```
+
+**Service-spezifische Restarts:**
+```bash
+# Nur wenn Environment Variables NICHT geändert wurden
+docker compose restart auth realtime storage
+
+# Bei JWT_SECRET Änderungen diese Services betroffen:
+# auth, rest, storage, kong, meta, realtime
 ```
 
 ## 📁 Projektstruktur

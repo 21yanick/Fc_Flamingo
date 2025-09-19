@@ -43,13 +43,13 @@ export function SignInForm() {
       )}
 
       <div className="space-y-2">
-        <Label {...emailField.labelProps}>Email</Label>
+        <Label {...emailField.labelProps}>E-Mail</Label>
         <Input
           {...emailField.fieldProps}
           {...emailField.getAriaProps(!!state.field_errors?.email)}
           name="email"
           type="email"
-          placeholder="Enter your email"
+          placeholder="admin@fcflamingo.ch"
           required
         />
         {state.field_errors?.email && (
@@ -60,13 +60,13 @@ export function SignInForm() {
       </div>
 
       <div className="space-y-2">
-        <Label {...passwordField.labelProps}>Password</Label>
+        <Label {...passwordField.labelProps}>Passwort</Label>
         <Input
           {...passwordField.fieldProps}
           {...passwordField.getAriaProps(!!state.field_errors?.password)}
           name="password"
           type="password"
-          placeholder="Enter your password"
+          placeholder="Ihr Admin-Passwort"
           required
         />
         {state.field_errors?.password && (
@@ -76,7 +76,7 @@ export function SignInForm() {
         )}
       </div>
 
-      <SubmitButton>Sign In</SubmitButton>
+      <SubmitButton>Anmelden</SubmitButton>
     </form>
   )
 }

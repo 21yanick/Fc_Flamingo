@@ -7,12 +7,17 @@ import { ThemeToggle } from "@/components/theme"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { siteConfig } from "@/lib/config"
-export function Header() {
+import { getUser } from "@/lib/supabase/server"
+
+export async function Header() {
   // 🟩 SHOP-FOCUSED: Clean navigation for Kinderbuch-Shop
   const navigationLinks = [
     { href: "/shop", label: "Shop" }, // 🟩 SHOP-ONLY: Product catalog
     { href: "/contact", label: "Contact" }, // ✅ SHARED: Customer service
   ]
+
+  // ✅ ADMIN-ONLY: Check if admin is logged in
+  const user = await getUser()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -46,8 +51,8 @@ export function Header() {
             {/* 🟩 SHOP-ONLY: Shopping Cart Icon */}
             <CartIcon />
             <ThemeToggle />
-            {/* 🟦 SAAS-ONLY: AuthButton (for shop: make optional or replace with cart) */}
-            <AuthButton />
+            {/* ✅ ADMIN-ONLY: AuthButton only visible when admin is logged in */}
+            {user && <AuthButton />}
           </nav>
         </div>
       </Container>

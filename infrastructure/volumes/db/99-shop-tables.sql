@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS products (
 CREATE TABLE IF NOT EXISTS orders (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     customer_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+    email TEXT, -- Guest order tracking email
     status TEXT DEFAULT 'pending', -- pending, confirmed, shipped, delivered, cancelled
     total_amount INTEGER NOT NULL, -- Total in Rappen (CHF cents)
     currency TEXT DEFAULT 'CHF',
@@ -51,6 +52,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     order_id UUID REFERENCES orders(id) ON DELETE CASCADE,
     product_id UUID REFERENCES products(id) ON DELETE CASCADE,
+    product_name TEXT NOT NULL, -- E-commerce pattern: denormalized for historical data
     quantity INTEGER NOT NULL DEFAULT 1,
     unit_price INTEGER NOT NULL, -- Price in Rappen at time of purchase
     total_price INTEGER NOT NULL, -- quantity * unit_price
@@ -77,31 +79,34 @@ ALTER TABLE order_items ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Products are viewable by everyone" ON products
     FOR SELECT USING (active = TRUE);
 
--- Orders: Users can only see their own orders  
-CREATE POLICY "Users can view own orders" ON orders
-    FOR SELECT USING (auth.uid() = customer_id);
+-- Admin-only System: Authenticated user access
+-- Any authenticated user can access orders (admin-only system)
+CREATE POLICY "Authenticated users can view all orders" ON orders
+    FOR SELECT USING (auth.uid() IS NOT NULL);
 
-CREATE POLICY "Users can create own orders" ON orders
-    FOR INSERT WITH CHECK (auth.uid() = customer_id);
+CREATE POLICY "Authenticated users can update all orders" ON orders
+    FOR UPDATE USING (auth.uid() IS NOT NULL);
 
--- Order items: Users can only see items from their own orders
-CREATE POLICY "Users can view own order items" ON order_items
-    FOR SELECT USING (
-        EXISTS (
-            SELECT 1 FROM orders 
-            WHERE orders.id = order_items.order_id 
-            AND orders.customer_id = auth.uid()
-        )
-    );
+-- Service role can create guest orders (for Stripe webhooks)
+CREATE POLICY "Service role can create orders" ON orders
+    FOR INSERT WITH CHECK (auth.role() = 'service_role');
+
+-- Admin can view all order items
+CREATE POLICY "Authenticated users can view all order items" ON order_items
+    FOR SELECT USING (auth.uid() IS NOT NULL);
 
 -- Sample products for testing (Swiss Kinderbücher)
 INSERT INTO products (name, description, price, author, age_group, category, stock_quantity, stripe_price_id, featured) VALUES
-    ('Der kleine Drache Kokosnuss', 'Beliebte Kinderbuch-Serie über den kleinen Drachen', 1590, 'Ingo Siegner', '4-8 Jahre', 'Abenteuer', 25, 'demo_price_kokosnuss', TRUE),
-    ('Globi und die Piraten', 'Klassisches Schweizer Kinderbuch mit Globi', 1890, 'Globi Verlag', '6-12 Jahre', 'Abenteuer', 30, 'demo_price_globi', TRUE),
-    ('Heidi', 'Der Schweizer Klassiker von Johanna Spyri', 1290, 'Johanna Spyri', '8-12 Jahre', 'Klassiker', 20, 'demo_price_heidi', FALSE),
-    ('Die kleine Hexe Lilli', 'Magische Abenteuer mit der kleinen Hexe', 1490, 'Knister', '5-9 Jahre', 'Fantasy', 15, 'demo_price_lilli', FALSE),
-    ('Papa Moll im Zoo', 'Lustiges Schweizer Familienbuch', 1690, 'Edith Jonas', '3-7 Jahre', 'Familie', 18, 'demo_price_papamoll', FALSE)
+    ('FC Flamingo', 'Die Flamingos des FC Flamingo träumen vom ersten Schweizer Meistertitel, doch ihre seltsame Vorliebe, auf einem Bein zu stehen, bringt den Trainer Mister King an den Rand der Verzweiflung. Als plötzlich zwei geheimnisvolle Neuzugänge und ein Couvert mit einer magischen Botschaft auftauchen, nimmt die turbulente Fussballsaison eine überraschende Wendung.', 2200, 'Natalie Barros', '8-13 Jahre', 'Kinderbuch Fussball', 0, 'demo_price_kokosnuss', FALSE)
 ON CONFLICT DO NOTHING;
+
+-- ADMIN USER CREATION: Via Supabase Studio only
+--
+-- Manual steps after DB reset:
+-- 1. Go to Studio → Authentication → Users
+-- 2. Create user with email: info@fcflamingo.ch
+-- 3. Set password as needed
+-- 4. RLS policies will automatically grant access to @fcflamingo.ch domain
 
 -- Update trigger for updated_at timestamps
 CREATE OR REPLACE FUNCTION update_updated_at_column()

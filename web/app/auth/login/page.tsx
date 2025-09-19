@@ -15,8 +15,8 @@ export default async function LoginPage() {
         <div className="mx-auto max-w-md">
           <Card>
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Welcome back</CardTitle>
-              <CardDescription>Sign in to your account to continue</CardDescription>
+              <CardTitle className="text-2xl">Admin Anmeldung</CardTitle>
+              <CardDescription>Melden Sie sich in Ihrem Admin-Bereich an</CardDescription>
             </CardHeader>
             <CardContent>
               <Suspense fallback={<div>Loading...</div>}>
@@ -25,14 +25,8 @@ export default async function LoginPage() {
 
               <div className="mt-6 text-center text-sm">
                 <p className="text-muted-foreground">
-                  Don&apos;t have an account?{" "}
-                  <Link href="/auth/register" className="text-primary hover:underline">
-                    Sign up
-                  </Link>
-                </p>
-                <p className="mt-2 text-muted-foreground">
                   <Link href="/auth/reset" className="text-primary hover:underline">
-                    Forgot your password?
+                    Passwort vergessen?
                   </Link>
                 </p>
               </div>

@@ -1,4 +1,4 @@
-import { CreditCard, Settings, User } from "lucide-react"
+import { Settings, User } from "lucide-react"
 import Link from "next/link"
 import { SignOutButton } from "@/components/auth/sign-out-button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -56,12 +56,6 @@ export async function AuthButton() {
           <Link href="/dashboard" className="cursor-pointer">
             <User className="mr-2 h-4 w-4" />
             Dashboard
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard/subscription" className="cursor-pointer">
-            <CreditCard className="mr-2 h-4 w-4" />
-            Subscription
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>

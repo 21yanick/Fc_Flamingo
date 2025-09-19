@@ -3,7 +3,7 @@
  * Handles authentication and provides clean dashboard shell
  */
 
-import { CreditCard, LayoutDashboard, Package } from "lucide-react"
+import { LayoutDashboard, Package } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
@@ -39,14 +39,6 @@ export default async function DashboardLayout({ children }: { children: React.Re
                 <Link href="/dashboard/orders">
                   <Package className="h-4 w-4 mr-2" />
                   Orders
-                </Link>
-              </Button>
-
-              {/* 🟦 SAAS-ONLY: Subscription Management (for shop: delete this button) */}
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/dashboard/subscription">
-                  <CreditCard className="h-4 w-4 mr-2" />
-                  Subscription
                 </Link>
               </Button>
             </div>

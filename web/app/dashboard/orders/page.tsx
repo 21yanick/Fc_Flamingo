@@ -14,17 +14,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { env } from "@/lib/env"
 import type { OrderWithItems } from "@/types/database"
 
-// Create Supabase client for server components
+// Create Supabase client for authenticated admin user
 async function createClient() {
   const cookieStore = await cookies()
 
-  return createServerClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, {
+  return createServerClient(env.NEXT_PUBLIC_SUPABASE_URL, env.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
         return cookieStore.getAll()
       },
-      setAll() {
-        // Not needed in server components
+      setAll(cookiesToSet) {
+        cookiesToSet.forEach(({ name, value, options }) => {
+          cookieStore.set(name, value, options)
+        })
       },
     },
   })

@@ -52,6 +52,11 @@ export function Footer() {
                     API Status
                   </Link>
                 </li>
+                <li>
+                  <Link href="/auth/login" className="text-muted-foreground hover:text-foreground">
+                    Admin
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

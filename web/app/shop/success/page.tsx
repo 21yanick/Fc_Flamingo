@@ -57,10 +57,6 @@ export default function SuccessPage() {
                   Weiter einkaufen
                 </Link>
               </Button>
-
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/dashboard">Bestellungen ansehen</Link>
-              </Button>
             </div>
           </CardContent>
         </Card>
