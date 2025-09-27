@@ -50,13 +50,28 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  /* FC Flamingo Character Colors */
+  --flamingo-orange: oklch(0.66 0.15 35); /* #fe753e - Hauptcharakter */
+  --flamingo-peach: oklch(0.77 0.12 45); /* #fba284 - Warme Akzente */
+  --flamingo-yellow: oklch(0.85 0.15 75); /* #ffe173 - Highlights */
+
+  /* Field & Nature Colors */
+  --field-green: oklch(0.68 0.12 140); /* #94d35e - Trainingsrasen */
+  --field-dark: oklch(0.58 0.12 140); /* #5c9b4c - Linien & Details */
+
+  /* Theme-specific Backgrounds */
+  --training-bg: oklch(0.96 0.02 45); /* #fdecdc - Warmes Papier */
+  --matchday-bg: oklch(0.25 0.05 260); /* #3a3553 - Abendstimmung */
+  --stadium-gold: oklch(0.75 0.15 75); /* #ecb41f - Flutlicht */
+
+  /* UI Colors with FC Flamingo Branding */
+  --primary: var(--flamingo-orange);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: var(--flamingo-peach);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: var(--flamingo-yellow);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -84,14 +99,15 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
+  /* FC Flamingo Colors for Dark Mode */
+  --primary: oklch(0.7 0.18 35); /* Brighter flamingo orange for dark */
+  --primary-foreground: oklch(0.1 0 0); /* Dark text on bright orange */
+  --secondary: oklch(0.8 0.15 45); /* Brighter flamingo peach for dark */
+  --secondary-foreground: oklch(0.1 0 0); /* Dark text on bright peach */
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.88 0.18 75); /* Brighter flamingo yellow for dark */
+  --accent-foreground: oklch(0.1 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
@@ -117,5 +133,85 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* FC Flamingo Hand-drawn Components */
+@layer components {
+  .fc-flamingo-button {
+    /* Hand-drawn organic shape */
+    border-radius: 12px 8px 14px 10px;
+    border: 3px solid;
+
+    /* Hand-drawn typography */
+    font-family: 'Comic Sans MS', 'Marker Felt', cursive, sans-serif;
+    font-weight: 600;
+
+    /* Organic imperfections */
+    transform: rotate(-0.8deg);
+    position: relative;
+
+    /* Smooth interactions */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Hand-drawn shadow effect */
+    box-shadow:
+      3px 4px 0px rgba(0, 0, 0, 0.1),
+      -1px -1px 0px rgba(255, 255, 255, 0.1);
+  }
+
+  .fc-flamingo-button:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow:
+      4px 5px 0px rgba(0, 0, 0, 0.15),
+      -1px -1px 0px rgba(255, 255, 255, 0.2);
+  }
+
+  .fc-flamingo-button:active {
+    transform: rotate(-0.3deg) scale(0.98);
+    box-shadow:
+      2px 2px 0px rgba(0, 0, 0, 0.2),
+      -1px -1px 0px rgba(255, 255, 255, 0.1);
+  }
+
+  /* FC Flamingo Variant Colors */
+  .fc-button-primary {
+    background-color: var(--flamingo-orange);
+    border-color: var(--flamingo-orange);
+    color: var(--primary-foreground);
+  }
+
+  .fc-button-primary:focus {
+    ring-color: var(--flamingo-orange);
+  }
+
+  .fc-button-secondary {
+    background-color: var(--flamingo-peach);
+    border-color: var(--flamingo-peach);
+    color: var(--secondary-foreground);
+  }
+
+  .fc-button-secondary:focus {
+    ring-color: var(--flamingo-peach);
+  }
+
+  .fc-button-training {
+    background-color: var(--field-green);
+    border-color: var(--field-dark);
+    color: white;
+  }
+
+  .fc-button-training:focus {
+    ring-color: var(--field-green);
+  }
+
+  .fc-button-matchday {
+    background-color: var(--stadium-gold);
+    border-color: var(--stadium-gold);
+    color: var(--primary-foreground);
+  }
+
+  .fc-button-matchday:focus {
+    ring-color: var(--stadium-gold);
   }
 }

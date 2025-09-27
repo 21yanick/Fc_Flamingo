@@ -1,0 +1,63 @@
+"use client"
+
+import { Card } from "@recklyss/hand-drawn-ui"
+import { forwardRef } from "react"
+import { cn } from "@/lib/utils"
+
+interface FlamingoCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  tapeCorners?: boolean
+  rotation?: number // -1 bis 1 für organische Rotation
+  children: React.ReactNode
+}
+
+const FlamingoCard = forwardRef<HTMLDivElement, FlamingoCardProps>(
+  ({ tapeCorners = false, rotation = 0, className, children, ...props }, ref) => {
+    return (
+      <div
+        className={cn("relative", className)}
+        style={{
+          transform: `rotate(${rotation}deg)`,
+          transition: "transform 0.2s ease-in-out",
+        }}
+        {...props}
+      >
+        {/* Tape Corners - Mannschaftsfoto Style */}
+        {tapeCorners && (
+          <>
+            {/* Top Left Tape */}
+            <div
+              className="absolute -top-2 -left-2 w-6 h-6 bg-yellow-200 opacity-80 rounded-sm shadow-sm z-10"
+              style={{ transform: "rotate(45deg)" }}
+            />
+            {/* Top Right Tape */}
+            <div
+              className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-200 opacity-80 rounded-sm shadow-sm z-10"
+              style={{ transform: "rotate(-45deg)" }}
+            />
+          </>
+        )}
+
+        {/* Hand-drawn Card with FC Flamingo styling */}
+        <Card
+          ref={ref}
+          className={cn(
+            "p-6 transition-all duration-200",
+            "hover:shadow-lg hover:scale-105", // Subtle hover effects
+            tapeCorners && "border-2 border-dashed border-yellow-300"
+          )}
+          style={{
+            fill: "var(--character-bg)",
+            stroke: "var(--field-dark)",
+            fontFamily: "var(--font-body, sans-serif)",
+          }}
+        >
+          {children}
+        </Card>
+      </div>
+    )
+  }
+)
+
+FlamingoCard.displayName = "FlamingoCard"
+
+export { FlamingoCard }

@@ -13,7 +13,7 @@ export async function Header() {
   // 🟩 SHOP-FOCUSED: Clean navigation for Kinderbuch-Shop
   const navigationLinks = [
     { href: "/shop", label: "Shop" }, // 🟩 SHOP-ONLY: Product catalog
-    { href: "/contact", label: "Contact" }, // ✅ SHARED: Customer service
+    { href: "/contact", label: "Kontakt" }, // ✅ SHARED: Customer service
   ]
 
   // ✅ ADMIN-ONLY: Check if admin is logged in
@@ -27,12 +27,15 @@ export async function Header() {
           <div className="flex items-center space-x-2">
             <Link href="/" className="flex items-center space-x-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-                <span className="text-sm font-bold text-primary-foreground">S</span>
+                <span className="text-sm font-bold text-primary-foreground">FC</span>
               </div>
               <span className="hidden font-bold sm:inline-block">{siteConfig.name}</span>
             </Link>
-            <Badge variant="secondary" className="hidden sm:inline-flex">
-              Beta
+            <Badge
+              variant="secondary"
+              className="hidden sm:inline-flex bg-field-green text-white hover:bg-field-dark"
+            >
+              Kinderbuch
             </Badge>
           </div>
 
@@ -42,7 +45,7 @@ export async function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium transition-colors hover:text-primary"
+                className="text-sm font-medium transition-colors hover:text-primary hover:underline decoration-field-green decoration-2 underline-offset-4"
               >
                 {link.label}
               </Link>

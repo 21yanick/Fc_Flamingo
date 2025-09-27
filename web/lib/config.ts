@@ -4,10 +4,11 @@
  */
 
 export const siteConfig = {
-  // Core Brand Identity - Update for your project
-  name: "NextJS Starter",
+  // Core Brand Identity - FC Flamingo Kinderbuch
+  name: "FC Flamingo",
   description:
-    "Modern web application built with Next.js 15, Supabase, and TypeScript. Production-ready foundation.",
+    "Die Flamingos des FC Flamingo träumen vom ersten Schweizer Meistertitel, doch ihre seltsame Vorliebe, auf einem Bein zu stehen, bringt den Trainer Mister King an den Rand der Verzweiflung.",
+  tagline: "Glaub an dich, so kannst du im Leben alles erreichen!",
 
   // Localization & Business Settings
   currency: "CHF" as const,
@@ -16,8 +17,8 @@ export const siteConfig = {
 
   // Contact & Legal Information
   contact: {
-    email: "support@yourcompany.com",
-    company: "Your Company Name",
+    email: "info@fcflamingo.ch",
+    company: "FC Flamingo",
   },
 } as const
 
@@ -46,9 +47,9 @@ export function formatPrice(amount: number): string {
  */
 export function getSiteMetadata() {
   return {
-    title: `${siteConfig.name} - Modern Web Application`,
+    title: `${siteConfig.name} - Schweizer Kinderbuch`,
     description: siteConfig.description,
     author: siteConfig.contact.company,
-    keywords: ["nextjs", "supabase", "typescript", "web-app", "modern", siteConfig.region],
+    keywords: ["kinderbuch", "fußball", "flamingo", "schweiz", "kinder", "buch", siteConfig.region],
   }
 }
