@@ -73,6 +73,7 @@ Die Flamingos haben Potenzial – aber auch eine seltsame Angewohnheit...
 
 **Grafiken:**
 - `Cover.png` (zentral, groß, subtle rotation)
+- lieber mannschaftsfoto
 
 **Dual-Theme:**
 - **Training:** Normal, warm
@@ -104,6 +105,7 @@ Kannst du das Team zum Meistertitel führen?
 
 **Grafiken:**
 - `Mannschaftsfoto.jpg` (mit Tape-Corners!)
+- lieber mister king mit flamingos bild
 
 **Dual-Theme:**
 - **Training:** Gelb/Orange Tape-Corners, normale Sättigung
@@ -176,6 +178,7 @@ Deine Entscheidungen bestimmen die Geschichte!
 
 **Grafiken:**
 - `K5-1.jpg` (Teamwork) ODER `K7-1.jpg` (Action/Spannung)
+- darkmode: dunkles bild pokalregal / lightmode: kabine brief lesen
 
 **Dual-Theme:**
 - **Training:** Heller, Planungs-Fokus
