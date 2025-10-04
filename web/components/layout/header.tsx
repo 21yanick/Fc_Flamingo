@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { AuthButton } from "@/components/auth"
 import { Container } from "@/components/layout/container"
@@ -23,13 +24,17 @@ export async function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Container>
         <div className="flex h-16 items-center justify-between">
-          {/* Logo/Brand */}
-          <div className="flex items-center space-x-2">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-                <span className="text-sm font-bold text-primary-foreground">FC</span>
-              </div>
-              <span className="hidden font-bold sm:inline-block">{siteConfig.name}</span>
+          {/* Logo/Brand - Statement Size! */}
+          <div className="flex items-center space-x-3">
+            <Link href="/" className="relative -my-4">
+              <Image
+                src="/Logo_Fc_Flamingo.png"
+                alt="FC Flamingo Logo"
+                width={96}
+                height={96}
+                className="h-20 w-20 md:h-24 md:w-24 lg:h-28 lg:w-28 transition-transform hover:scale-105 drop-shadow-md"
+                priority
+              />
             </Link>
             <Badge
               variant="secondary"

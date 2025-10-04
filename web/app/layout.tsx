@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import { Footer, Header } from "@/components/layout"
+import { FloatingActions, Footer } from "@/components/layout"
 // 🟩 SHOP-ONLY: Global Shopping Cart Integration
 import { CartHydration, ShoppingCart } from "@/components/shop"
 import { ThemeProvider } from "@/components/theme"
@@ -42,8 +42,9 @@ export default function RootLayout({
         >
           {/* 🟩 SHOP-ONLY: Cart State Hydration */}
           <CartHydration />
+          {/* FC Flamingo: Floating Actions (Cart + Theme) */}
+          <FloatingActions />
           <div className="flex min-h-screen flex-col">
-            <Header />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>

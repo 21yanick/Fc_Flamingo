@@ -131,6 +131,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  /* Smooth scroll for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -213,5 +219,198 @@
 
   .fc-button-matchday:focus {
     ring-color: var(--stadium-gold);
+  }
+
+  /* FC Flamingo Hero Outline Button - Editorial Style */
+  .fc-button-outline-hero {
+    /* Transparent with subtle tint */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+
+    /* THICK hand-drawn border - Flamingo Orange */
+    border: 4px solid var(--flamingo-orange);
+    border-radius: 16px 12px 18px 14px;
+
+    /* Clean typography - Geist Sans */
+    font-family: var(--font-geist-sans);
+    font-weight: 600;
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+
+    /* Flamingo Orange text */
+    color: var(--flamingo-orange);
+
+    /* Spacing for single line */
+    padding: 1rem 2rem;
+    white-space: nowrap;
+
+    /* Hand-drawn shadow */
+    box-shadow: 3px 4px 0px rgba(254, 117, 62, 0.2);
+
+    /* Smooth transitions */
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .fc-button-outline-hero:hover {
+    /* Subtle fill on hover */
+    background: rgba(254, 117, 62, 0.1);
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 4px 5px 0px rgba(254, 117, 62, 0.3);
+    border-color: var(--flamingo-orange);
+  }
+
+  .fc-button-outline-hero:active {
+    transform: rotate(-0.3deg) scale(1.02);
+    box-shadow: 2px 3px 0px rgba(254, 117, 62, 0.4);
+  }
+
+  .fc-button-outline-hero:focus {
+    ring-color: var(--flamingo-orange);
+    ring-offset-2: 2px;
+  }
+
+  /* Dark Mode adjustments for outline-hero */
+  .dark .fc-button-outline-hero {
+    /* Slightly more visible background in dark mode */
+    background: rgba(0, 0, 0, 0.2);
+    border-color: var(--primary); /* Brighter orange in dark */
+    color: var(--primary);
+    box-shadow: 3px 4px 0px rgba(254, 117, 62, 0.3);
+  }
+
+  .dark .fc-button-outline-hero:hover {
+    background: rgba(254, 117, 62, 0.15);
+    box-shadow: 4px 5px 0px rgba(254, 117, 62, 0.4);
+  }
+
+  /* FC Flamingo Floating Action Buttons */
+  .fc-floating-action {
+    /* Hand-drawn organic shape */
+    width: 56px;
+    height: 56px;
+    border-radius: 16px 12px 18px 14px;
+
+    /* FC Flamingo Colors */
+    background: var(--flamingo-orange);
+    border: 3px solid var(--flamingo-orange);
+
+    /* Floating effect */
+    backdrop-filter: blur(8px);
+    box-shadow:
+      0 4px 12px rgba(254, 117, 62, 0.3),
+      3px 4px 0px rgba(0, 0, 0, 0.1);
+
+    /* Hand-drawn imperfection */
+    transform: rotate(-1deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Center content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .fc-floating-action:hover {
+    transform: rotate(0deg) scale(1.1);
+    box-shadow:
+      0 6px 20px rgba(254, 117, 62, 0.4),
+      4px 5px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .fc-floating-action:active {
+    transform: rotate(-0.5deg) scale(1.05);
+    box-shadow:
+      0 3px 10px rgba(254, 117, 62, 0.35),
+      2px 3px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Inner button overrides (Cart + Theme Toggle) */
+  .fc-floating-action button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .fc-floating-action button:hover {
+    background: transparent !important;
+  }
+
+  .fc-floating-action svg {
+    color: white;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Dark mode adjustments */
+  .dark .fc-floating-action {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow:
+      0 4px 12px rgba(254, 117, 62, 0.4),
+      3px 4px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Theme Toggle Floating Button - Same style but separate class */
+  .fc-floating-action-theme {
+    /* Same hand-drawn organic shape */
+    width: 56px;
+    height: 56px;
+    border-radius: 16px 12px 18px 14px;
+
+    /* FC Flamingo Colors */
+    background: var(--flamingo-orange);
+    border: 3px solid var(--flamingo-orange);
+
+    /* Floating effect */
+    backdrop-filter: blur(8px);
+    box-shadow:
+      0 4px 12px rgba(254, 117, 62, 0.3),
+      3px 4px 0px rgba(0, 0, 0, 0.1);
+
+    /* Hand-drawn imperfection */
+    transform: rotate(-1deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Center content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    /* Make sure it's clickable! */
+    cursor: pointer;
+  }
+
+  .fc-floating-action-theme:hover {
+    transform: rotate(0deg) scale(1.1);
+    box-shadow:
+      0 6px 20px rgba(254, 117, 62, 0.4),
+      4px 5px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .fc-floating-action-theme:active {
+    transform: rotate(-0.5deg) scale(1.05);
+    box-shadow:
+      0 3px 10px rgba(254, 117, 62, 0.35),
+      2px 3px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .fc-floating-action-theme svg {
+    color: white;
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Dark mode for theme toggle */
+  .dark .fc-floating-action-theme {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow:
+      0 4px 12px rgba(254, 117, 62, 0.4),
+      3px 4px 0px rgba(0, 0, 0, 0.3);
   }
 }

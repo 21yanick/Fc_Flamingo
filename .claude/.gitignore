@@ -1,0 +1,10 @@
+# Persönliche Settings (falls später benötigt)
+settings.local.json
+
+# Temporäre Files
+*.tmp
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db

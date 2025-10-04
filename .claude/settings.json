@@ -1,0 +1,19 @@
+{
+  "model": "claude-sonnet-4.5",
+
+  "permissions": {
+    "deny": [
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/.git/**",
+      "*.pem",
+      "credentials.json"
+    ]
+  },
+
+  "env": {
+    "LANG": "de_CH.UTF-8",
+    "PROJECT_NAME": "FCFlamingo",
+    "PROJECT_TYPE": "Schweizer Kinderbuch E-Commerce"
+  }
+}

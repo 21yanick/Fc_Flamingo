@@ -4,8 +4,8 @@ import { forwardRef } from "react"
 import { cn } from "@/lib/utils"
 
 interface FlamingoButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "training" | "matchday"
-  size?: "sm" | "md" | "lg"
+  variant?: "primary" | "secondary" | "training" | "matchday" | "outline-hero"
+  size?: "sm" | "md" | "lg" | "hero"
   children: React.ReactNode
 }
 
@@ -15,6 +15,7 @@ const FlamingoButton = forwardRef<HTMLButtonElement, FlamingoButtonProps>(
       sm: "px-3 py-1.5 text-sm",
       md: "px-4 py-2 text-base",
       lg: "px-6 py-3 text-lg",
+      hero: "px-8 py-4 text-lg", // Hero-specific size
     }
 
     const variantClasses = {
@@ -22,6 +23,7 @@ const FlamingoButton = forwardRef<HTMLButtonElement, FlamingoButtonProps>(
       secondary: "fc-button-secondary",
       training: "fc-button-training",
       matchday: "fc-button-matchday",
+      "outline-hero": "fc-button-outline-hero",
     }
 
     return (

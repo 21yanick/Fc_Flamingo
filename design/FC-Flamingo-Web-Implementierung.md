@@ -1,11 +1,35 @@
 # FC Flamingo - Web Design Implementierung
-*Praktisches Arbeitsdokument für die Umsetzung | Stand: September 2025*
+*Praktisches Arbeitsdokument für die Umsetzung | Stand: Oktober 2025*
 
 ## 🎯 Ziel & Philosophie
 
 **Mission**: Das Kinderbuch-Erlebnis von FC Flamingo ins Web übertragen ohne die Magie zu verlieren.
 
 **KISS & YAGNI Ansatz**: Schrittweise Transformation der bestehenden solid technischen Basis mit FC Flamingo Charakter.
+
+## 💡 Design-Philosophie (Oktober 2025)
+
+### **Echte Illustrationen > Library-Imitationen**
+
+Nach gründlicher Analyse und Research haben wir uns für einen **Custom Component Approach** entschieden:
+
+**Warum KEINE Hand-drawn UI Libraries?**
+- **Rough.js**: Abandoned (2+ Jahre keine Commits, letzter Release 2022)
+- **@recklyss/hand-drawn-ui**: React 19 incompatible, unmaintained
+- **Wired-Elements**: Macht "wireframe" Look, nicht "watercolor" Stil
+- **Generelles Problem**: Alle Libraries imitieren hand-drawn, wir haben ECHTE professionelle Aquarell-Illustrationen!
+
+**Unsere Strategie:**
+✅ **Nutze echte Illustrationen als Design-Elemente** (V-2.jpg, Schmutztitel.jpg, etc.)
+✅ **Custom SVG Components** für Tape-Corners, Watercolor-Effekte, organische Borders
+✅ **CSS-first Approach** für Performance und volle Kontrolle
+✅ **KI-Assets ergänzend** für Texturen/Pattern, nicht als Ersatz
+
+**Vorteile:**
+- 🎨 **Authentisch**: Echter Buch-Stil statt Generic-Library-Look
+- ⚡ **Performance**: 0kB Library-Overhead, nur was wir brauchen
+- 🔧 **Kontrolle**: Keine Library-Abhängigkeiten, wartbar
+- 🚀 **Einzigartig**: Professionelles, maßgeschneidertes Design
 
 ---
 
@@ -356,27 +380,35 @@ export function RoughFlamingoButton({ variant, children }) {
 
 ## 🎨 Asset-Inventar
 
-### **Verfügbare Ressourcen** (design/bilder/)
-- ✅ **Cover.png**: Dual-Design Inspiration
-- ✅ **Charaktere-*.jpg**: Portrait-Referenzen für Character Field
-- ✅ **Mannschaftsfoto.jpg**: Tape-Corner Referenz
-- ✅ **K*-*.jpg**: Action-Szenen für Stimmung-Referenz
-- ✅ **Schmutztitel.jpg**: Ikonische Ein-Bein-Pose
+### **Verfügbare Illustrationen** (design/bilder/ & design/weitereBilder/)
+- ✅ **Cover.png**: Dual-Design Inspiration (Training vs. Matchday)
+- ✅ **V-2.jpg**: **Hero Background** - minimalistisch, Flamingo + Ball, perfekt für Training-Stimmung
+- ✅ **Vorsatz.jpg**: Fußballfeld von oben - Section Background oder Pattern
+- ✅ **V-1.jpg**: Fußballschuhe + Schlüssel - Deko-Elemente
+- ✅ **Schmutztitel.jpg**: Ikonische Ein-Bein-Pose - Character Highlight
+- ✅ **Charaktere-*.jpg**: Portrait-Referenzen für Character Field (kreisförmig, grüner Hintergrund)
+- ✅ **Mannschaftsfoto.jpg**: **Tape-Corner Referenz** - gelb/orange Klebeband-Effekt
+- ✅ **K*-*.jpg**: Action-Szenen für Stimmung-Referenz (Training, Frustration, Triumph)
+- ✅ **Portraits.jpg**: Autorin Portraits mit Tape-Corners
 
-### **Technische Assets**
-- ❌ **@recklyss/hand-drawn-ui**: React 19 incompatible (deprecated)
-- 🔲 **Rough.js**: Potential alternative (9kB) für echte hand-drawn Effekte
-- 🔲 **Wired-Elements**: React 19 compatible Web Components (22kB)
-- ✅ **CSS-only Hand-drawn**: Sofort implementierbar (0kB)
+### **Custom Component Strategy** (Oktober 2025)
+- ✅ **CSS-only Buttons**: Bereits in globals.css implementiert (0kB)
+- 🔄 **SVG Tape-Corners**: Custom Component für "geklebte" Elemente
+- 🔄 **Watercolor Vignette Filter**: SVG feTurbulence + feGaussianBlur
+- 🔄 **Organic Borders**: Custom border-radius + box-shadow
+- ❌ **Rough.js**: Abandoned (2+ Jahre keine Commits) - NICHT verwenden
+- ❌ **@recklyss/hand-drawn-ui**: React 19 incompatible - ENTFERNEN
+- ❌ **Wired-Elements**: Wireframe-Style (≠ Watercolor) - nicht passend
 
-### **Benötigte Assets** (Next Steps)
-- 🔲 **Logo**: Flamingo Silhouette für Navigation
-- 🔲 **Icons**: Fußball, Pfeifen, Stadium für UI Elements
-- 🔲 **Character SVGs**: Optimierte Versionen für Web
+### **Zukünftige Assets** (KI-unterstützt, optional)
+- 🔲 **Gras-Texturen**: Im Stil von V-2.jpg für Section-Backgrounds
+- 🔲 **Deko-Elemente**: Fußball-Icons, Wolken, Grashalme (konsistent zum Buch-Stil)
+- 🔲 **Seamless Pattern**: Watercolor-Texturen für Overlays
+- 🔲 **Character Variations**: Zusätzliche Posen falls benötigt (NICHT als Ersatz!)
 
 ---
 
-## 🔍 **Status Update: Phase 2 Debugging Required** *(September 2025)*
+## 🔍 **Status Update: Phase 2 Strategy Finalized** *(Oktober 2025)*
 
 ### **✅ Phase 1: Foundation Complete (8 Stunden)**
 
@@ -387,117 +419,193 @@ export function RoughFlamingoButton({ variant, children }) {
 - ✅ **Navigation**: "FC" Logo + field-green Akzente
 - ✅ **E-Commerce**: 100% funktional, alle Tests bestanden
 
-### **🚨 Phase 2: Critical Issues Discovered**
+### **🎯 Phase 2: Custom Component Approach (Oktober 2025)**
 
-#### **BROKEN: Hand-drawn Components (React 19 Incompatibility)**
-```bash
-# Aktueller Fehler beim Start:
-TypeError: Cannot read properties of undefined (reading 'ReactCurrentDispatcher')
-at @recklyss/hand-drawn-ui → React 19 incompatible
-```
+#### **Problem gelöst: Hand-drawn Libraries sind tot**
+Nach Research und Analyse haben wir festgestellt:
+- ❌ **Rough.js**: Abandoned (letzter Commit vor 2+ Jahren)
+- ❌ **@recklyss/hand-drawn-ui**: React 19 incompatible, unmaintained
+- ❌ **Wired-Elements**: Falscher Style (wireframe ≠ watercolor)
 
-**Problem Analysis:**
-- ❌ **@recklyss/hand-drawn-ui**: Letzte Updates vor 10+ Monaten (vor React 19)
-- ❌ **FlamingoButton**: Nicht funktional
-- ❌ **FlamingoCard**: Nicht funktional
-- ❌ **Library unmaintained**: Keine React 19 Updates erwartet
+#### **Lösung: Custom SVG Components + Echte Illustrationen**
+✅ **Strategiewechsel:** Statt Libraries zu imitieren → Eigene Components basierend auf echten Illustrationen
+- ✅ **V-2.jpg als Hero Background** (minimalistisch, professionell)
+- ✅ **CSS-only Buttons** (bereits in globals.css vorhanden)
+- 🔄 **Custom Tape-Corner Component** (basierend auf Mannschaftsfoto.jpg)
+- 🔄 **SVG Watercolor Filters** (feTurbulence + feGaussianBlur)
+- 🔄 **Organic Border System** (custom border-radius)
 
-#### **MISSING: Theme System Enhancement**
-- ❌ **Training/Matchday Modi**: Nicht implementiert (nur basic light/dark)
-- ❌ **Theme Toggle**: Noch Sun/Moon statt Soccer/Stadium
-- ❌ **CSS Custom Properties**: Nur definiert, nicht dynamisch genutzt
+### **📊 Phase 2 Roadmap (Neu strukturiert)**
+- **Phase 2A**: Library Cleanup (1-2h) - @recklyss/hand-drawn-ui entfernen
+- **Phase 2B**: Hero Section Implementation (4-6h) - V-2.jpg Background + Layout
+- **Phase 2C**: Custom SVG Components (6-8h) - Tape-Corners, Watercolor Filters
+- **Phase 2D**: Theme System (4-6h) - Training/Matchday Modi (später)
 
-### **📊 Realistic Phase 2 Status**
-- **Completed**: ~15% (nur CSS Farben funktionieren)
-- **Blocked**: Hand-drawn UI wegen Library-Issues
-- **Missing**: Theme System Logic
-- **Overall**: Anfang Phase 2, nicht Ende
+**Total Phase 2**: 15-22h (fokussiert auf Hero + Custom Components)
 
 ---
 
-## 🛠️ **Hand-drawn UI Alternativen (September 2025)**
+## 🛠️ **Hand-drawn UI Final Decision** *(Oktober 2025)*
 
-Mit React 19 stabilen Release haben sich die Optionen geändert:
+Nach gründlichem Research und Analyse: **Custom Components > Libraries**
 
-### **Option 1: CSS-Only Hand-drawn (KISS Champion)**
-```css
-/* 0kB Bundle - Sofort implementierbar */
-.fc-flamingo-button {
-  border-radius: 12px 8px 14px 10px; /* Organisch */
-  border: 3px solid var(--flamingo-orange);
-  box-shadow:
-    3px 4px 0px rgba(254, 117, 62, 0.3),
-    -1px -1px 0px rgba(255, 255, 255, 0.1);
-  transform: rotate(-0.8deg);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-```
-**Pros**: ✅ 0kB, ✅ Instant compatible, ✅ KISS perfect
-**Cons**: ❌ Statisch, ❌ Weniger authentisch
-
-### **Option 2: Rough.js Direct Integration**
+### **❌ Option 1: Rough.js - VERWORFEN**
 ```bash
 npm install roughjs  # 9kB gzipped
 ```
-```typescript
-// Echte hand-drawn Effekte mit randomness
-const rc = rough.svg(svgRef.current)
-const rect = rc.rectangle(2, 2, 196, 46, {
-  fill: 'var(--flamingo-orange)',
-  roughness: 1.5,
-  fillStyle: 'solid'
-})
-```
-**Pros**: ✅ Echte randomness, ✅ Authentic look, ✅ React 19 compatible
-**Cons**: ⚠️ 9kB Bundle, ⚠️ SVG complexity
+**Warum NICHT:**
+- ❌ **Abandoned**: Letzter Commit vor 2+ Jahren (GitHub: rough-stuff/rough)
+- ❌ **Maintenance-Risk**: Keine aktive Entwicklung, keine React 19 Garantie
+- ❌ **Falscher Stil**: "Sketchy" Look ≠ unser "Watercolor" Buch-Stil
+- ❌ **9kB für etwas das wir nicht brauchen**: Wir haben echte Illustrationen!
 
-### **Option 3: Wired-Elements (React 19 Native)**
+### **❌ Option 2: Wired-Elements - VERWORFEN**
 ```bash
-npm install wired-elements  # 22kB, aber React 19 Web Components support
+npm install wired-elements  # 22kB
 ```
-```jsx
-import 'wired-elements'
-<wired-button fill="var(--flamingo-orange)">FC Flamingo</wired-button>
-```
-**Pros**: ✅ Komplette UI Library, ✅ React 19 native
-**Cons**: ❌ 22kB Bundle, ❌ Overkill für unsere Needs
+**Warum NICHT:**
+- ❌ **Falscher Style**: Wireframe-Look (schwarze dünne Linien), nicht Watercolor
+- ❌ **Overkill**: 22kB für komplette UI Library, wir brauchen nur wenige Elemente
+- ❌ **Nicht unser Stil**: Sieht aus wie Balsamiq Mockups, nicht wie unser Buch
 
-### **Empfehlung: Hybrid Approach**
-1. **Sofort**: CSS-only für funktionale Buttons (2h)
-2. **Später**: Rough.js für mehr Authenticity evaluieren
-3. **Vermeiden**: @recklyss/hand-drawn-ui (broken)
+### **❌ Option 3: @recklyss/hand-drawn-ui - ENTFERNEN**
+```bash
+pnpm remove @recklyss/hand-drawn-ui  # Muss entfernt werden!
+```
+**Warum NICHT:**
+- ❌ **React 19 Incompatible**: TypeError beim Start
+- ❌ **Unmaintained**: 10+ Monate keine Updates
+- ❌ **Broken**: FlamingoButton/FlamingoCard nicht funktional
 
 ---
 
-## 🎯 **Revidierte Nächste Schritte (KISS/YAGNI)**
+### **✅ EMPFOHLEN: Custom SVG Components + CSS**
 
-### **Phase 2A: Hand-drawn Fix (3-4h)**
+Statt Libraries zu imitieren → **Eigene Components** basierend auf echten Illustrationen!
+
+#### **Strategie:**
+1. **CSS-only Basis** (0kB)
+   - Organische border-radius
+   - Custom box-shadows
+   - Subtle rotations
+   - Bereits in `globals.css` vorhanden!
+
+2. **SVG Filter Components** (~1-2kB)
+   - Watercolor Vignette (feTurbulence + feGaussianBlur)
+   - Tape-Corner Component (basierend auf Mannschaftsfoto.jpg)
+   - Organic Borders (custom SVG paths)
+
+3. **Echte Illustrationen als Assets**
+   - V-2.jpg Hero Background
+   - Schmutztitel.jpg Character Highlights
+   - Vorsatz.jpg Section Backgrounds
+
+#### **Vorteile:**
+- ✅ **0kB Library-Overhead** - nur was wir brauchen
+- ✅ **Authentisch** - echter Buch-Stil, nicht Generic-Library
+- ✅ **Wartbar** - volle Kontrolle, keine Library-Abhängigkeiten
+- ✅ **Performance** - optimiert für unsere Needs
+- ✅ **Einzigartig** - professionelles, maßgeschneidertes Design
+
+---
+
+## 🎯 **Implementierungs-Roadmap (Oktober 2025)**
+
+### **Phase 2A: Library Cleanup (1-2h)**
+
+**Ziel:** Broken dependencies entfernen, Dev-Server funktional machen
+
 ```bash
 # 1. Broken dependency entfernen
 pnpm remove @recklyss/hand-drawn-ui
 
-# 2. CSS-only FlamingoButton implementieren
-# 3. Dev server wieder funktional machen
-pnpm run dev  # sollte wieder starten
+# 2. Import-Referenzen entfernen
+# - web/app/(marketing)/page.tsx: Line 3 FlamingoButton Import
+# - components/fc-flamingo/hand-drawn/* löschen (falls vorhanden)
+
+# 3. Dev server testen
+pnpm run dev  # sollte ohne Errors starten
+
+# 4. CSS-only FlamingoButton in globals.css ist bereits vorhanden!
+# - Keine weitere Arbeit nötig, funktioniert out of the box
 ```
 
-### **Phase 2B: Theme System Basis (4-6h)**
-```typescript
-// theme-provider.tsx Enhancement für Training/Matchday
-type FCFlamingoTheme = 'training' | 'matchday' | 'system'
-// Nur CSS Custom Properties, keine komplexe Logic
-```
+**Ergebnis:** Clean codebase, funktionale Buttons, keine Library-Errors
 
-### **Phase 2C: Theme Toggle Update (2h)**
-```jsx
-// Sun/Moon → Soccer/Stadium Icons
-// Einfacher Icon-Wechsel, keine komplexe Animation
-```
+---
 
-**Total Phase 2 Realistic**: 8-12h (nicht 12h wie ursprünglich gedacht)
+### **Phase 2B: Hero Section Implementation (4-6h)**
+
+**Ziel:** Professionelle Training-Stimmung Hero mit V-2.jpg Background
+
+Siehe detaillierte Implementierung in: `design/hero-section-implementation.md`
+
+**Quick Summary:**
+1. **V-2.jpg Background** mit Parallax-Effekt (1h)
+2. **Hero Content Layout** - Responsive, minimal, fokussiert (1-2h)
+3. **Watercolor Vignette Filter** - SVG für weiche Kanten (1h)
+4. **Mobile Optimization** - Touch-friendly, Performance (1h)
+5. **Testing & Polish** - Cross-browser, Accessibility (1h)
+
+**Assets:**
+- V-2.jpg (Hero Background)
+- Schmutztitel.jpg (optional: Character Deko)
+- Custom SVG Filters
+
+---
+
+### **Phase 2C: Custom SVG Components (6-8h)**
+
+**Ziel:** Wiederverwendbare Components für consistent Look
+
+1. **Tape-Corner Component** (2-3h)
+   - Basierend auf Mannschaftsfoto.jpg Tape-Effekt
+   - Position: top-left, top-right, bottom-left, bottom-right
+   - Farben: gelb/orange (wie im Buch)
+   - Subtle rotation & shadow
+
+2. **Watercolor Vignette Filter** (2h)
+   - SVG feTurbulence für organische Kanten
+   - feGaussianBlur für Watercolor-Effekt
+   - Wiederverwendbar für Cards, Sections
+
+3. **Organic Border System** (2-3h)
+   - Custom border-radius Utilities
+   - Hand-drawn-feel box-shadows
+   - Subtle rotation Utilities
+
+**Ergebnis:** Professionelle, wiederverwendbare Components ohne Library-Overhead
+
+---
+
+### **Phase 2D: Theme System (4-6h) - SPÄTER**
+
+**Hinweis:** Training-Stimmung ist bereits perfekt für Launch. Matchday-Theme ist optional für später.
+
+1. **Theme Provider Enhancement** (2-3h)
+2. **Theme Toggle** - Soccer/Stadium Icons (2h)
+3. **CSS Custom Properties** - Dynamic switching (1h)
+
+---
+
+## 📋 **Nächste Schritte (Priorisiert)**
+
+### **Woche 1: Foundation Clean-up & Hero Start**
+1. ✅ Phase 2A: Library Cleanup (1-2h)
+2. 🔄 Phase 2B Start: V-2.jpg Background Implementation (2-3h)
+
+### **Woche 2: Hero Section Complete**
+1. 🔄 Phase 2B Complete: Hero Layout + Watercolor Filter (3-4h)
+2. 🔄 Testing & Mobile Optimization (2h)
+
+### **Woche 3: Custom Components**
+1. 🔄 Phase 2C: Tape-Corner + SVG Filters (6-8h)
+
+### **Später: Theme System** (optional)
+1. ⏳ Phase 2D: Training/Matchday Theme Switching
 
 ---
 
 *Dieses Dokument wird mit jeder Phase aktualisiert und erweitert.*
 
-**🔧 Phase 2 Debugging** | **Hand-drawn Alternativen evaluieren**
+**📅 Stand: Oktober 2025** | **🎯 Fokus: Custom Components > Libraries** | **🎨 Hero Section Priority**
