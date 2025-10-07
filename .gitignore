@@ -56,3 +56,6 @@ web/.env.local
 infrastructure/volumes/db/data/
 infrastructure/volumes/storage/
 infrastructure/supabase-official/
+
+# Supabase Production Keys (DO NOT COMMIT!)
+SUPABASE-KEYS-*.txt

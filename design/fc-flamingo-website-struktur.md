@@ -385,7 +385,49 @@ info@fcflamingo.ch
 
 ---
 
-## 🛠️ Technische Hinweise
+## 🛠️ Technische Hinweise & Dateistruktur
+
+### Dateiorganisation (KISS-Prinzip - Option A Implementiert ✅)
+```
+web/app/(marketing)/
+├── page.tsx                          (~25 Zeilen - Orchestrator)
+└── _sections/                        (Private Section Components)
+    ├── index.ts                      (Barrel Exports)
+    ├── hero-section.tsx              (~131 Zeilen - Theme-dependent)
+    ├── features-section.tsx          (~52 Zeilen - Standalone)
+    ├── cta-section.tsx               (~25 Zeilen - Standalone)
+    ├── mission-section.tsx           (TODO: ~50 Zeilen)
+    ├── problem-section.tsx           (TODO: ~60 Zeilen)
+    ├── team-section.tsx              (TODO: ~100 Zeilen)
+    ├── mystery-section.tsx           (TODO: ~60 Zeilen)
+    ├── triumph-section.tsx           (TODO: ~50 Zeilen)
+    ├── shop-section.tsx              (TODO: ~80 Zeilen)
+    ├── instagram-section.tsx         (TODO: ~40 Zeilen)
+    ├── about-section.tsx             (TODO: ~70 Zeilen)
+    └── contact-section.tsx           (TODO: ~60 Zeilen)
+
+web/components/fc-flamingo/
+├── hand-drawn/                       (Wiederverwendbare UI Components)
+│   ├── flamingo-button.tsx           ✅ (~56 Zeilen)
+│   └── flamingo-card.tsx             (TODO: ~80 Zeilen)
+├── decorative/                       (Dekorative Elemente)
+│   ├── tape-corner.tsx               (TODO: ~30 Zeilen)
+│   └── watercolor-vignette.tsx       (TODO: ~40 Zeilen)
+└── sections/                         (Section Helpers - optional)
+    └── section-wrapper.tsx           (TODO: ~30 Zeilen)
+```
+
+### Implementierungs-Philosophie
+- **KISS:** Jede Section = Eigene Datei, keine Abstraktions-Overkill
+- **YAGNI:** Wiederverwendung erst bei 3+ Nutzungen
+- **Co-Location:** Sections direkt bei der Page die sie nutzt
+- **Max 150 Zeilen:** Keine Datei über 150 Zeilen (größte: hero-section.tsx ~131)
+
+### Neue Section hinzufügen (Workflow)
+1. Component erstellen: `_sections/neue-section.tsx`
+2. Export hinzufügen: `_sections/index.ts`
+3. Orchestrator updaten: `page.tsx` → `<NeueSection />`
+4. Bei Bedarf: Shared Components in `components/fc-flamingo/`
 
 ### Theme Toggle Enhancement
 ```tsx
@@ -521,30 +563,29 @@ import { Target, Zap } from "lucide-react"
 
 ---
 
-## 🚀 Development Workflow
+## 🚀 Development Workflow (Aktualisiert)
 
-### Phase 1: Content Update (1-2h)
-- Hero Text anpassen ("Werde Trainer...")
-- CTA Buttons updaten ("Starte dein Abenteuer")
-- Product Card: Interaktivität betonen
+### ✅ Phase 1: Struktur (ERLEDIGT)
+- Skeleton-First: Alle 10 Sections als Rahmen ✅
+- Orchestrator: Clean page.tsx mit Flow ✅
+- Dev Server: Kompletter Scroll-Through testbar ✅
 
-### Phase 2: Neue Sections (8-12h)
-- Mission Section (Cover-Präsentation)
-- Das Problem (Mannschaftsfoto + Tape-Corners)
-- Dein Team (Character Field + Vorsatz.jpg)
-- Das Geheimnis (Mystery + Text)
-- Der Triumph (K13-1.jpg Emotional Peak)
-- Instagram Gewinnspiel
-- Über uns (Portraits + Tape-Corners)
+### 🔄 Phase 2: Content-Filling (AKTUELL - 8-12h)
+**Priorität: Conversion-First**
+1. **Shop Section** (2h) - Product Image + Features → Conversion!
+2. **Mission + Problem** (3h) - Cover + Mannschaftsfoto → Story Core
+3. **Team + Triumph** (3h) - Characters + K13-1.jpg → Emotional Peak
+4. **Rest** (2-4h) - Instagram, About, Contact → Community + Trust
 
-### Phase 3: Dual-Theme Polish (3-4h)
-- CSS-Filter für alle Sections
-- Theme-based Button Variants
-- Background Overlays
-- Testing Light/Dark Mode
+**Pro Section:** Assets vorbereiten → TODO ersetzen → testen → weiter
+
+### Phase 3: Polish (3-4h)
+- Custom Components (Tape-Corners, Watercolor-Filter)
+- Dual-Theme Enhancements
 - Mobile Optimization
+- Performance Check
 
-**Total MVP: 12-18h**
+**Total MVP:** 11-16h (3h gespart durch Skeleton-Approach!)
 
 ---
 
@@ -565,6 +606,47 @@ import { Target, Zap } from "lucide-react"
 
 ---
 
+---
+
+## 📊 Implementation Status (Oktober 2025)
+
+### ✅ Struktur Complete (Skeleton-First Approach)
+**Status:** 10/10 Sections als Skeletons implementiert | Dev Server ✅ | Flow komplett testbar
+
+| Section | Zeilen | Status | Content-Status |
+|---------|--------|--------|----------------|
+| **Hero** | 131 | ✅ Complete | Ready (Theme-dependent) |
+| **Mission** | 37 | ✅ Skeleton | TODO: Cover.png |
+| **Problem** | 42 | ✅ Skeleton | TODO: Mannschaftsfoto + Tape-Corners |
+| **Team** | 88 | ✅ Skeleton | TODO: Charaktere + Vorsatz.jpg |
+| **Mystery** | 72 | ✅ Skeleton | TODO: K5-1.jpg oder K7-1.jpg |
+| **Triumph** | 51 | ✅ Skeleton | TODO: K13-1.jpg (Emotional Peak) |
+| **Shop** | 82 | ✅ Skeleton | TODO: Product Image + Details |
+| **Instagram** | 42 | ✅ Skeleton | TODO: Deko-Elemente |
+| **About** | 64 | ✅ Skeleton | TODO: Portraits + Bios |
+| **Contact** | 65 | ✅ Skeleton | TODO: Newsletter-Integration |
+| **page.tsx** | 70 | ✅ Orchestrator | Clean (nur Imports + Flow) |
+
+**Gesamt:** ~687 Zeilen über 12 Dateien | **Größte Datei:** 131 Zeilen ✅
+
+### 🎯 Content-Filling Priority (Next Steps)
+**Conversion-First Approach:**
+1. **Shop Section** → Product Image + echte Features (Conversion!)
+2. **Mission + Problem** → Cover.png + Mannschaftsfoto (Story Core)
+3. **Team + Triumph** → Characters + K13-1.jpg (Emotional Peak)
+4. **Rest** → Instagram, About, Contact (Community + Trust)
+
+**Workflow pro Section:**
+```bash
+1. Assets bereitstellen (z.B. Cover.png optimiert)
+2. _sections/mission-section.tsx öffnen
+3. TODO-Placeholders durch echten Content ersetzen
+4. pnpm run dev → testen
+5. Nächste Section
+```
+
+---
+
 *Dieses Dokument ist die strategische Grundlage für die FC Flamingo Website-Entwicklung.*
 
-**Stand: Oktober 2025** | **Status: Planung abgeschlossen** | **Next: Implementation**
+**Stand: Oktober 2025** | **Struktur: 10/10 ✅** | **Content: 1/10** | **Next: Assets einbauen**
