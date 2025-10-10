@@ -46,7 +46,7 @@ next-env.d.ts
 # Web directory should not track build artifacts
 web/.next/
 web/node_modules/
-web/pnpm-lock.yaml
+# web/pnpm-lock.yaml - ENABLED for production (deterministic dependency versions)
 web/package-lock.json
 web/yarn.lock
 web/*.tsbuildinfo
