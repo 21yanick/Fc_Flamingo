@@ -1,23 +1,29 @@
 import { z } from "zod"
 
+// Helper: Convert empty strings to undefined for optional fields
+const emptyStringToUndefined = z
+  .string()
+  .transform((val) => (val === "" ? undefined : val))
+  .optional()
+
 const envSchema = z.object({
   // Public variables (exposed to client)
   NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1),
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1),
-  NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
+  NEXT_PUBLIC_SENTRY_DSN: emptyStringToUndefined.pipe(z.string().url().optional()),
   NEXT_PUBLIC_APP_URL: z.string().url(),
 
   // Server-only variables
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),
-  STRIPE_PRODUCT_1_PRICE_ID: z.string().optional(),
-  STRIPE_PRODUCT_2_PRICE_ID: z.string().optional(),
-  SENTRY_AUTH_TOKEN: z.string().optional(),
+  STRIPE_PRODUCT_1_PRICE_ID: emptyStringToUndefined.pipe(z.string().optional()),
+  STRIPE_PRODUCT_2_PRICE_ID: emptyStringToUndefined.pipe(z.string().optional()),
+  SENTRY_AUTH_TOKEN: emptyStringToUndefined.pipe(z.string().optional()),
 
   // Database Direct Connection (for migrations)
-  DATABASE_URL: z.string().optional(),
+  DATABASE_URL: emptyStringToUndefined.pipe(z.string().optional()),
 
   // SMTP Email Configuration
   SMTP_HOST: z.string().min(1),
