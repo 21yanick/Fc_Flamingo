@@ -13,6 +13,7 @@
 export interface ShippingAddress {
   name: string // Customer name
   line1: string // Address line 1
+  line2?: string // Address line 2 (optional)
   city: string // City
   postal_code: string // Swiss postal codes (4 digits)
   country: string // Country code (typically "CH" for Switzerland)

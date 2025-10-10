@@ -79,36 +79,14 @@ function formatCHF(amountInRappen: number): string {
   }).format(amountInRappen / 100)
 }
 
-// Status badge colors
-function getStatusColor(status: string): "default" | "secondary" | "destructive" | "outline" {
-  switch (status) {
-    case "pending":
-      return "outline"
-    case "processing":
-      return "secondary"
-    case "shipped":
-      return "default"
-    case "completed":
-      return "secondary"
-    default:
-      return "outline"
-  }
+// Status badge colors (simplified to 2 states)
+function getStatusColor(status: string): "default" | "outline" {
+  return status === "shipped" ? "default" : "outline"
 }
 
-// Status display names (German)
+// Status display names (German - simplified)
 function getStatusLabel(status: string): string {
-  switch (status) {
-    case "pending":
-      return "Ausstehend"
-    case "processing":
-      return "In Bearbeitung"
-    case "shipped":
-      return "Versendet"
-    case "completed":
-      return "Abgeschlossen"
-    default:
-      return status
-  }
+  return status === "shipped" ? "Versendet" : "Offen"
 }
 
 // Check if order has physical products (needs shipping)
@@ -182,6 +160,7 @@ export default async function OrderDetailsPage({ params }: PageProps) {
               </div>
             )}
 
+            {/* Shipping Address */}
             {needsShipping && order.shipping_address && (
               <div className="space-y-2">
                 <div className="flex items-center space-x-2">
@@ -189,8 +168,32 @@ export default async function OrderDetailsPage({ params }: PageProps) {
                   <span className="font-medium">Versandadresse:</span>
                 </div>
                 <div className="text-sm text-muted-foreground ml-6">
-                  {/* TODO: Format shipping address properly */}
-                  <pre className="text-xs">{JSON.stringify(order.shipping_address, null, 2)}</pre>
+                  {order.shipping_address.name && <div>{order.shipping_address.name}</div>}
+                  <div>{order.shipping_address.line1}</div>
+                  {order.shipping_address.line2 && <div>{order.shipping_address.line2}</div>}
+                  <div>
+                    {order.shipping_address.postal_code} {order.shipping_address.city}
+                  </div>
+                  <div>{order.shipping_address.country}</div>
+                </div>
+              </div>
+            )}
+
+            {/* Billing Address (if different from shipping) */}
+            {order.billing_address && (
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2">
+                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                  <span className="font-medium">Rechnungsadresse:</span>
+                </div>
+                <div className="text-sm text-muted-foreground ml-6">
+                  {order.billing_address.name && <div>{order.billing_address.name}</div>}
+                  <div>{order.billing_address.line1}</div>
+                  {order.billing_address.line2 && <div>{order.billing_address.line2}</div>}
+                  <div>
+                    {order.billing_address.postal_code} {order.billing_address.city}
+                  </div>
+                  <div>{order.billing_address.country}</div>
                 </div>
               </div>
             )}

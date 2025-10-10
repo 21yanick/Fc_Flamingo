@@ -45,9 +45,7 @@ export function TeamSection() {
               <p className="text-sm text-muted-foreground">Lilly</p>
             </div>
             <h3 className="font-bold mb-2">Lilly - Die Torhüterin</h3>
-            <p className="text-sm text-muted-foreground">
-              Schüchtern, naiv, aber liebenswert
-            </p>
+            <p className="text-sm text-muted-foreground">Schüchtern, naiv, aber liebenswert</p>
           </div>
 
           {/* Character 4: Mister King */}

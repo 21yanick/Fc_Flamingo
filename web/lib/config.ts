@@ -6,9 +6,17 @@
 export const siteConfig = {
   // Core Brand Identity - FC Flamingo Kinderbuch
   name: "FC Flamingo",
+
+  // Hero Section (Schweizer Rechtschreibung - kein ß!)
+  hero: {
+    title: "Fussball auf einem Bein",
+    subtitle: "Die Flamingos träumen vom Schweizer Meistertitel",
+    cta: "Buch entdecken",
+  },
+
+  // Long Description (für Meta/About)
   description:
-    "Die Flamingos des FC Flamingo träumen vom ersten Schweizer Meistertitel, doch ihre seltsame Vorliebe, auf einem Bein zu stehen, bringt den Trainer Mister King an den Rand der Verzweiflung.",
-  tagline: "Glaub an dich, so kannst du im Leben alles erreichen!",
+    "Die Flamingos träumen vom ersten Schweizer Meistertitel, doch ihre seltsame Vorliebe, auf einem Bein zu stehen, bringt den Trainer Mister King an den Rand der Verzweiflung.",
 
   // Localization & Business Settings
   currency: "CHF" as const,

@@ -150,7 +150,7 @@
     border: 3px solid;
 
     /* Hand-drawn typography */
-    font-family: 'Comic Sans MS', 'Marker Felt', cursive, sans-serif;
+    font-family: "Comic Sans MS", "Marker Felt", cursive, sans-serif;
     font-weight: 600;
 
     /* Organic imperfections */
@@ -188,7 +188,7 @@
   }
 
   .fc-button-primary:focus {
-    ring-color: var(--flamingo-orange);
+    --tw-ring-color: var(--flamingo-orange);
   }
 
   .fc-button-secondary {
@@ -198,7 +198,7 @@
   }
 
   .fc-button-secondary:focus {
-    ring-color: var(--flamingo-peach);
+    --tw-ring-color: var(--flamingo-peach);
   }
 
   .fc-button-training {
@@ -208,7 +208,7 @@
   }
 
   .fc-button-training:focus {
-    ring-color: var(--field-green);
+    --tw-ring-color: var(--field-green);
   }
 
   .fc-button-matchday {
@@ -218,7 +218,7 @@
   }
 
   .fc-button-matchday:focus {
-    ring-color: var(--stadium-gold);
+    --tw-ring-color: var(--stadium-gold);
   }
 
   /* FC Flamingo Hero Outline Button - Editorial Style */
@@ -265,8 +265,8 @@
   }
 
   .fc-button-outline-hero:focus {
-    ring-color: var(--flamingo-orange);
-    ring-offset-2: 2px;
+    --tw-ring-color: var(--flamingo-orange);
+    --tw-ring-offset-width: 2px;
   }
 
   /* Dark Mode adjustments for outline-hero */
@@ -325,7 +325,10 @@
       2px 3px 0px rgba(0, 0, 0, 0.2);
   }
 
-  /* Inner button overrides (Cart + Theme Toggle) */
+  /* Inner button overrides (Cart + Theme Toggle)
+   * NOTE: !important is intentionally used here to override UI component default styles
+   * that would otherwise interfere with the custom floating action button design.
+   */
   .fc-floating-action button {
     background: transparent !important;
     border: none !important;
@@ -412,5 +415,37 @@
     box-shadow:
       0 4px 12px rgba(254, 117, 62, 0.4),
       3px 4px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ============================================
+   * FC Flamingo Hybrid Components (Oktober 2025)
+   * Organic borders for TiltedCard components
+   * ============================================ */
+
+  /* Hand-Drawn Border - Standard (für kleine elements) */
+  .fc-hand-drawn-border {
+    position: absolute;
+    inset: -2px;
+    border: 3px solid var(--flamingo-orange);
+    border-radius: 16px 12px 18px 14px;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Dark mode adjustments */
+  .dark .fc-hand-drawn-border {
+    border-color: var(--primary); /* Brighter orange in dark */
+  }
+
+  /* Hero Logo - Integrated Glow (kein separater Layer = kein Blitzen!) */
+  .fc-hero-logo-glow {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1))
+      drop-shadow(0 0 20px rgba(254, 117, 62, 0.25));
+  }
+
+  /* Dark mode: Stärkerer Glow für mehr Kontrast */
+  .dark .fc-hero-logo-glow {
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3))
+      drop-shadow(0 0 24px rgba(254, 117, 62, 0.35));
   }
 }

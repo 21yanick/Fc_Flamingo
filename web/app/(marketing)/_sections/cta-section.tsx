@@ -1,7 +1,6 @@
 import { ArrowRight, BookOpen } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { siteConfig } from "@/lib/config"
 
 export function CTASection() {
   return (

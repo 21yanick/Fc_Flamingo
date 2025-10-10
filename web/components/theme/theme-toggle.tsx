@@ -26,6 +26,7 @@ export function ThemeToggle() {
 
   return (
     <button
+      type="button"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       className="fc-floating-action-theme"
       aria-label="Toggle theme"

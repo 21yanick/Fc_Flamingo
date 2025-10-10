@@ -23,12 +23,10 @@ interface StatusSelectProps {
   id?: string
 }
 
-// Status options with German labels
+// Status options with German labels (simplified for book shop)
 const STATUS_OPTIONS = [
-  { value: "pending", label: "Ausstehend", color: "outline" as const },
-  { value: "processing", label: "In Bearbeitung", color: "secondary" as const },
+  { value: "pending", label: "Offen", color: "outline" as const },
   { value: "shipped", label: "Versendet", color: "default" as const },
-  { value: "completed", label: "Abgeschlossen", color: "secondary" as const },
 ]
 
 export function StatusSelect({ orderId, currentStatus, id }: StatusSelectProps) {
@@ -62,25 +60,29 @@ export function StatusSelect({ orderId, currentStatus, id }: StatusSelectProps) 
   const currentOption = STATUS_OPTIONS.find((option) => option.value === status)
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-1">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button id={id} variant="outline" className="w-full justify-between" disabled={isPending}>
-            <div className="flex items-center space-x-2">
-              {isPending ? (
-                <Loader2 className="h-3 w-3 animate-spin" />
-              ) : (
-                currentOption && (
-                  <Badge variant={currentOption.color} className="text-xs">
-                    {currentOption.label}
-                  </Badge>
-                )
-              )}
-            </div>
-            <ChevronDown className="h-4 w-4" />
+          <Button
+            id={id}
+            variant="outline"
+            size="sm"
+            className="justify-between gap-2"
+            disabled={isPending}
+          >
+            {isPending ? (
+              <Loader2 className="h-3 w-3 animate-spin" />
+            ) : (
+              currentOption && (
+                <Badge variant={currentOption.color} className="text-xs">
+                  {currentOption.label}
+                </Badge>
+              )
+            )}
+            <ChevronDown className="h-3 w-3" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-full">
+        <DropdownMenuContent align="end">
           {STATUS_OPTIONS.map((option) => (
             <DropdownMenuItem
               key={option.value}
@@ -95,7 +97,7 @@ export function StatusSelect({ orderId, currentStatus, id }: StatusSelectProps) 
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      {error && <p className="text-xs text-destructive">{error}</p>}
     </div>
   )
 }

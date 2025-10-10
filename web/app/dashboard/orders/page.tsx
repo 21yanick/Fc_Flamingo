@@ -5,12 +5,12 @@
  */
 
 import { createServerClient } from "@supabase/ssr"
-import { Calendar, CreditCard, Eye, Package, User } from "lucide-react"
+import { Package } from "lucide-react"
+import type { Metadata } from "next"
 import { cookies } from "next/headers"
-import Link from "next/link"
+import { OrderCard } from "@/components/dashboard"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { env } from "@/lib/env"
 import type { OrderWithItems } from "@/types/database"
 
@@ -79,36 +79,35 @@ function formatCHF(amountInRappen: number): string {
   }).format(amountInRappen / 100)
 }
 
-// Status badge colors
-function getStatusColor(status: string): "default" | "secondary" | "destructive" | "outline" {
-  switch (status) {
-    case "pending":
-      return "outline"
-    case "processing":
-      return "secondary"
-    case "shipped":
-      return "default"
-    case "completed":
-      return "secondary"
-    default:
-      return "outline"
-  }
+// Extract customer name from addresses
+function getCustomerName(order: OrderWithItems): string {
+  // Try shipping address first, then billing address
+  const shippingName = order.shipping_address?.name
+  const billingName = order.billing_address?.name
+  return shippingName || billingName || "Kunde"
 }
 
-// Status display names (German)
-function getStatusLabel(status: string): string {
-  switch (status) {
-    case "pending":
-      return "Ausstehend"
-    case "processing":
-      return "In Bearbeitung"
-    case "shipped":
-      return "Versendet"
-    case "completed":
-      return "Abgeschlossen"
-    default:
-      return status
+// Extract address from addresses for quick overview (street, city)
+function getAddress(order: OrderWithItems): string | null {
+  const address = order.shipping_address || order.billing_address
+
+  if (!address) return null
+
+  const parts = []
+
+  if (address.line1) parts.push(address.line1)
+  if (address.postal_code && address.city) {
+    parts.push(`${address.postal_code} ${address.city}`)
+  } else if (address.city) {
+    parts.push(address.city)
   }
+
+  return parts.length > 0 ? parts.join(", ") : null
+}
+
+// Count total books across all order items
+function getTotalBooks(order: OrderWithItems): number {
+  return order.order_items?.reduce((sum, item) => sum + (item.quantity || 0), 0) || 0
 }
 
 // Main page component
@@ -142,58 +141,17 @@ export default async function OrdersPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {orders.map((order: OrderWithItems) => (
-            <Card key={order.id} className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <CardTitle className="text-base font-medium">
-                      Bestellung #{order.id.slice(-8)}
-                    </CardTitle>
-                    <CardDescription className="flex items-center space-x-4">
-                      <span className="flex items-center">
-                        <User className="h-3 w-3 mr-1" />
-                        {order.email}
-                      </span>
-                      <span className="flex items-center">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        {formatSwissDate(order.created_at)}
-                      </span>
-                    </CardDescription>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Badge variant={getStatusColor(order.status)}>
-                      {getStatusLabel(order.status)}
-                    </Badge>
-                    <span className="text-lg font-semibold">{formatCHF(order.total_amount)}</span>
-                  </div>
-                </div>
-              </CardHeader>
-
-              <CardContent className="pt-0">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                    <Package className="h-3 w-3" />
-                    <span>{order.order_items?.length || 0} Artikel</span>
-                    {order.stripe_session_id && (
-                      <>
-                        <span>•</span>
-                        <CreditCard className="h-3 w-3" />
-                        <span>Bezahlt</span>
-                      </>
-                    )}
-                  </div>
-
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href={`/dashboard/orders/${order.id}`}>
-                      <Eye className="h-3 w-3 mr-2" />
-                      Details
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            <OrderCard
+              key={order.id}
+              order={order}
+              customerName={getCustomerName(order)}
+              address={getAddress(order)}
+              totalBooks={getTotalBooks(order)}
+              formattedDate={formatSwissDate(order.created_at)}
+              formattedAmount={formatCHF(order.total_amount)}
+            />
           ))}
         </div>
       )}
@@ -201,7 +159,7 @@ export default async function OrdersPage() {
   )
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Bestellungen - Dashboard",
   description: "Verwalten Sie alle Kundenbestellungen und Versände",
 }

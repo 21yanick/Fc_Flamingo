@@ -47,7 +47,9 @@ export function MysterySection() {
           </ul>
         </div>
 
-        <p className="text-xl font-bold text-primary">Deine Entscheidungen bestimmen die Geschichte!</p>
+        <p className="text-xl font-bold text-primary">
+          Deine Entscheidungen bestimmen die Geschichte!
+        </p>
 
         {/* TODO: K5-1.jpg (Teamwork) ODER K7-1.jpg (Action/Spannung) */}
         <p className="text-sm text-muted-foreground mt-8">

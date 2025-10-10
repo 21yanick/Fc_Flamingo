@@ -28,11 +28,11 @@ export function extractShippingAddress(
   }
 
   return {
-    name: shippingDetails.name,
-    line1: shippingDetails.address.line1,
-    city: shippingDetails.address.city,
-    postal_code: shippingDetails.address.postal_code,
-    country: shippingDetails.address.country,
+    name: shippingDetails.name || "",
+    line1: shippingDetails.address.line1 || "",
+    city: shippingDetails.address.city || "",
+    postal_code: shippingDetails.address.postal_code || "",
+    country: shippingDetails.address.country || "", // Defensive: fallback for potential null values
   }
 }
 
@@ -77,5 +77,59 @@ export function extractEmailShippingAddress(
     city: shippingDetails.address.city || "",
     postal_code: shippingDetails.address.postal_code || "",
     country: shippingDetails.address.country || "",
+  }
+}
+
+/**
+ * 📍 EXTRACT BILLING ADDRESS
+ * Safely converts Stripe customer_details.address to ShippingAddress
+ * Used in: webhook order creation (fallback for shipping, primary for billing)
+ *
+ * @param customerDetails - Stripe checkout session customer_details
+ * @returns ShippingAddress | null - Domain type or null if missing
+ */
+export function extractBillingAddress(
+  customerDetails: Stripe.Checkout.Session.CustomerDetails | null | undefined
+): ShippingAddress | null {
+  if (!customerDetails?.address) {
+    return null
+  }
+
+  return {
+    name: customerDetails.name || "",
+    line1: customerDetails.address.line1 || "",
+    city: customerDetails.address.city || "",
+    postal_code: customerDetails.address.postal_code || "",
+    country: customerDetails.address.country || "", // Stripe API allows null, fallback to empty string
+  }
+}
+
+/**
+ * 🏠 EXTRACT ADDRESSES WITH FALLBACK
+ * Extracts both shipping and billing addresses with smart fallback logic:
+ * - shipping_address: Use shipping_details if available, else use customer_details.address
+ * - billing_address: Use customer_details.address
+ *
+ * @param session - Stripe checkout session
+ * @returns Object with shipping_address and billing_address (both can be null)
+ */
+export function extractAddresses(session: Stripe.Checkout.Session): {
+  shipping_address: ShippingAddress | null
+  billing_address: ShippingAddress | null
+} {
+  // Try shipping_details first (explicit shipping address)
+  let shippingAddress = extractShippingAddress(session.shipping_details)
+
+  // Fallback: If no shipping_details but customer_details has address, use it
+  if (!shippingAddress && session.customer_details?.address) {
+    shippingAddress = extractBillingAddress(session.customer_details)
+  }
+
+  // Billing address from customer_details
+  const billingAddress = extractBillingAddress(session.customer_details)
+
+  return {
+    shipping_address: shippingAddress,
+    billing_address: billingAddress,
   }
 }

@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/config"
 
 export function Footer() {
   // FC Flamingo Footer - One-Pager Navigation
-  const { name: brandName, description, tagline } = siteConfig
+  const { name: brandName, description, hero } = siteConfig
 
   const navigationLinks = [
     { href: "#hero", label: "Startseite" },
@@ -36,9 +36,7 @@ export function Footer() {
                 className="drop-shadow-lg hover:scale-105 transition-transform"
               />
             </div>
-            <p className="text-primary italic text-lg font-medium max-w-xl mx-auto">
-              "{tagline}"
-            </p>
+            <p className="text-primary text-lg font-medium max-w-xl mx-auto">{hero.subtitle}</p>
           </div>
 
           <Separator className="mb-8" />
@@ -101,9 +99,7 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               © 2025 {brandName}. Mit ❤️ für Schweizer Kinder.
             </p>
-            <p className="text-xs text-muted-foreground mt-2">
-              Powered by Next.js 15 & Supabase
-            </p>
+            <p className="text-xs text-muted-foreground mt-2">Powered by Next.js 15 & Supabase</p>
           </div>
         </div>
       </Container>

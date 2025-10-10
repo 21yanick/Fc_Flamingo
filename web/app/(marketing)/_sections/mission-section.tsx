@@ -24,9 +24,7 @@ export function MissionSection() {
         {/* TODO: Cover.png (zentral, groß, subtle rotation) */}
         <div className="max-w-md mx-auto">
           <div className="aspect-square bg-muted/30 rounded-lg flex items-center justify-center">
-            <p className="text-sm text-muted-foreground">
-              TODO: Cover.png zentral präsentiert
-            </p>
+            <p className="text-sm text-muted-foreground">TODO: Cover.png zentral präsentiert</p>
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ import { CartIcon } from "@/components/shop"
 import { ThemeToggle } from "@/components/theme"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { siteConfig } from "@/lib/config"
 import { getUser } from "@/lib/supabase/server"
 
 export async function Header() {

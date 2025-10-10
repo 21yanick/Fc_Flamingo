@@ -3,16 +3,16 @@
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import {
-  HeroSection,
-  MissionSection,
-  ProblemSection,
-  TeamSection,
-  MysterySection,
-  TriumphSection,
-  ShopSection,
-  InstagramSection,
   AboutSection,
   ContactSection,
+  HeroSection,
+  InstagramSection,
+  MissionSection,
+  MysterySection,
+  ProblemSection,
+  ShopSection,
+  TeamSection,
+  TriumphSection,
 } from "./_sections"
 
 /**

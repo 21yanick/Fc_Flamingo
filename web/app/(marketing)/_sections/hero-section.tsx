@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FlamingoButton } from "@/components/fc-flamingo/hand-drawn"
+import { HeroLogo } from "@/components/fc-flamingo/hybrid"
 import { siteConfig } from "@/lib/config"
 
 interface HeroSectionProps {
@@ -12,10 +13,9 @@ interface HeroSectionProps {
 export function HeroSection({ isDark }: HeroSectionProps) {
   const getHeroContent = () => {
     return {
-      title: siteConfig.name,
-      subtitle: siteConfig.description,
-      tagline: siteConfig.tagline,
-      cta: "Buch entdecken",
+      title: siteConfig.hero.title,
+      subtitle: siteConfig.hero.subtitle,
+      cta: siteConfig.hero.cta,
       ctaLink: "/shop",
     }
   }
@@ -52,23 +52,16 @@ export function HeroSection({ isDark }: HeroSectionProps) {
         <div className="container mx-auto px-4 py-8 lg:py-12">
           {/* Mobile: Centered Stack */}
           <div className="lg:hidden text-center space-y-8">
-            {/* Logo - Mobile Centered, GROSS */}
+            {/* Logo - Mobile Centered, HYBRID (3D Tilt + Hand-Drawn Border) */}
             <div className="flex justify-center">
-              <Image
-                src="/Logo_Fc_Flamingo.png"
-                alt="FC Flamingo Logo"
-                width={240}
-                height={240}
-                className="w-60 h-auto drop-shadow-2xl"
-                priority
-              />
+              <HeroLogo size="mobile" />
             </div>
 
             {/* Content - Mobile Centered */}
             <div>
               <h1 className="text-4xl font-bold mb-6 text-primary">{hero.title}</h1>
-              <p className="text-xl font-semibold mb-8 text-primary italic leading-relaxed">
-                "{hero.tagline}"
+              <p className="text-xl font-medium mb-8 text-foreground leading-relaxed">
+                {hero.subtitle}
               </p>
               <Link href={hero.ctaLink}>
                 <FlamingoButton variant="outline-hero" size="hero" className="w-full">
@@ -80,25 +73,21 @@ export function HeroSection({ isDark }: HeroSectionProps) {
 
           {/* Desktop/Tablet: Editorial Grid */}
           <div className="hidden lg:grid lg:grid-cols-12 lg:gap-10 lg:items-start lg:max-w-7xl">
-            {/* Logo - Links, ULTRA DOMINANT */}
+            {/* Logo - Links, HYBRID (3D Tilt + Hand-Drawn Border + Floating) */}
             <div className="lg:col-span-5 flex justify-start items-start">
-              <Image
-                src="/Logo_Fc_Flamingo.png"
-                alt="FC Flamingo Logo"
-                width={576}
-                height={576}
-                className="w-full max-w-[36rem] h-auto drop-shadow-2xl"
-                priority
-              />
+              <HeroLogo size="desktop" />
             </div>
 
             {/* Content - Mitte, LEFT-ALIGNED */}
-            <div className="lg:col-span-4 text-left space-y-8" style={{ transform: "rotate(0.5deg)" }}>
+            <div
+              className="lg:col-span-4 text-left space-y-8"
+              style={{ transform: "rotate(0.5deg)" }}
+            >
               <h1 className="text-6xl xl:text-7xl font-bold text-primary leading-tight">
                 {hero.title}
               </h1>
-              <p className="text-3xl xl:text-4xl font-semibold text-primary italic leading-relaxed max-w-xl">
-                "{hero.tagline}"
+              <p className="text-2xl xl:text-3xl font-medium text-foreground leading-relaxed max-w-xl">
+                {hero.subtitle}
               </p>
               <div className="pt-2">
                 <Link href={hero.ctaLink}>

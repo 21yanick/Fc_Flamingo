@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS orders (
     payment_method TEXT, -- card, twint
     payment_status TEXT DEFAULT 'pending',
     stripe_session_id TEXT,
+    stripe_payment_intent_id TEXT, -- Stripe Payment Intent ID for dashboard links
     notes TEXT,
     created_at TIMESTAMPTZ DEFAULT timezone('Europe/Zurich', NOW()),
     updated_at TIMESTAMPTZ DEFAULT timezone('Europe/Zurich', NOW())
@@ -94,6 +95,10 @@ CREATE POLICY "Service role can create orders" ON orders
 -- Admin can view all order items
 CREATE POLICY "Authenticated users can view all order items" ON order_items
     FOR SELECT USING (auth.uid() IS NOT NULL);
+
+-- Service role can create order items (for Stripe webhooks)
+CREATE POLICY "Service role can create order items" ON order_items
+    FOR INSERT WITH CHECK (auth.role() = 'service_role');
 
 -- Sample products for testing (Swiss Kinderbücher)
 INSERT INTO products (name, description, price, author, age_group, category, stock_quantity, stripe_price_id, featured) VALUES

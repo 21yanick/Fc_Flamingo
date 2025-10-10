@@ -16,9 +16,7 @@ export function ProblemSection() {
           <p className="text-xl text-muted-foreground">
             Die Flamingos stehen lieber auf einem Bein anstatt zweibeinig Tore zu erzielen!
           </p>
-          <p className="text-lg text-muted-foreground">
-            Typisch Flamingos halt! 🦩
-          </p>
+          <p className="text-lg text-muted-foreground">Typisch Flamingos halt! 🦩</p>
           <p className="text-lg text-muted-foreground">
             Mister King verzweifelt fast an dieser seltsamen Angewohnheit. Kannst du das Team zum
             Meistertitel führen?

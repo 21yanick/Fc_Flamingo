@@ -131,7 +131,7 @@ export type Database = {
           stripe_payment_intent_id: string | null
           stripe_session_id: string | null
           shipping_address: ShippingAddress | null
-          billing_address: Record<string, unknown> | null
+          billing_address: ShippingAddress | null // Same type as shipping_address for consistency
           metadata: Record<string, unknown>
           created_at: string
           updated_at: string
@@ -146,7 +146,7 @@ export type Database = {
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
           shipping_address?: ShippingAddress | null
-          billing_address?: Record<string, unknown> | null
+          billing_address?: ShippingAddress | null // Same type as shipping_address for consistency
           metadata?: Record<string, unknown>
           created_at?: string
           updated_at?: string
@@ -161,7 +161,7 @@ export type Database = {
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string | null
           shipping_address?: ShippingAddress | null
-          billing_address?: Record<string, unknown> | null
+          billing_address?: ShippingAddress | null // Same type as shipping_address for consistency
           metadata?: Record<string, unknown>
           created_at?: string
           updated_at?: string

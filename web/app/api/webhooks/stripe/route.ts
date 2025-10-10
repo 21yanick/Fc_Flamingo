@@ -7,8 +7,8 @@ import { env } from "@/lib/env"
 import { getLogger } from "@/lib/logger"
 import { stripe } from "@/lib/stripe/config"
 import {
+  extractAddresses,
   extractEmailShippingAddress,
-  extractShippingAddress,
   hasShippingDetails,
 } from "@/lib/stripe/types"
 import "@/types/stripe-extensions"
@@ -50,30 +50,10 @@ export async function POST(request: NextRequest) {
   try {
     switch (event.type) {
       case "payment_intent.succeeded": {
+        // Note: For guest checkout flow, orders are created in checkout.session.completed
+        // This handler is kept for potential future use (e.g., manual payment intents)
         const paymentIntent = event.data.object as Stripe.PaymentIntent
-        logger.info({ paymentIntentId: paymentIntent.id }, "Payment succeeded")
-
-        // Handle one-time payments (e.g., for e-commerce)
-        if (paymentIntent.metadata?.order_id) {
-          const { error } = await supabase
-            .from("orders")
-            .update({
-              status: "paid",
-              stripe_payment_intent_id: paymentIntent.id,
-              updated_at: new Date().toISOString(),
-            })
-            .eq("id", paymentIntent.metadata.order_id)
-
-          if (error) {
-            logger.error(
-              { error, orderId: paymentIntent.metadata.order_id },
-              "Failed to update order"
-            )
-            throw error
-          }
-
-          logger.info({ orderId: paymentIntent.metadata.order_id }, "Order marked as paid")
-        }
+        logger.info({ paymentIntentId: paymentIntent.id }, "Payment succeeded (no action needed)")
         break
       }
 
@@ -115,19 +95,31 @@ export async function POST(request: NextRequest) {
             // Calculate total amount in Rappen (CHF cents)
             const totalAmount = fullSession.amount_total || 0
 
+            // Extract addresses with fallback logic (shipping_details -> customer_details.address)
+            const addresses = extractAddresses(fullSession)
+
+            // Extract Payment Intent ID for Stripe dashboard links
+            const paymentIntentId =
+              typeof fullSession.payment_intent === "string"
+                ? fullSession.payment_intent
+                : fullSession.payment_intent?.id || null
+
             // Create order record
             const { data: order, error: orderError } = await supabase
               .from("orders")
               .insert({
-                user_id: null, // Guest checkout - no user required
+                customer_id: null, // Guest checkout - no customer_id required
                 email: session.customer_details?.email || null,
                 total_amount: totalAmount,
                 currency: "CHF",
-                status: "pending", // Start with pending, will be updated to paid after confirmation
-                stripe_checkout_session_id: session.id,
-                stripe_payment_intent_id: (session.payment_intent as string) || null,
-                // ✅ Phase 5: Type-safe Stripe shipping_details access
-                shipping_address: extractShippingAddress(session.shipping_details),
+                status: "pending", // Will be updated to confirmed after email sent
+                payment_status: "paid", // Checkout session is only completed when paid
+                payment_method: fullSession.payment_method_types?.[0] || "card", // card or twint
+                stripe_session_id: session.id,
+                stripe_payment_intent_id: paymentIntentId,
+                // ✅ Smart address extraction: shipping_details OR customer_details.address fallback
+                shipping_address: addresses.shipping_address,
+                billing_address: addresses.billing_address,
                 created_at: new Date().toISOString(),
                 updated_at: new Date().toISOString(),
               })
