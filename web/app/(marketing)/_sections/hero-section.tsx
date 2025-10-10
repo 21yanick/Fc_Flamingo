@@ -49,9 +49,9 @@ export function HeroSection({ isDark }: HeroSectionProps) {
       {/* Content Layer */}
       <div className="relative z-20 h-full flex items-center">
         {/* Magazine Editorial Layout: Logo links, Content mitte, Flamingo rechts */}
-        <div className="container mx-auto px-4 py-8 lg:py-12">
+        <div className="container mx-auto px-4 py-6 sm:py-8 lg:py-12">
           {/* Mobile: Centered Stack */}
-          <div className="lg:hidden text-center space-y-8">
+          <div className="lg:hidden text-center space-y-5 sm:space-y-6 lg:space-y-8">
             {/* Logo - Mobile Centered, HYBRID (3D Tilt + Hand-Drawn Border) */}
             <div className="flex justify-center">
               <HeroLogo size="mobile" />
@@ -59,8 +59,8 @@ export function HeroSection({ isDark }: HeroSectionProps) {
 
             {/* Content - Mobile Centered */}
             <div>
-              <h1 className="text-4xl font-bold mb-6 text-primary">{hero.title}</h1>
-              <p className="text-xl font-medium mb-8 text-foreground leading-relaxed">
+              <h1 className="text-4xl font-bold mb-4 sm:mb-6 text-primary">{hero.title}</h1>
+              <p className="text-xl font-medium mb-6 sm:mb-8 text-foreground leading-relaxed">
                 {hero.subtitle}
               </p>
               <Link href={hero.ctaLink}>
