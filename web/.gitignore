@@ -24,8 +24,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# lock files (templates should not include lock files)
-pnpm-lock.yaml
+# lock files
+# pnpm-lock.yaml - ENABLED for production deployments (deterministic builds)
 package-lock.json
 yarn.lock
 
