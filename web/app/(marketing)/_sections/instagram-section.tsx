@@ -18,7 +18,7 @@ export function InstagramSection() {
             Wöchentliche Challenges & Gewinnspiele auf Instagram
           </p>
           <p className="text-lg text-muted-foreground">
-            Rätselspaß für Kinder, tolle Preise zu gewinnen!
+            Rätselspass für Kinder, tolle Preise zu gewinnen!
           </p>
         </div>
 
@@ -34,9 +34,6 @@ export function InstagramSection() {
           </a>
         </Button>
 
-        <p className="text-sm text-muted-foreground mt-8">
-          TODO: Deko-Elemente (Ball, Flamingo-Icon)
-        </p>
       </div>
     </section>
   )

@@ -39,7 +39,7 @@ export function ShoppingCart() {
             closeCart()
           }
         }}
-        aria-label="Warenkorb schließen"
+        aria-label="Warenkorb schliessen"
         type="button"
       />
 
@@ -65,7 +65,7 @@ export function ShoppingCart() {
             </div>
             <Button variant="ghost" size="sm" onClick={closeCart} className="h-8 w-8 p-0">
               <X className="h-4 w-4" />
-              <span className="sr-only">Warenkorb schließen</span>
+              <span className="sr-only">Warenkorb schliessen</span>
             </Button>
           </div>
 

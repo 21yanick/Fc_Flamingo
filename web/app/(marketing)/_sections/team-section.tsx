@@ -12,6 +12,7 @@ export function TeamSection() {
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">Dein Team</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Lerne die einzigartigen Charaktere kennen, die vom Meistertitel träumen
+            [Fussballfeld ]
           </p>
         </div>
 
@@ -24,7 +25,6 @@ export function TeamSection() {
             </div>
             <h3 className="font-bold mb-2">Fizzi - Der Captain</h3>
             <p className="text-sm text-muted-foreground">
-              Führungsstark, aber steht gern auf einem Bein...
             </p>
           </div>
 
@@ -35,7 +35,6 @@ export function TeamSection() {
             </div>
             <h3 className="font-bold mb-2">Zis - Der Papagei</h3>
             <p className="text-sm text-muted-foreground">
-              Durchgeknallt aus Frankreich – Genie oder Wahnsinn?
             </p>
           </div>
 
@@ -45,7 +44,7 @@ export function TeamSection() {
               <p className="text-sm text-muted-foreground">Lilly</p>
             </div>
             <h3 className="font-bold mb-2">Lilly - Die Torhüterin</h3>
-            <p className="text-sm text-muted-foreground">Schüchtern, naiv, aber liebenswert</p>
+            <p className="text-sm text-muted-foreground"></p>
           </div>
 
           {/* Character 4: Mister King */}
@@ -54,12 +53,12 @@ export function TeamSection() {
               <p className="text-sm text-muted-foreground">Mister King</p>
             </div>
             <h3 className="font-bold mb-2">Mister King - Der Trainer</h3>
-            <p className="text-sm text-muted-foreground">Verzweifelt – er braucht deine Hilfe!</p>
+            <p className="text-sm text-muted-foreground"></p>
           </div>
         </div>
+{/*          TODO: Charaktere-1.jpg Portraits + Vorsatz.jpg Field Background */}
 
         <p className="text-center text-sm text-muted-foreground mt-8">
-          TODO: Charaktere-1.jpg Portraits + Vorsatz.jpg Field Background
         </p>
       </div>
     </section>

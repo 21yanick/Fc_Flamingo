@@ -24,7 +24,7 @@ export function ShopSection() {
             {/* Product Details */}
             <div className="space-y-6">
               <h2 className="text-3xl lg:text-4xl font-bold">FC Flamingo</h2>
-              <p className="text-xl">Interaktives Fußballabenteuer</p>
+              <p className="text-xl">Interaktives Fussballabenteuer</p>
 
               <p className="text-muted-foreground">
                 In dieser Geschichte entscheidest du, wie die Saison verläuft!

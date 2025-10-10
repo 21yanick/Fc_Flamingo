@@ -30,7 +30,6 @@ export function ContactSection() {
               </Button>
             </form>
             <p className="text-xs text-muted-foreground mt-4">
-              TODO: Newsletter-Integration (z.B. Mailchimp/Resend)
             </p>
           </div>
 

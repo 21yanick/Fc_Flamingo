@@ -7,7 +7,7 @@ export const siteConfig = {
   // Core Brand Identity - FC Flamingo Kinderbuch
   name: "FC Flamingo",
 
-  // Hero Section (Schweizer Rechtschreibung - kein ß!)
+  // Hero Section (Schweizer Rechtschreibung)
   hero: {
     title: "Fussball auf einem Bein",
     subtitle: "Die Flamingos träumen vom Schweizer Meistertitel",
@@ -58,6 +58,6 @@ export function getSiteMetadata() {
     title: `${siteConfig.name} - Schweizer Kinderbuch`,
     description: siteConfig.description,
     author: siteConfig.contact.company,
-    keywords: ["kinderbuch", "fußball", "flamingo", "schweiz", "kinder", "buch", siteConfig.region],
+    keywords: ["kinderbuch", "fussball", "flamingo", "schweiz", "kinder", "buch", siteConfig.region],
   }
 }

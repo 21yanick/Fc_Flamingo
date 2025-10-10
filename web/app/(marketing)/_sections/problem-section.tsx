@@ -9,7 +9,7 @@ export function ProblemSection() {
     <section id="problem" className="py-20 bg-muted/50">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold mb-8">
-          Die größte Herausforderung deiner Trainerkarriere
+          Die grösste Herausforderung deiner Trainerkarriere
         </h2>
 
         <div className="max-w-3xl mx-auto space-y-6 mb-12">
@@ -27,7 +27,6 @@ export function ProblemSection() {
         <div className="max-w-2xl mx-auto">
           <div className="aspect-video bg-muted/30 rounded-lg flex items-center justify-center">
             <p className="text-sm text-muted-foreground">
-              TODO: Mannschaftsfoto.jpg + Tape-Corners (gelb/orange)
             </p>
           </div>
         </div>
