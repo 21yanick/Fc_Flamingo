@@ -11,8 +11,7 @@ export function TeamSection() {
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">Dein Team</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Lerne die einzigartigen Charaktere kennen, die vom Meistertitel träumen
-            [Fussballfeld ]
+            Lerne die einzigartigen Charaktere kennen, die vom Meistertitel träumen [Fussballfeld ]
           </p>
         </div>
 
@@ -24,8 +23,7 @@ export function TeamSection() {
               <p className="text-sm text-muted-foreground">Fizzi</p>
             </div>
             <h3 className="font-bold mb-2">Fizzi - Der Captain</h3>
-            <p className="text-sm text-muted-foreground">
-            </p>
+            <p className="text-sm text-muted-foreground"></p>
           </div>
 
           {/* Character 2: Zis */}
@@ -34,8 +32,7 @@ export function TeamSection() {
               <p className="text-sm text-muted-foreground">Zis</p>
             </div>
             <h3 className="font-bold mb-2">Zis - Der Papagei</h3>
-            <p className="text-sm text-muted-foreground">
-            </p>
+            <p className="text-sm text-muted-foreground"></p>
           </div>
 
           {/* Character 3: Lilly */}
@@ -56,10 +53,9 @@ export function TeamSection() {
             <p className="text-sm text-muted-foreground"></p>
           </div>
         </div>
-{/*          TODO: Charaktere-1.jpg Portraits + Vorsatz.jpg Field Background */}
+        {/*          TODO: Charaktere-1.jpg Portraits + Vorsatz.jpg Field Background */}
 
-        <p className="text-center text-sm text-muted-foreground mt-8">
-        </p>
+        <p className="text-center text-sm text-muted-foreground mt-8"></p>
       </div>
     </section>
   )

@@ -108,9 +108,7 @@ export function Footer() {
 
           {/* Bottom footer */}
           <div className="text-center">
-            <p className="text-sm text-muted-foreground">
-              © 2025 {brandName}.
-            </p>
+            <p className="text-sm text-muted-foreground">© 2025 {brandName}.</p>
             <p className="text-xs text-muted-foreground mt-2">Powered by Next.js 15 & Supabase</p>
           </div>
         </div>

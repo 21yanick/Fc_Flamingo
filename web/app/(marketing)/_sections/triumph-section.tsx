@@ -100,14 +100,14 @@ export function TriumphSection() {
           </div>
         </div>
 
-        <p className="text-2xl font-bold mb-8">Wird das deine Geschichte?<br></br>
-                    "Glaub an dich, so kannst du im Leben alles erreichen!"
+        <p className="text-2xl font-bold mb-8">
+          Wird das deine Geschichte?<br></br>
+          "Glaub an dich, so kannst du im Leben alles erreichen!"
         </p>
 
         {/* TODO: K13-1.jpg (Konfetti, Pokal, Jubel - Full-width, Hero-size) */}
         <div className="max-w-4xl mx-auto">
-          <div className="aspect-video bg-muted/30 rounded-lg flex items-center justify-center">
-          </div>
+          <div className="aspect-video bg-muted/30 rounded-lg flex items-center justify-center"></div>
         </div>
       </div>
     </section>

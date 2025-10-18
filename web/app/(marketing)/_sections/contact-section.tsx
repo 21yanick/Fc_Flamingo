@@ -29,8 +29,7 @@ export function ContactSection() {
                 Anmelden
               </Button>
             </form>
-            <p className="text-xs text-muted-foreground mt-4">
-            </p>
+            <p className="text-xs text-muted-foreground mt-4"></p>
           </div>
 
           {/* Kontakt */}

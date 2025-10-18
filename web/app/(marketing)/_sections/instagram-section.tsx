@@ -33,7 +33,6 @@ export function InstagramSection() {
             Jetzt mitmachen
           </a>
         </Button>
-
       </div>
     </section>
   )

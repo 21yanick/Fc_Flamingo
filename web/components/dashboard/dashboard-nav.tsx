@@ -18,36 +18,36 @@ export async function DashboardNav() {
       <Container>
         <div className="flex h-16 items-center justify-between">
           {/* Left: Logo + Back to Home */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Link href="/" className="relative -my-2">
               <Image
                 src="/Logo_Fc_Flamingo.png"
                 alt="FC Flamingo Logo"
                 width={64}
                 height={64}
-                className="h-16 w-16 transition-transform hover:scale-105 drop-shadow-md"
+                className="h-12 w-12 md:h-16 md:w-16 transition-transform hover:scale-105 drop-shadow-md"
                 priority
               />
             </Link>
-            <Separator orientation="vertical" className="h-8" />
+            <Separator orientation="vertical" className="h-8 hidden md:block" />
             <Button variant="ghost" size="sm" asChild>
               <Link href="/">
-                <Home className="h-4 w-4 mr-2" />
-                Zur Startseite
+                <Home className="h-4 w-4 mr-0 md:mr-2" />
+                <span className="hidden md:inline">Zur Startseite</span>
               </Link>
             </Button>
           </div>
 
           {/* Right: Dashboard Navigation + Theme + User Menu */}
-          <nav className="flex items-center space-x-4">
+          <nav className="flex items-center space-x-2 md:space-x-4">
             {/* Dashboard Links */}
             <Button variant="ghost" size="sm" asChild>
               <Link href="/dashboard/orders">
-                <Package className="h-4 w-4 mr-2" />
-                Bestellungen
+                <Package className="h-4 w-4 mr-0 md:mr-2" />
+                <span className="hidden md:inline">Bestellungen</span>
               </Link>
             </Button>
-            <Separator orientation="vertical" className="h-6" />
+            <Separator orientation="vertical" className="h-6 hidden md:block" />
             {/* Theme Toggle */}
             <ThemeToggle />
             {/* User Dropdown with Logout */}

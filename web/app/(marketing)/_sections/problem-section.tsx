@@ -26,8 +26,7 @@ export function ProblemSection() {
         {/* TODO: Mannschaftsfoto.jpg (Polaroid-Style mit Tape-Corners) */}
         <div className="max-w-2xl mx-auto">
           <div className="aspect-video bg-muted/30 rounded-lg flex items-center justify-center">
-            <p className="text-sm text-muted-foreground">
-            </p>
+            <p className="text-sm text-muted-foreground"></p>
           </div>
         </div>
       </div>

@@ -58,6 +58,14 @@ export function getSiteMetadata() {
     title: `${siteConfig.name} - Schweizer Kinderbuch`,
     description: siteConfig.description,
     author: siteConfig.contact.company,
-    keywords: ["kinderbuch", "fussball", "flamingo", "schweiz", "kinder", "buch", siteConfig.region],
+    keywords: [
+      "kinderbuch",
+      "fussball",
+      "flamingo",
+      "schweiz",
+      "kinder",
+      "buch",
+      siteConfig.region,
+    ],
   }
 }

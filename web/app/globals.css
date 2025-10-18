@@ -449,4 +449,18 @@
     filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3))
       drop-shadow(0 0 24px rgba(254, 117, 62, 0.35));
   }
+
+  /* ============================================
+   * Polaroid Tape Corners (Theme-Aware)
+   * ============================================ */
+  .fc-tape {
+    background:
+      linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), transparent),
+      var(--flamingo-yellow);
+  }
+
+  .dark .fc-tape {
+    background:
+      linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), transparent), var(--stadium-gold);
+  }
 }

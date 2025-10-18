@@ -65,7 +65,7 @@ src={isDark ? "/images/hero-darkmode-bg.png" : "/images/hero-training-bg.jpg"}
 **Content:**
 ```
 "Deine Mission:"
-Führe den FC Flamingo erstmals zum Schweizer Meistertitel!
+Führe den FC Flamingo zum Schweizer Meistertitel!
 
 Der neue Trainer Mister King braucht deine Hilfe.
 Die Flamingos haben Potenzial – aber auch eine seltsame Angewohnheit...
@@ -164,7 +164,6 @@ Kannst du das Team zum Meistertitel führen?
 
 ✉️ Ein geheimnisvoller Brief sorgt für Aufsehen
 ⚡ Zwei spektakuläre Neuzugänge wirbeln alles durcheinander
-🔥 Unerwartete Wendungen warten
 
 In diesem interaktiven Fußballabenteuer entscheidest du
 an jedem Wendepunkt:

@@ -113,7 +113,7 @@ export default async function OrderDetailsPage({ params }: PageProps) {
   return (
     <div className="space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center space-x-4">
           <Button variant="outline" size="sm" asChild>
             <Link href="/dashboard/orders">
@@ -145,9 +145,9 @@ export default async function OrderDetailsPage({ params }: PageProps) {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <Mail className="h-4 w-4 text-muted-foreground" />
-              <span>{order.email}</span>
+            <div className="flex items-center space-x-2 min-w-0">
+              <Mail className="h-4 w-4 text-muted-foreground shrink-0" />
+              <span className="truncate">{order.email}</span>
             </div>
 
             {order.stripe_session_id && (
