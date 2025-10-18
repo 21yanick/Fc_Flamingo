@@ -12,7 +12,7 @@ import { env } from "@/lib/env"
 import type { CartItem } from "./cart-store"
 
 const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
-  apiVersion: "2025-08-27.basil",
+  apiVersion: "2025-08-27.basil", // Latest GA stable (August 2025 Basil release)
   typescript: true,
 })
 

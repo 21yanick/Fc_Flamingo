@@ -18,6 +18,9 @@ const config: Config = {
       },
     },
     extend: {
+      screens: {
+        "lg-plus": "1150px", // Between lg (1024px) and xl (1280px) for smoother transitions
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

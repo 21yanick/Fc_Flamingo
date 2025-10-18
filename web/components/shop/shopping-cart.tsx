@@ -1,6 +1,7 @@
 /**
  * 🟩 SHOP-ONLY: Shopping Cart Slideout Component
  * Modern Cart UI mit Zustand Integration
+ * Only visible in marketing pages (not in Dashboard/Auth)
  */
 
 "use client"
@@ -8,6 +9,7 @@
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -18,6 +20,7 @@ import { createCheckoutSession } from "@/lib/shop/checkout-actions"
 import { cn } from "@/lib/utils"
 
 export function ShoppingCart() {
+  const pathname = usePathname()
   const { isOpen, closeCart } = useCartOpen()
   const items = useCartStore((state) => state.items)
   const updateQuantity = useCartStore((state) => state.updateQuantity)
@@ -25,7 +28,10 @@ export function ShoppingCart() {
   const clearCart = useCartStore((state) => state.clearCart)
   const totalInCHF = useCartTotal()
 
-  if (!isOpen) return null
+  // Hide shopping cart in Dashboard and Auth pages (admin-only areas)
+  const shouldHide = pathname?.startsWith("/dashboard") || pathname?.startsWith("/auth")
+
+  if (shouldHide || !isOpen) return null
 
   return (
     <>

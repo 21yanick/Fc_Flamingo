@@ -1,11 +1,23 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Container } from "@/components/layout/container"
 import { Separator } from "@/components/ui/separator"
 import { siteConfig } from "@/lib/config"
 
 export function Footer() {
-  // FC Flamingo Footer - One-Pager Navigation
+  const pathname = usePathname()
+
+  // Hide footer in Dashboard and Auth pages (admin-only areas)
+  const shouldHide = pathname?.startsWith("/dashboard") || pathname?.startsWith("/auth")
+
+  if (shouldHide) {
+    return null
+  }
+
+  // FC Flamingo Footer - One-Pager Navigation (Marketing only)
   const { name: brandName, description, hero } = siteConfig
 
   const navigationLinks = [

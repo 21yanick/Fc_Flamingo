@@ -181,7 +181,10 @@ export async function POST(request: NextRequest) {
                     totalAmount: totalAmount,
                     orderDate: new Date().toISOString(),
                     hasShipping: hasShipping,
-                    shippingAddress: extractEmailShippingAddress(session.shipping_details),
+                    // Migration Note (2025-08-27.basil): collected_information.shipping_details
+                    shippingAddress: extractEmailShippingAddress(
+                      session.collected_information?.shipping_details
+                    ),
                   }),
                 })
 

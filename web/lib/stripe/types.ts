@@ -43,9 +43,13 @@ export function extractShippingAddress(
  *
  * @param session - Stripe checkout session
  * @returns boolean - true if shipping details exist and are valid
+ *
+ * Migration Note (2025-08-27.basil):
+ * - OLD (2024-06-20): session.shipping_details
+ * - NEW (2025-08-27.basil): session.collected_information.shipping_details
  */
 export function hasShippingDetails(session: Stripe.Checkout.Session): boolean {
-  return !!session.shipping_details?.address
+  return !!session.collected_information?.shipping_details?.address
 }
 
 /**
@@ -118,7 +122,8 @@ export function extractAddresses(session: Stripe.Checkout.Session): {
   billing_address: ShippingAddress | null
 } {
   // Try shipping_details first (explicit shipping address)
-  let shippingAddress = extractShippingAddress(session.shipping_details)
+  // Migration Note (2025-08-27.basil): collected_information.shipping_details
+  let shippingAddress = extractShippingAddress(session.collected_information?.shipping_details)
 
   // Fallback: If no shipping_details but customer_details has address, use it
   if (!shippingAddress && session.customer_details?.address) {

@@ -102,13 +102,29 @@ export function HeroSection({ isDark }: HeroSectionProps) {
       </div>
 
       {/* Flamingo Character Layer - Desktop only, steht auf dem Rasen! */}
-      <div className="hidden lg:block absolute -bottom-20 right-0 z-30 lg:right-8 xl:-bottom-24 xl:right-12">
-        <div className="relative w-48 h-72 md:w-80 md:h-[30rem] lg:w-[44rem] lg:h-[66rem] xl:w-[52rem] xl:h-[78rem]">
+      <div
+        className="hidden lg:block absolute z-30"
+        style={{
+          // Responsive positioning with viewport units (KISS: smooth scaling)
+          bottom: "clamp(-120px, -8vh, -80px)", // Adapts to viewport height
+          right: "clamp(0px, 2vw, 48px)", // Adapts to viewport width
+        }}
+      >
+        <div
+          className="relative"
+          style={{
+            // Fluid sizing: smooth scaling between breakpoints (no jumps!)
+            // Original aspect ratio: 1677×2578 (0.65:1)
+            width: "clamp(400px, 35vw, 780px)", // Smooth from lg to 2xl
+            maxHeight: "min(75vh, 1200px)", // Prevents overflow on short screens
+            aspectRatio: "1677 / 2578", // Preserves original proportions
+          }}
+        >
           <Image
             src="/images/flamingo-character.png"
             alt="Fizzi - FC Flamingo Charakter"
             fill
-            sizes="(max-width: 768px) 192px, (max-width: 1024px) 320px, (max-width: 1280px) 704px, 832px"
+            sizes="(min-width: 1536px) 780px, (min-width: 1280px) 700px, (min-width: 1150px) 600px, (min-width: 1024px) 500px, 0px"
             className="object-contain drop-shadow-2xl"
             quality={95}
             priority

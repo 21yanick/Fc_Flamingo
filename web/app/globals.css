@@ -328,14 +328,15 @@
   /* Inner button overrides (Cart + Theme Toggle)
    * NOTE: !important is intentionally used here to override UI component default styles
    * that would otherwise interfere with the custom floating action button design.
+   * FIX: width/height set to 100% to make the entire FAB clickable!
    */
   .fc-floating-action button {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
-    width: auto !important;
-    height: auto !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .fc-floating-action button:hover {
