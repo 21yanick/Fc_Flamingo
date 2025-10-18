@@ -2,61 +2,83 @@
 
 **Status:** Domain aktuell bei **Hosttech** gehostet
 **Problem:** Kein Email-Service beim aktuellen Hoster (Coolify)
+**Shop-Größe:** Kleiner Kinderbuch-Shop (1 Produkt) - wenig Bestellungen erwartet
 **Datum:** 2025-10-18
 
 ---
 
-## 🎯 SCHNELLÜBERSICHT: 4 OPTIONEN
+## 🎯 SCHNELLÜBERSICHT: 4 OPTIONEN (FÜR KLEINEN SHOP!)
 
-| Option | Monatliche Kosten | Email-Limits | Domain-Wechsel? | Empfehlung |
-|--------|-------------------|--------------|-----------------|------------|
-| **1️⃣ Hosttech Upgrade** | CHF 9.90 | **Unlimitiert** ✅ | ❌ Nein | ⭐⭐⭐ **BESTE BUDGET-OPTION** |
-| **2️⃣ Brevo (extern)** | CHF 0-25 | Unlimitiert | ❌ Nein | ⭐⭐⭐⭐⭐ **PROFESSIONELL** |
-| **3️⃣ Infomaniak** | CHF 6-13 | 1.440/Tag + 50/h ⚠️ | ✅ Ja | ⭐⭐ Nicht empfohlen |
-| **4️⃣ Domain bleibt** | CHF 0 | Aktuell keine Emails | ❌ Nein | ❌ Keine Lösung |
+| Option | JÄHRLICHE Kosten | Email-Limits/Tag | Domain-Wechsel? | Empfehlung |
+|--------|------------------|------------------|-----------------|------------|
+| **1️⃣ Infomaniak Domain** | **~CHF 12/Jahr** ⭐ | 100/Tag (3.000/Monat) | ✅ Ja | ⭐⭐⭐⭐⭐ **BESTE FÜR KLEINEN SHOP!** |
+| **2️⃣ Brevo Free** | CHF 0 | 300/Tag (9.000/Monat) | ❌ Nein | ⭐⭐⭐⭐ Professionell |
+| **3️⃣ Hosttech L** | CHF 119/Jahr ⚠️ | Unlimitiert | ❌ Nein | ⭐ VIEL ZU TEUER! |
+| **4️⃣ Aktuell** | CHF 5-11/Jahr | Keine Emails ❌ | ❌ Nein | ❌ Keine Lösung |
 
 ---
 
 ## 📊 DETAILLIERTE OPTIONEN
 
-### **OPTION 1: HOSTTECH HOSTING L UPGRADE** ⭐⭐⭐
-*"Einfachste Lösung - Domain bleibt, unlimitierte Emails"*
+### **OPTION 1: INFOMANIAK DOMAIN-TRANSFER** ⭐⭐⭐⭐⭐
+*"Domain + 1 Email inklusive - BESTE LÖSUNG FÜR KLEINEN SHOP!"*
+
+`🔥 KRITISCHE ERKENNTNIS: Bei Infomaniak ist Email BEI DER DOMAIN INKLUSIVE!`
 
 #### ✅ VORTEILE:
-- **Unlimitierte Email-Versendung** - Kein Tages- oder Stundenlimit!
-- **Keine Domain-Migration** - Kein Downtime-Risiko, alles bleibt beim aktuellen Anbieter
-- **100% Schweiz** - Server in der Schweiz, DSG-konform
-- **Günstig** - CHF 9.90/Monat (statt Infomaniak CHF 13.20/Monat)
-- **Sofort verfügbar** - Upgrade dauert <24h
-- **SMTP sofort nutzbar** - Keine DNS-Wartezeiten
+- **EXTREM GÜNSTIG:** ~10-12 CHF/JAHR (statt CHF 119/Jahr bei Hosttech L!)
+- **1 Email-Adresse inklusive** - info@fcflamingo.ch sofort nutzbar
+- **Unlimitierter Email-Speicher** - Kein Speicher-Limit
+- **100% Schweiz** - Server in Genf, DSG-konform
+- **100 Emails/Tag Limit** - Für kleinen Shop PERFEKT:
+  - 10 Bestellungen/Tag × 3 Emails = 30/Tag ✅
+  - 20 Bestellungen/Tag × 3 Emails = 60/Tag ✅
+  - 30 Bestellungen/Tag × 3 Emails = 90/Tag ✅
+- **Alles in einem** - Domain + Email bei einem Anbieter
+- **Schweizer Support** - Deutschsprachig
 
 #### ❌ NACHTEILE:
+- **Domain-Transfer nötig:**
+  - 5-7 Tage Dauer
+  - Downtime-Risiko (bei korrektem Vorgehen: minimal)
+  - DNS-Propagation: 24-48h
+  - AuthCode von Hosttech holen
+- **Limits für Wachstum:**
+  - Nur 100 Emails/Tag (= max ~30 Bestellungen/Tag)
+  - Bei mehr: Upgrade auf Paid Plan nötig (1.440/Tag, CHF 6/Monat extra)
 - **Keine Transactional-Features:**
-  - ❌ Kein Email-Tracking (Öffnungsrate, Klicks)
-  - ❌ Keine Email-Analytics
-  - ❌ Kein professionelles Template-Management
-- **Shared IP** - Reputation hängt von anderen Kunden ab
-- **Keine Deliverability-Garantien** - Keine öffentlichen Zahlen
-- **Nicht E-Commerce-optimiert** - Keine speziellen Shop-Features
+  - ❌ Kein Email-Tracking
+  - ❌ Keine Analytics
+  - ❌ Kein Template-Management
 
 #### 💰 KOSTEN:
-- **Setup:** CHF 9.90 (einmalig)
-- **Monatlich:** CHF 9.90
-- **Jahr 1:** CHF 128.70
-- **Ab Jahr 2:** CHF 118.80/Jahr
+- **.ch Domain:** ~10-12 CHF/Jahr
+- **1 Email inklusive:** CHF 0
+- **Upgrade bei Bedarf:** +CHF 6/Monat (72 CHF/Jahr) für 1.440/Tag
+- **Jahr 1:** ~CHF 12
+- **Ab Jahr 2:** ~CHF 12/Jahr
+
+**VERGLEICH:**
+- **Infomaniak:** CHF 12/Jahr ✅
+- **Hosttech L:** CHF 119/Jahr ❌ **(10x teurer!)**
 
 #### 📝 TECHNISCHE DETAILS:
-- **Limits:** Unlimitiert (Hosting L/XL)
-- **Max Empfänger/Email:** 200
+- **Limits Free Email:** 100 Emails/Tag (3.000/Monat)
+- **Limits Paid Email:** 1.440 Emails/Tag, 50/Stunde
+- **Max Empfänger/Email:** 100
 - **SMTP:** Port 587, TLS
-- **Speicher:** 150 GB
-- **Domains:** 250
+- **Speicher:** Unlimitiert
 
 #### 🎯 WANN SINNVOLL:
-- Budget ist wichtig
-- Einfachste Lösung bevorzugt
-- Kein Domain-Wechsel gewünscht
-- Email-Analytics nicht kritisch
+- ✅ **Kleiner Shop** (<30 Bestellungen/Tag)
+- ✅ **Budget sehr wichtig** (90% Ersparnis!)
+- ✅ **Wenig Bestellungen erwartet** (wie dein Kinderbuch-Shop!)
+- ✅ **Email-Analytics nicht kritisch**
+
+#### 🚨 WANN NICHT SINNVOLL:
+- ❌ >30 Bestellungen/Tag erwartet
+- ❌ Aggressive Wachstumspläne
+- ❌ Email-Tracking/Analytics wichtig
 
 ---
 
@@ -178,126 +200,214 @@ E-Commerce-Features  | NEIN            | NEIN            | JA ✅
 
 ---
 
-## 💡 KLARE EMPFEHLUNG FÜR KUNDEN
+## 💡 KLARE EMPFEHLUNG FÜR KLEINEN KINDERBUCH-SHOP
 
-### **🥇 BESTE LÖSUNG: BREVO (PROFESSIONELL)**
+`★ Insight ─────────────────────────────────────`
+**Die Kosten-Realität für einen kleinen Shop:**
+
+Bei wenigen erwarteten Bestellungen ist die **Kosten-Effizienz** entscheidend:
+- Infomaniak Domain: **CHF 12/Jahr** = CHF 1/Monat
+- Hosttech L: **CHF 119/Jahr** = CHF 10/Monat
+- Brevo Free: CHF 0 (aber professioneller)
+
+**➡️ Infomaniak ist 10x günstiger als Hosttech L!**
+
+Für einen Shop der noch keine Einnahmen hat, sind CHF 119/Jahr vs CHF 12/Jahr ein RIESIGER Unterschied!
+`─────────────────────────────────────────────────`
+
+### **🥇 BESTE LÖSUNG: INFOMANIAK DOMAIN-TRANSFER**
 
 **Begründung:**
-1. **Gratis Start** - Erst bei Erfolg zahlen (9.000 Emails/Monat frei)
+1. **EXTREM GÜNSTIG** - CHF 12/Jahr (90% günstiger als Hosttech L!)
+2. **Ausreichend für kleinen Shop** - 100 Emails/Tag = bis zu 30 Bestellungen/Tag
+3. **100% Schweizer Lösung** - Server in Genf, DSG-konform
+4. **Alles in einem** - Domain + Email bei einem Anbieter
+5. **Unlimitierter Speicher** - Kein Email-Speicher-Limit
+6. **Upgrade-Pfad** - Bei Wachstum: +CHF 6/Monat für 1.440/Tag
+
+**PERFEKT WENN:**
+- Budget sehr knapp (Shop startet gerade)
+- <30 Bestellungen/Tag erwartet (Kinderbuch-Nische)
+- Email-Analytics nicht kritisch
+- Schweizer Lösung bevorzugt
+
+---
+
+### **🥈 ALTERNATIVE: BREVO FREE (OHNE MIGRATION)**
+
+**Begründung:**
+1. **Komplett kostenlos** - 0 CHF (300 Emails/Tag = 9.000/Monat)
 2. **Professionelle Features** - Email-Analytics, Tracking, Templates
-3. **E-Commerce-Standard** - Bewährt bei tausenden Online-Shops
-4. **Skalierbar** - Wächst mit dem Shop
-5. **Keine Migration** - Domain bleibt bei Hosttech
-6. **Risikofrei** - Jederzeit kündbar
+3. **Keine Domain-Migration** - Domain bleibt bei Hosttech
+4. **Mehr Limits** - 3x mehr als Infomaniak (300 vs 100/Tag)
+5. **E-Commerce-Standard** - Bewährt bei Online-Shops
+6. **Risikofrei** - Jederzeit kündbar, keine Vertragsbindung
 
-### **🥈 BUDGET-ALTERNATIVE: HOSTTECH L UPGRADE**
+**PERFEKT WENN:**
+- Domain-Wechsel vermeiden möchten (kein Downtime-Risiko)
+- Email-Analytics wichtig sind
+- Professionelle Lösung bevorzugt
+- 0 CHF Budget
 
-**Begründung:**
-1. **Einfachste Lösung** - Nur Hosting-Paket upgraden
-2. **Unlimitiert** - Besser als Infomaniak!
-3. **Günstiger** - CHF 9.90 vs CHF 13.20 (Infomaniak)
-4. **Keine Migration** - Alles bleibt beim gleichen Anbieter
-5. **100% Schweiz** - Server in CH
+**NACHTEIL:**
+- EU-Server statt Schweiz (aber DSGVO-konform)
+- Ein Tool mehr zu verwalten
 
-**ABER:** Keine professionellen E-Commerce-Features!
+---
 
-### **🥉 INFOMANIAK: NICHT EMPFOHLEN**
+### **❌ HOSTTECH L: NICHT EMPFOHLEN FÜR KLEINEN SHOP**
 
 **Gründe:**
-- ❌ Schlechtere Limits als Hosttech L (1.440/Tag vs unlimitiert)
-- ❌ Teurer als Hosttech L (CHF 13.20 vs CHF 9.90)
-- ❌ Domain-Wechsel = unnötiges Risiko
-- ❌ Keine Vorteile für Email-Versand
+- ❌ **10x teurer** als Infomaniak (CHF 119/Jahr vs CHF 12/Jahr)
+- ❌ **Overkill** für kleine Shops (Unlimitiert braucht keiner am Anfang)
+- ❌ **Gleiche Nachteile** wie Infomaniak (keine Analytics, Shared IP)
+- ❌ **Nur sinnvoll** bei >100 Bestellungen/Tag (unrealistisch für Start)
+
+**NUR SINNVOLL WENN:**
+- Shop bereits sehr erfolgreich (>50 Bestellungen/Tag)
+- Budget spielt keine Rolle
+- Alles bei einem Anbieter gewünscht
 
 ---
 
 ## 🚀 EMPFOHLENER SETUP-PLAN
 
-### **VARIANTE A: PROFESSIONELL (BREVO)** ⭐ EMPFOHLEN
+### **VARIANTE A: INFOMANIAK (EMPFOHLEN FÜR KLEINEN SHOP)** ⭐⭐⭐⭐⭐
+
+**Phase 1: Vorbereitung (Tag 1)**
+- ✅ AuthCode bei Hosttech anfordern (Support-Ticket)
+- ✅ Infomaniak Account erstellen
+- ✅ Domain-Transfer bei Infomaniak starten
+- ⏱️ Warten auf Transfer (5-7 Tage)
+
+**Phase 2: Nach Transfer (Tag 8)**
+- ✅ Email-Adresse erstellen (info@fcflamingo.ch)
+- ✅ SMTP-Credentials holen
+- ✅ DNS-Records prüfen (SPF, DKIM)
+- ✅ Entwickler: Integration in Shop
+
+**Phase 3: Monitoring (Monat 1-3)**
+- 📊 Email-Volumen beobachten (max 100/Tag)
+- 📊 Bei >80 Emails/Tag: Upgrade planen
+- 📊 Deliverability checken
+
+**Phase 4: Upgrade bei Bedarf (bei Wachstum)**
+- Bei >100 Emails/Tag: Paid Plan (+CHF 6/Monat)
+- Bei >1.000 Emails/Tag: Wechsel zu Brevo erwägen
+
+**KOSTEN:**
+- **Jahr 1:** CHF 12
+- **Jahr 2:** CHF 12
+- **Bei Wachstum:** +CHF 72/Jahr (Paid Email)
+
+---
+
+### **VARIANTE B: BREVO (PROFESSIONELL, OHNE MIGRATION)** ⭐⭐⭐⭐
 
 **Phase 1: Setup (Tag 1)**
 - ✅ Brevo Free Account erstellen
-- ✅ Domain verifizieren (SPF/DKIM bei Hosttech)
+- ✅ Domain verifizieren (SPF/DKIM bei Hosttech eintragen)
 - ✅ SMTP-Credentials holen
 - ✅ Entwickler: Integration in Shop
+- ⏱️ 30 Minuten Setup-Zeit
 
 **Phase 2: Monitoring (Monat 1-3)**
 - 📊 Email-Volumen beobachten
 - 📊 Öffnungsraten tracken
 - 📊 Deliverability checken
+- 📊 Analytics nutzen
 
 **Phase 3: Entscheidung (Monat 3-6)**
 - Bei <9.000 Emails/Monat: Bleibt kostenlos! ✅
 - Bei >9.000 Emails/Monat: Upgrade auf Starter (CHF 25/Monat)
 
----
+**KOSTEN:**
+- **Jahr 1:** CHF 0
+- **Jahr 2:** CHF 0 (solange <9.000/Monat)
+- **Bei Wachstum:** CHF 25-65/Monat
 
-### **VARIANTE B: BUDGET (HOSTTECH L)**
-
-**Phase 1: Upgrade (Tag 1)**
-- ✅ Bei Hosttech Hosting L buchen
-- ✅ Email-Adressen erstellen
-- ✅ SMTP-Credentials holen
-- ✅ Entwickler: Integration in Shop
-
-**Phase 2: Monitoring (Monat 1-3)**
-- 📊 Deliverability beobachten
-- 📊 Bei Problemen: Wechsel zu Brevo erwägen
+**VORTEIL:** Keine Domain-Migration, sofort verfügbar!
 
 ---
 
 ## ❓ HÄUFIGE KUNDENFRAGEN & ANTWORTEN
 
-### **Q: "Warum nicht Infomaniak? Hört sich gut an!"**
-**A:** Infomaniak hat SCHLECHTERE Limits als Hosttech L (1.440/Tag vs unlimitiert) und ist TEURER (CHF 13.20 vs CHF 9.90). Der Domain-Wechsel bringt nur Risiken, aber keine Vorteile.
+### **Q: "Warum Infomaniak, wenn Brevo gratis ist?"**
+**A:** Für einen **kleinen Shop** ist Infomaniak die bessere Wahl:
 
-**Vergleich:**
-- Infomaniak: CHF 158/Jahr, 1.440 Emails/Tag
-- Hosttech L: CHF 119/Jahr, UNLIMITIERT
-- **→ Hosttech ist besser UND günstiger!**
+**Infomaniak:**
+- ✅ CHF 12/Jahr = CHF 1/Monat (extrem günstig!)
+- ✅ 100% Schweizer Lösung
+- ✅ Alles bei einem Anbieter (einfacher)
+- ✅ Ausreichend für <30 Bestellungen/Tag
 
----
+**Brevo:**
+- ✅ CHF 0 (aber Domain muss woanders gehostet sein)
+- ✅ Professionelle Features (Analytics)
+- ⚠️ EU-Server (nicht Schweiz)
+- ⚠️ Ein Tool mehr
 
-### **Q: "Ist Domain-Wechsel nicht trotzdem sinnvoll?"**
-**A:** Nur wenn Sie aus anderen Gründen zu Infomaniak wollen (z.B. Server-Performance, andere Services).
-
-**Domain-Wechsel bedeutet:**
-- 5-7 Tage Transferdauer
-- Downtime-Risiko bei Fehlern
-- DNS-Propagation: 24-48h
-- **Website könnte kurzzeitig offline sein**
-- AuthCode von Hosttech holen
-- Alle DNS-Einträge neu setzen
-
-**Für Email allein:** Nicht sinnvoll!
+**Fazit:** Bei kleinem Budget + wenig Bestellungen + Schweiz-Präferenz = Infomaniak ✅
 
 ---
 
-### **Q: "Was wenn Brevo zu teuer wird?"**
-**A:** Erst ab 9.000 Emails/Monat kostet Brevo etwas (CHF 25/Monat).
+### **Q: "Ist Domain-Wechsel nicht riskant?"**
+**A:** Das Risiko ist **minimal** bei korrektem Vorgehen:
+
+**Best Practice (kein Downtime):**
+1. Domain-Transfer bei Infomaniak starten
+2. DNS-Records VORHER notieren (bei Hosttech)
+3. Während Transfer: Website läuft weiter
+4. Nach Transfer: DNS-Records bei Infomaniak eintragen
+5. DNS-Propagation abwarten (24-48h)
+
+**Wichtig:**
+- Website/Shop muss NICHT bei Infomaniak gehostet werden
+- Nur Domain + Email wird transferiert
+- Coolify-Server läuft weiter
+- Nur DNS muss auf Coolify-IP zeigen
+
+**Risiko:** Sehr niedrig, wenn Entwickler unterstützt ✅
+
+---
+
+### **Q: "Was wenn der Shop wächst? Reichen 100 Emails/Tag?"**
+**A:** Infomaniak hat einen klaren **Upgrade-Pfad:**
+
+**Bei Wachstum:**
+- **Phase 1:** 0-30 Bestellungen/Tag = **Free Email** (CHF 0) ✅
+- **Phase 2:** 30-400 Bestellungen/Tag = **Paid Email** (+CHF 6/Monat) ✅
+- **Phase 3:** >400 Bestellungen/Tag = **Wechsel zu Brevo** (CHF 25/Monat) ✅
 
 **Hochrechnung:**
-- 5 Bestellungen/Tag × 3 Emails = 15 Emails/Tag = 450/Monat = **GRATIS**
-- 20 Bestellungen/Tag = 1.800 Emails/Monat = **GRATIS**
-- 100 Bestellungen/Tag = 9.000 Emails/Monat = **GRATIS**
+- 10 Bestellungen/Tag × 3 Emails = 30/Tag = **FREE** ✅
+- 20 Bestellungen/Tag × 3 Emails = 60/Tag = **FREE** ✅
+- 35 Bestellungen/Tag × 3 Emails = 105/Tag = **Paid (CHF 6/Monat)** ✅
+- 100 Bestellungen/Tag × 3 Emails = 300/Tag = **Paid OK** ✅
 
-Bei 100 Bestellungen/Tag ist der Shop bereits sehr erfolgreich. CHF 25/Monat = Kosten von 1-2 Bestellungen!
+Bei 100+ Bestellungen/Tag ist der Shop sehr erfolgreich. CHF 6-25/Monat ist dann kein Problem!
 
 ---
 
-### **Q: "Hosttech L vs Brevo - was nehmen?"**
-**A:** Kommt auf Prioritäten an:
+### **Q: "Infomaniak vs Brevo - was nehmen?"**
+**A:** Hängt von **Budget** und **Prioritäten** ab:
 
-**Hosttech L wenn:**
-- Budget sehr knapp (CHF 9.90/Monat)
-- Email-Analytics unwichtig
-- Einfachste Lösung bevorzugt
+**Infomaniak wenn:**
+- ✅ **Budget sehr knapp** (CHF 12/Jahr vs CHF 0/Jahr)
+- ✅ **Schweizer Lösung wichtig** (CH-Server, CH-Support)
+- ✅ **Einfachheit wichtig** (alles bei einem Anbieter)
+- ✅ **<30 Bestellungen/Tag erwartet**
+- **→ EMPFOHLEN FÜR KLEINEN SHOP**
 
 **Brevo wenn:**
-- Professioneller Shop gewünscht
-- Email-Erfolg messen wichtig
-- Kundenkommunikation optimieren
-- **EMPFOHLEN FÜR E-COMMERCE**
+- ✅ **Email-Analytics wichtig** (Öffnungsraten, Klicks)
+- ✅ **Professioneller Auftritt** gewünscht
+- ✅ **Wachstum geplant** (>30 Bestellungen/Tag)
+- ✅ **Keine Domain-Migration** gewünscht
+- **→ EMPFOHLEN FÜR WACHSTUM**
+
+**Meine Empfehlung für Kinderbuch-Shop:**
+Start mit **Infomaniak** (günstig, ausreichend). Bei Wachstum später zu Brevo wechseln.
 
 ---
 
@@ -452,13 +562,15 @@ SMTP_PASS=your-email-password
 
 ---
 
-## 📄 ZUSAMMENFASSUNG FÜR KUNDEN
+## 📄 ZUSAMMENFASSUNG FÜR KUNDEN (KLEINER SHOP)
 
-> **"Für Ihren Online-Shop empfehle ich Brevo als professionelle Email-Lösung. Das ist kostenlos für die ersten 9.000 Emails pro Monat und bietet alle Features, die ein moderner E-Commerce-Shop braucht: Email-Tracking, Analytics und zuverlässige Zustellung."**
+> **"Für Ihren kleinen Kinderbuch-Shop empfehle ich einen Wechsel zu Infomaniak. Das kostet nur CHF 12 pro Jahr und beinhaltet die Domain plus eine Email-Adresse mit 100 Emails pro Tag. Das reicht für bis zu 30 Bestellungen täglich - perfekt für den Start!"**
 
-> **"Als Budget-Alternative können wir Ihr bestehendes Hosttech-Hosting auf das L-Paket upgraden (CHF 9.90/Monat). Das hat unlimitierte Emails - sogar mehr als Infomaniak (1.440/Tag Limit). Ein Wechsel zu Infomaniak ist weder günstiger noch besser, bringt aber Risiken durch die Domain-Migration."**
+> **"Der Vorteil: Es ist eine 100% Schweizer Lösung mit Servern in Genf und kostet fast nichts. Im Vergleich: Ein Hosting-Upgrade bei Hosttech würde CHF 119 pro Jahr kosten - also 10x teurer für Features, die Sie am Anfang nicht brauchen."**
 
-> **"Meine klare Empfehlung: Starten Sie mit Brevo (gratis). Die Domain bleibt bei Hosttech. Falls Sie später wechseln möchten, ist das jederzeit möglich. So haben Sie von Tag 1 an professionelle Emails ohne Risiko."**
+> **"Alternative ohne Domain-Wechsel: Brevo ist komplett kostenlos (bis 9.000 Emails/Monat) und bietet professionelle Features wie Email-Tracking. Der Nachteil: Die Server sind in der EU statt in der Schweiz. Aber wenn Sie die Domain-Migration vermeiden wollen, ist das die beste Wahl."**
+
+> **"Meine Empfehlung für den Start: Infomaniak (CHF 1/Monat). Bei Wachstum können Sie jederzeit upgraden oder zu Brevo wechseln. So starten Sie extrem günstig mit einer Schweizer Lösung."**
 
 ---
 
@@ -469,13 +581,14 @@ SMTP_PASS=your-email-password
 
 ---
 
-## 🔖 QUICK REFERENCE
+## 🔖 QUICK REFERENCE (FÜR KLEINEN SHOP!)
 
 ```
-BESTE WAHL:     Brevo (CHF 0-25/Monat) - Professionell & skalierbar
-BUDGET-WAHL:    Hosttech L (CHF 9.90/Monat) - Einfach & unlimitiert
-NICHT WÄHLEN:   Infomaniak - Teurer + schlechtere Limits + Risiken
-AKTUELL:        Hosttech Special - Zu limitiert für Wachstum
+BESTE WAHL:     Infomaniak Domain (CHF 12/Jahr) - Extrem günstig, Schweiz
+ALTERNATIVE:    Brevo Free (CHF 0) - Professionell, keine Migration
+NICHT WÄHLEN:   Hosttech L (CHF 119/Jahr) - 10x teurer, Overkill
+AKTUELL:        Hosttech Domain (CHF 5-11/Jahr) - Keine Emails ❌
 ```
 
-**➡️ START MIT BREVO (RISIKOFREI, 0 CHF)**
+**➡️ FÜR KLEINEN SHOP: START MIT INFOMANIAK (CHF 1/MONAT, 100% CH)**
+**➡️ FÜR WACHSTUM: START MIT BREVO (0 CHF, PROFESSIONELL)**
