@@ -2,14 +2,13 @@
 # FCFlamingo - Production Dockerfile
 # Next.js 15 + pnpm + Standalone Output
 # Optimized for Coolify Deployment
-# Uses ghcr.io to avoid Docker Hub rate limits
 # ================================================================
 
 # ================================================================
 # STAGE 1: Dependencies
 # Install all dependencies (including devDependencies)
 # ================================================================
-FROM ghcr.io/library/node:20-alpine AS deps
+FROM docker.io/library/node:20-alpine AS deps
 
 # Install pnpm globally
 RUN corepack enable && corepack prepare pnpm@latest --activate
@@ -27,7 +26,7 @@ RUN pnpm install --frozen-lockfile
 # STAGE 2: Builder
 # Build the Next.js application
 # ================================================================
-FROM ghcr.io/library/node:20-alpine AS builder
+FROM docker.io/library/node:20-alpine AS builder
 
 # Install pnpm globally
 RUN corepack enable && corepack prepare pnpm@latest --activate
@@ -87,7 +86,7 @@ RUN pnpm run build
 # STAGE 3: Runner
 # Production image - only runtime dependencies
 # ================================================================
-FROM ghcr.io/library/node:20-alpine AS runner
+FROM docker.io/library/node:20-alpine AS runner
 
 WORKDIR /app
 
