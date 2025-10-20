@@ -317,7 +317,7 @@ CREATE POLICY "Products are viewable by everyone" ON products
 docker exec supabase-db psql -U supabase_admin -d postgres -c \
   "SELECT COUNT(*) as customers FROM profiles;"
 
-# Produktkatalog-Größe
+# Produktkatalog-Grösse
 docker exec supabase-db psql -U supabase_admin -d postgres -c \
   "SELECT COUNT(*) as products FROM products WHERE active = TRUE;"
 

@@ -12,7 +12,7 @@ export function CTASection() {
           Schweizer Meistertitel.
         </p>
         <Button variant="secondary" size="lg" asChild>
-          <Link href="/shop">
+          <Link href="/#shop">
             <BookOpen className="mr-2 h-4 w-4" />
             Buch entdecken
             <ArrowRight className="ml-2 h-4 w-4" />

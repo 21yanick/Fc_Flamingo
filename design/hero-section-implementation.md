@@ -86,7 +86,7 @@ Nach Testing wurde die ursprüngliche "fullscreen background" Strategie verworfe
 Eine professionelle, emotional ansprechende Hero Section mit **Training-Stimmung** - minimalistisch, warm, einladend.
 
 ### **Design-Prinzipien:**
-- ✅ **Echte Illustrationen statt Imitate:** V-2.jpg als Background (minimalistisches Fußballfeld mit Flamingo)
+- ✅ **Echte Illustrationen statt Imitate:** V-2.jpg als Background (minimalistisches Fussballfeld mit Flamingo)
 - ✅ **Weniger ist mehr:** Klarer Fokus auf Buch-Message, nicht überladen
 - ✅ **Watercolor-Charme:** Weiche Kanten, organische Übergänge
 - ✅ **Mobile-First:** Touch-friendly, schnell, responsive

@@ -52,7 +52,7 @@ export default function SuccessPage() {
             {/* Action buttons */}
             <div className="space-y-3 pt-4">
               <Button asChild className="w-full" size="lg">
-                <Link href="/shop">
+                <Link href="/#shop">
                   <ShoppingBag className="mr-2 h-4 w-4" />
                   Weiter einkaufen
                 </Link>

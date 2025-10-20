@@ -39,14 +39,14 @@ export default function CancelPage() {
             {/* Action buttons */}
             <div className="space-y-3 pt-4">
               <Button asChild className="w-full" size="lg">
-                <Link href="/shop">
+                <Link href="/#shop">
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Zurück zum Warenkorb
                 </Link>
               </Button>
 
               <Button variant="outline" asChild className="w-full">
-                <Link href="/shop">
+                <Link href="/#shop">
                   <ShoppingCart className="mr-2 h-4 w-4" />
                   Weiter einkaufen
                 </Link>

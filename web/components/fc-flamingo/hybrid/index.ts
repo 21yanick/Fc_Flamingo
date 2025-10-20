@@ -9,4 +9,6 @@
  * "Swiss Quality" = Hochwertig + Zugänglich
  */
 
+export { CharacterCard } from "./character-card"
 export { HeroLogo } from "./hero-logo"
+export { ProductCard } from "./product-card"

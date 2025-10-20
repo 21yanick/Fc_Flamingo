@@ -7,9 +7,8 @@ import {
   ContactSection,
   HeroSection,
   InstagramSection,
-  MissionSection,
+  MissionChallengeSection,
   MysterySection,
-  ProblemSection,
   ShopSection,
   TeamSection,
   TriumphSection,
@@ -17,10 +16,10 @@ import {
 
 /**
  * FC Flamingo Landing Page
- * One-Pager Storytelling Flow (10 Sections)
+ * One-Pager Storytelling Flow (9 Sections)
  *
  * Emotional Curve:
- * Hook → Mission → Problem → Team → Mystery → Triumph → Shop → Community → Trust → Contact
+ * Hook → Mission+Challenge → Team → Mystery → Triumph → Shop → Community → Trust → Contact
  */
 export default function LandingPage() {
   const { resolvedTheme } = useTheme()
@@ -38,17 +37,14 @@ export default function LandingPage() {
       {/* 1. Hook + Promise */}
       <HeroSection isDark={isDark} />
 
-      {/* 2. Kontext + Ziel */}
-      <MissionSection />
+      {/* 2. Mission + Challenge (Combined) */}
+      <MissionChallengeSection />
 
-      {/* 3. Humor + Challenge */}
-      <ProblemSection />
+      {/* 3. Character Connection */}
+      <TeamSection isDark={isDark} />
 
-      {/* 4. Character Connection */}
-      <TeamSection />
-
-      {/* 5. Mystery + Interaktivität */}
-      <MysterySection />
+      {/* 4. Mystery + Interaktivität (Dual-Image) */}
+      <MysterySection isDark={isDark} />
 
       {/* 6. Emotional Peak */}
       <TriumphSection />

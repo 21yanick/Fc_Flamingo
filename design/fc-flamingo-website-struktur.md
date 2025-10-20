@@ -27,7 +27,7 @@ Hook → Kontext → Problem → Team → Mystery → Peak → CTA → Community
 ### Matchday Mode (Dark)
 - **Stimmung:** Abend, Stadion, Flutlicht, Spannung
 - **Farben:** `matchday-bg` (dunkles Violett), `stadium-gold`, helleres Orange
-- **Narrative:** "Der große Moment" - Wettkampf, Action, Triumph
+- **Narrative:** "Der grosse Moment" - Wettkampf, Action, Triumph
 
 **Technisch:** Gleiche Sections, unterschiedliche Atmosphäre via CSS-Filter + Theme-Variables
 
@@ -41,7 +41,7 @@ Hook → Kontext → Problem → Team → Mystery → Peak → CTA → Community
 
 **Content:**
 - Headline: "Werde Trainer von FC Flamingo!"
-- Subline: "In diesem interaktiven Fußballabenteuer entscheidest du selbst, wie die Saison verläuft!"
+- Subline: "In diesem interaktiven Fussballabenteuer entscheidest du selbst, wie die Saison verläuft!"
 - Tagline: "Glaub an dich, so kannst du im Leben alles erreichen!"
 - CTA: "Starte dein Abenteuer"
 
@@ -72,7 +72,7 @@ Die Flamingos haben Potenzial – aber auch eine seltsame Angewohnheit...
 ```
 
 **Grafiken:**
-- `Cover.png` (zentral, groß, subtle rotation)
+- `Cover.png` (zentral, gross, subtle rotation)
 - lieber mannschaftsfoto
 
 **Dual-Theme:**
@@ -92,7 +92,7 @@ Die Flamingos haben Potenzial – aber auch eine seltsame Angewohnheit...
 
 **Content:**
 ```
-"Die größte Herausforderung deiner Trainerkarriere:"
+"Die grösste Herausforderung deiner Trainerkarriere:"
 
 Die Flamingos stehen lieber auf einem Bein
 anstatt zweibeinig Tore zu erzielen!
@@ -129,7 +129,7 @@ Kannst du das Team zum Meistertitel führen?
 - **Mister King:** "Dein verzweifelter Co-Trainer – er braucht deine Hilfe!"
 
 **Grafiken:**
-- `Vorsatz.jpg` (Fußballfeld - Background, full-width)
+- `Vorsatz.jpg` (Fussballfeld - Background, full-width)
 - `Charaktere-1.jpg` (4 Portraits: Fizzi, Zis, Lilly, Mister King)
 
 **Dual-Theme:**
@@ -144,7 +144,7 @@ Kannst du das Team zum Meistertitel führen?
   background: rgba(58, 53, 83, 0.7); /* matchday-bg overlay */
 }
 ```
-- **Training:** Helle Character-Borders (weiß/grün)
+- **Training:** Helle Character-Borders (weiss/grün)
 - **Matchday:** Gold Character-Borders (Spotlight-Effekt)
 
 **Visuelle Gestaltung:**
@@ -165,7 +165,7 @@ Kannst du das Team zum Meistertitel führen?
 ✉️ Ein geheimnisvoller Brief sorgt für Aufsehen
 ⚡ Zwei spektakuläre Neuzugänge wirbeln alles durcheinander
 
-In diesem interaktiven Fußballabenteuer entscheidest du
+In diesem interaktiven Fussballabenteuer entscheidest du
 an jedem Wendepunkt:
 
 → Welche Taktik wählt das Team?
@@ -234,7 +234,7 @@ Wird das deine Geschichte?
 ┌────────────────┐   ┌──────────────────────────┐
 │                │   │ FC Flamingo              │
 │  [Cover.png]   │   │ Interaktives             │
-│                │   │ Fußballabenteuer         │
+│                │   │ Fussballabenteuer         │
 │                │   │                          │
 │                │   │ In dieser Geschichte     │
 │                │   │ entscheidest du, wie     │
@@ -274,7 +274,7 @@ Wird das deine Geschichte?
 "Spiele mit FC Flamingo!"
 
 Wöchentliche Challenges & Gewinnspiele auf Instagram
-Rätselspaß für Kinder, tolle Preise zu gewinnen!
+Rätselspass für Kinder, tolle Preise zu gewinnen!
 
 [Instagram Icon] Jetzt mitmachen
 ```
@@ -376,7 +376,7 @@ info@fcflamingo.ch
 | 5 | Cover.png | Mission | Normal | Mit Glow |
 | 6 | Mannschaftsfoto.jpg | Problem | Normal | Filter |
 | 7 | Vorsatz.jpg | Team | Hell | Dark Overlay |
-| 8 | Charaktere-1.jpg | Team | Weiß Border | Gold Border |
+| 8 | Charaktere-1.jpg | Team | Weiss Border | Gold Border |
 | 9 | K5-1.jpg / K7-1.jpg | Geheimnis | Normal | Dramatic |
 | 10 | K13-1.jpg | Triumph | Bright | Dramatic |
 | 11 | Cover.png (reuse) | Shop | Normal | Mit Glow |
@@ -420,7 +420,7 @@ web/components/fc-flamingo/
 - **KISS:** Jede Section = Eigene Datei, keine Abstraktions-Overkill
 - **YAGNI:** Wiederverwendung erst bei 3+ Nutzungen
 - **Co-Location:** Sections direkt bei der Page die sie nutzt
-- **Max 150 Zeilen:** Keine Datei über 150 Zeilen (größte: hero-section.tsx ~131)
+- **Max 150 Zeilen:** Keine Datei über 150 Zeilen (grösste: hero-section.tsx ~131)
 
 ### Neue Section hinzufügen (Workflow)
 1. Component erstellen: `_sections/neue-section.tsx`
@@ -626,7 +626,7 @@ import { Target, Zap } from "lucide-react"
 | **Contact** | 65 | ✅ Skeleton | TODO: Newsletter-Integration |
 | **page.tsx** | 70 | ✅ Orchestrator | Clean (nur Imports + Flow) |
 
-**Gesamt:** ~687 Zeilen über 12 Dateien | **Größte Datei:** 131 Zeilen ✅
+**Gesamt:** ~687 Zeilen über 12 Dateien | **Grösste Datei:** 131 Zeilen ✅
 
 ### 🎯 Content-Filling Priority (Next Steps)
 **Conversion-First Approach:**

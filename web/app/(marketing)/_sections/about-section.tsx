@@ -17,7 +17,7 @@ export function AboutSection() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Das Team hinter FC Flamingo</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Das Team hinter dem FC Flamingo</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Mit Herz und Leidenschaft geschaffen
           </p>

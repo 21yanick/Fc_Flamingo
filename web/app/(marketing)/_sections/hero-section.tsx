@@ -1,9 +1,11 @@
 "use client"
 
+import { Instagram } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { FlamingoButton } from "@/components/fc-flamingo/hand-drawn"
 import { HeroLogo } from "@/components/fc-flamingo/hybrid"
+import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/lib/config"
 
 interface HeroSectionProps {
@@ -16,7 +18,7 @@ export function HeroSection({ isDark }: HeroSectionProps) {
       title: siteConfig.hero.title,
       subtitle: siteConfig.hero.subtitle,
       cta: siteConfig.hero.cta,
-      ctaLink: "/shop",
+      ctaLink: "#shop", // One-Pager: Scroll to Shop Section
     }
   }
 
@@ -63,11 +65,25 @@ export function HeroSection({ isDark }: HeroSectionProps) {
               <p className="text-xl font-medium mb-6 sm:mb-8 text-foreground leading-relaxed">
                 {hero.subtitle}
               </p>
-              <Link href={hero.ctaLink}>
-                <FlamingoButton variant="outline-hero" size="hero" className="w-full">
-                  {hero.cta}
-                </FlamingoButton>
-              </Link>
+              {/* CTA Buttons - Stack */}
+              <div className="space-y-4">
+                <Link href={hero.ctaLink}>
+                  <FlamingoButton variant="outline-hero" size="hero" className="w-full">
+                    {hero.cta}
+                  </FlamingoButton>
+                </Link>
+                <Button
+                  variant="ghost"
+                  size="lg"
+                  className="w-full h-auto py-4 px-8 text-lg"
+                  asChild
+                >
+                  <a href="#community" className="inline-flex items-center gap-2">
+                    <Instagram className="h-4 w-4" />
+                    Instagram Challenges
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -89,12 +105,19 @@ export function HeroSection({ isDark }: HeroSectionProps) {
               <p className="text-2xl xl:text-3xl font-medium text-foreground leading-relaxed max-w-xl">
                 {hero.subtitle}
               </p>
-              <div className="pt-2">
+              {/* CTA Buttons - Side-by-Side */}
+              <div className="flex gap-4 pt-2">
                 <Link href={hero.ctaLink}>
                   <FlamingoButton variant="outline-hero" size="hero">
                     {hero.cta}
                   </FlamingoButton>
                 </Link>
+                <Button variant="ghost" size="lg" className="h-auto py-4 px-8 text-lg" asChild>
+                  <a href="#community" className="inline-flex items-center gap-2">
+                    <Instagram className="h-4 w-4" />
+                    Instagram Challenges
+                  </a>
+                </Button>
               </div>
             </div>
           </div>

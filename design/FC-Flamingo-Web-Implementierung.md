@@ -29,7 +29,7 @@ Nach gründlicher Analyse und Research haben wir uns für einen **Custom Compone
 - 🎨 **Authentisch**: Echter Buch-Stil statt Generic-Library-Look
 - ⚡ **Performance**: 0kB Library-Overhead, nur was wir brauchen
 - 🔧 **Kontrolle**: Keine Library-Abhängigkeiten, wartbar
-- 🚀 **Einzigartig**: Professionelles, maßgeschneidertes Design
+- 🚀 **Einzigartig**: Professionelles, massgeschneidertes Design
 
 ---
 
@@ -48,7 +48,7 @@ Matchday: Dunkle Blues, glänzende Goldtöne, Stadium-Atmosphere
 - **Kreisförmige Portraits** mit einheitlicher grüner Hintergrund-Textur
 - **Individuelle Persönlichkeiten**: Flamingo mit Hut, bunter Papagei, Pinguin, Menschen
 - **Warme, einladende Gesichtsausdrücke**
-- **Konsistente Größenverhältnisse** zwischen Tieren und Menschen
+- **Konsistente Grössenverhältnisse** zwischen Tieren und Menschen
 
 ### **Hand-gezeichneter Charme** (Schmutztitel.jpg)
 - **Ein-Bein-Pose**: Das ikonische Flamingo-Merkmal als Wiederkehrungselement
@@ -76,7 +76,7 @@ Matchday: Dunkle Blues, glänzende Goldtöne, Stadium-Atmosphere
 // siteConfig Update
 export const siteConfig = {
   name: "FC Flamingo",
-  description: "Die Geschichte der Fußball-Flamingos, die vom ersten Schweizer Meistertitel träumen",
+  description: "Die Geschichte der Fussball-Flamingos, die vom ersten Schweizer Meistertitel träumen",
   tagline: "Glaub an dich, so kannst du im Leben alles erreichen!",
   currency: "CHF",
   region: "swiss",
@@ -281,7 +281,7 @@ export function RoughFlamingoButton({ variant, children }) {
 <Navigation>
   - Logo: Flamingo silhouette mit subtle wobble
   - Menu Items: Hand-writing underline bei hover
-  - Mobile: Hamburger → Fußball transition
+  - Mobile: Hamburger → Fussball transition
   - Background: Semi-transparent mit backdrop-blur
 </Navigation>
 ```
@@ -383,8 +383,8 @@ export function RoughFlamingoButton({ variant, children }) {
 ### **Verfügbare Illustrationen** (design/bilder/ & design/weitereBilder/)
 - ✅ **Cover.png**: Dual-Design Inspiration (Training vs. Matchday)
 - ✅ **V-2.jpg**: **Hero Background** - minimalistisch, Flamingo + Ball, perfekt für Training-Stimmung
-- ✅ **Vorsatz.jpg**: Fußballfeld von oben - Section Background oder Pattern
-- ✅ **V-1.jpg**: Fußballschuhe + Schlüssel - Deko-Elemente
+- ✅ **Vorsatz.jpg**: Fussballfeld von oben - Section Background oder Pattern
+- ✅ **V-1.jpg**: Fussballschuhe + Schlüssel - Deko-Elemente
 - ✅ **Schmutztitel.jpg**: Ikonische Ein-Bein-Pose - Character Highlight
 - ✅ **Charaktere-*.jpg**: Portrait-Referenzen für Character Field (kreisförmig, grüner Hintergrund)
 - ✅ **Mannschaftsfoto.jpg**: **Tape-Corner Referenz** - gelb/orange Klebeband-Effekt
@@ -402,7 +402,7 @@ export function RoughFlamingoButton({ variant, children }) {
 
 ### **Zukünftige Assets** (KI-unterstützt, optional)
 - 🔲 **Gras-Texturen**: Im Stil von V-2.jpg für Section-Backgrounds
-- 🔲 **Deko-Elemente**: Fußball-Icons, Wolken, Grashalme (konsistent zum Buch-Stil)
+- 🔲 **Deko-Elemente**: Fussball-Icons, Wolken, Grashalme (konsistent zum Buch-Stil)
 - 🔲 **Seamless Pattern**: Watercolor-Texturen für Overlays
 - 🔲 **Character Variations**: Zusätzliche Posen falls benötigt (NICHT als Ersatz!)
 
@@ -505,7 +505,7 @@ Statt Libraries zu imitieren → **Eigene Components** basierend auf echten Illu
 - ✅ **Authentisch** - echter Buch-Stil, nicht Generic-Library
 - ✅ **Wartbar** - volle Kontrolle, keine Library-Abhängigkeiten
 - ✅ **Performance** - optimiert für unsere Needs
-- ✅ **Einzigartig** - professionelles, maßgeschneidertes Design
+- ✅ **Einzigartig** - professionelles, massgeschneidertes Design
 
 ---
 

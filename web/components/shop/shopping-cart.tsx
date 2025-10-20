@@ -108,7 +108,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
         Entdecken Sie unsere Produkte und fügen Sie Artikel hinzu.
       </p>
       <Button asChild onClick={onClose}>
-        <Link href="/shop">Zum Shop</Link>
+        <Link href="/#shop">Zum Shop</Link>
       </Button>
     </div>
   )
@@ -270,7 +270,7 @@ function CartFooter({
         </Button>
 
         <Button variant="outline" className="w-full" onClick={onClose} asChild>
-          <Link href="/shop">Weiter einkaufen</Link>
+          <Link href="/#shop">Weiter einkaufen</Link>
         </Button>
 
         <Button

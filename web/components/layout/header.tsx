@@ -12,7 +12,7 @@ import { getUser } from "@/lib/supabase/server"
 export async function Header() {
   // 🟩 SHOP-FOCUSED: Clean navigation for Kinderbuch-Shop
   const navigationLinks = [
-    { href: "/shop", label: "Shop" }, // 🟩 SHOP-ONLY: Product catalog
+    { href: "/#shop", label: "Shop" }, // 🟩 SHOP-ONLY: One-Pager Shop Section
     { href: "/contact", label: "Kontakt" }, // ✅ SHARED: Customer service
   ]
 

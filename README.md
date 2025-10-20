@@ -417,7 +417,7 @@ fcflamingo/
 - ✅ **Checkout:** Stripe-Integration mit Schweizer Optimierungen
 - ✅ **Benutzerkonten:** Registrierung, Login, Bestellhistorie
 - ✅ **Bestellverwaltung:** Bestellverfolgung und Status-Updates
-- ✅ **Mobile Responsive:** Optimiert für alle Bildschirmgrößen
+- ✅ **Mobile Responsive:** Optimiert für alle Bildschirmgrössen
 
 ### Schweizer Optimierungen
 - ✅ **Währung:** CHF mit Rappen-Präzision (als Ganzzahlen gespeichert)
