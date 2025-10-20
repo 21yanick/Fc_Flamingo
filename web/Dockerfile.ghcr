@@ -1,5 +1,5 @@
 # ================================================================
-# FCFlamingo - Production Dockerfile
+# FCFlamingo - Production Dockerfile (GitHub Container Registry)
 # Next.js 15 + pnpm + Standalone Output
 # Optimized for Coolify Deployment
 # Uses ghcr.io to avoid Docker Hub rate limits
